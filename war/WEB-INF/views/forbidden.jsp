@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Lotocato</title>
+<title>Lotocado</title>
 </head>
 <body>
-You are not authorized to access to this application
+<p>You are not authorized to access to this application</p>
 <a href="${logoutURL}">[logout]</a>
 </body>
 </html>

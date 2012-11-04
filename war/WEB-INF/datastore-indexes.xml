@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <datastore-indexes autoGenerate="true">
-	<datastore-index kind="Person" ancestor="true" source="manual">
+	<datastore-index kind="Person" ancestor="true" source="auto">
+		<property name="hasGift" direction="asc" />
 		<property name="couple" direction="asc" />
 	</datastore-index>
 </datastore-indexes>
