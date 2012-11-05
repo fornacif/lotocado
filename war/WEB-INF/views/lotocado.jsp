@@ -9,9 +9,8 @@
 </head>
 <body>
 	<div>
-		<h1>${nickname}</h1>
-		<h1>Ton cadeau sera pour ${giftTo}</h1>
-		<a href="${logoutURL}">[logout]</a>
+		<h1>Le loto du P&egrave;re No&euml;l t'a d&eacute;sign&eacute; pour offrir un cadeau &agrave; ${giftTo}</h1>
+		<a href="${logoutURL}">${nickname} (se d&eacute;connecter)</a>
 	</div>
 </body>
 </html>
