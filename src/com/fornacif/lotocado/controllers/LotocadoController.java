@@ -21,7 +21,7 @@ public class LotocadoController {
 	private UserService userService = UserServiceFactory.getUserService();
 
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
-	public ModelAndView initDatastore() {
+	public ModelAndView initDatastore() throws EntityNotFoundException {
 		if (userService.isUserLoggedIn() && userService.isUserAdmin()) {
 			lotocadoService.initDatastore();
 			return genericModelAndView("init", userService.getCurrentUser());

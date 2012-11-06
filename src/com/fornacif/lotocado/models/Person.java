@@ -7,7 +7,6 @@ public class Person {
 	private String name;
 	private String email;
 	private int couple;
-	private Key giftFrom;
 	private boolean hasGift;
 
 	public Person(String email) {
@@ -50,14 +49,6 @@ public class Person {
 
 	public void setCouple(int couple) {
 		this.couple = couple;
-	}
-	
-	public Key getGiftFrom() {
-		return giftFrom;
-	}
-	
-	public void setGiftFrom(Key giftFrom) {
-		this.giftFrom = giftFrom;
 	}
 
 	public boolean getHasGift() {
