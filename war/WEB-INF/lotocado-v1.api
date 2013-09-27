@@ -1,0 +1,143 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://lotocado.appspot.com/_ah/api",
+  "name" : "lotocado",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://lotocado.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "lotocado.randomMatcher.createDrawingLots" : {
+      "path" : "createDrawingLots",
+      "httpMethod" : "POST",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fornacif.lotocado.service.RandomMatcher.createDrawingLots",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "DrawingLotsRequest" : {
+        "id" : "DrawingLotsRequest",
+        "type" : "object",
+        "properties" : {
+          "event" : {
+            "$ref" : "Event"
+          },
+          "participants" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Participant"
+            }
+          }
+        }
+      },
+      "Event" : {
+        "id" : "Event",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "organizerName" : {
+            "type" : "string"
+          },
+          "organizerEmail" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Participant" : {
+        "id" : "Participant",
+        "type" : "object",
+        "properties" : {
+          "hashKey" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "giverId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "receiverId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "exclusionHashKeys" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "exclusionIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "format" : "int64"
+            }
+          }
+        }
+      },
+      "ParticipantCollection" : {
+        "id" : "ParticipantCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Participant"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.fornacif.lotocado.service.RandomMatcher.createDrawingLots" : {
+        "request" : {
+          "$ref" : "DrawingLotsRequest"
+        },
+        "response" : {
+          "$ref" : "ParticipantCollection"
+        }
+      }
+    }
+  }
+}
