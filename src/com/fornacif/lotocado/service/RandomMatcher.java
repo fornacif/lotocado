@@ -19,8 +19,8 @@ import com.fornacif.lotocado.model.DrawingLotsRequest;
 import com.fornacif.lotocado.model.Event;
 import com.fornacif.lotocado.model.Participant;
 import com.fornacif.lotocado.utils.Constants;
-import com.google.api.server.spi.ServiceException;
 import com.google.api.server.spi.config.Api;
+import com.google.api.server.spi.response.BadRequestException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -35,7 +35,7 @@ public class RandomMatcher {
 
 	private final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 
-	public List<Participant> createDrawingLots(DrawingLotsRequest drawingLotsRequest) throws ServiceException {
+	public List<Participant> createDrawingLots(DrawingLotsRequest drawingLotsRequest) throws BadRequestException {
 		Event event = drawingLotsRequest.getEvent();
 		List<Participant> participants = drawingLotsRequest.getParticipants();
 
@@ -57,14 +57,16 @@ public class RandomMatcher {
 					sendEmails(event, participants);
 					transaction.commit();
 				} catch (EntityNotFoundException e) {
-					throw new ServiceException(Constants.NOT_PERSISTED_ERROR_CODE, "A problem occured during the drawing lots computation");
+					throw new BadRequestException("{\"code\":" + Constants.NOT_PERSISTED_ERROR_CODE + "}");
 				} catch (MessagingException | UnsupportedEncodingException e) {
-					throw new ServiceException(Constants.SEND_MAIL_ERROR_CODE, "A problem occured during emails sending");
+					throw new BadRequestException("{\"code\":" + Constants.SEND_MAIL_ERROR_CODE + "}");
 				}
 				return participants;
 			} else {
-				throw new ServiceException(Constants.NO_RESULT_ERROR_CODE, "A problem occured during the drawing lots computation");
+				throw new BadRequestException("{\"code\":" + Constants.NO_RESULT_ERROR_CODE + "}");
 			}
+		} catch (UnsupportedEncodingException e) {
+			throw new BadRequestException("{\"code\":" + Constants.UNSUPPORTED_ENCODING_ERROR_CODE + "}");
 		} finally {
 			if (transaction.isActive()) {
 				transaction.rollback();
@@ -81,7 +83,7 @@ public class RandomMatcher {
 		return eventEntity.getKey();
 	}
 
-	private void saveParticipants(Key eventKey, List<Participant> participants) {
+	private void saveParticipants(Key eventKey, List<Participant> participants) throws UnsupportedEncodingException {
 		Map<String, Long> hashKeyToId = new HashMap<>();
 
 		for (Participant participant : participants) {

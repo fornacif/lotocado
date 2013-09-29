@@ -16,7 +16,8 @@ public final class Constants {
     public static final String PARTICIPANT_EXCLUSION_IDS = "exclusionIds";
     public static final String PARTICIPANT_EVENT_KEY = "eventKey";
     
-    public static final int NOT_PERSISTED_ERROR_CODE = 501;
-    public static final int NO_RESULT_ERROR_CODE = 502;
-    public static final int SEND_MAIL_ERROR_CODE = 503;
+    public static final int NOT_PERSISTED_ERROR_CODE = 521;
+    public static final int NO_RESULT_ERROR_CODE = 522;
+    public static final int SEND_MAIL_ERROR_CODE = 523;
+    public static final int UNSUPPORTED_ENCODING_ERROR_CODE = 524;
 }

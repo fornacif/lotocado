@@ -1,13 +1,17 @@
-'use strict';
+"use strict";
 
-angular.module('lotocado.services', []).
-	service('eventModel', function() {
-		this.name = null;
-		this.organizerName = null;
-		this.organizerEmail = null;
+angular.module("lotocado.services", []).
+	service("eventModel", function() {
+		this.event = {};
+		this.participants = [];
+		this.event.name = null;
+		this.event.organizerName = null;
+		this.event.organizerEmail = null;
+		
 		this.reset = function() {
-			this.name = null;
-			this.organizerName = null;
-			this.organizerEmail = null;
+			this.event.name = null;
+			this.event.organizerName = null;
+			this.event.organizerEmail = null;
+			this.participants = [];
 	    };
 	});

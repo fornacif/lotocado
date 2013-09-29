@@ -3,20 +3,19 @@
 angular.module('lotocado.controllers', []).
 	controller('CreationController', ['$scope', '$location', '$window', 'eventModel', function($scope, $location, $window, eventModel) {				
 		$scope.create = function() {
-			eventModel.name = $scope.eventName;
-			eventModel.organizerName = $scope.organizerName;
-			eventModel.organizerEmail = $scope.organizerEmail;
-			console.log($scope.organizerEmail);
+			eventModel.event.name = $scope.eventName;
+			eventModel.event.organizerName = $scope.organizerName;
+			eventModel.event.organizerEmail = $scope.organizerEmail;
 			$location.path( "/edition");
 		};
 	}]).
 	controller('EditionController', ['$scope', '$location', 'eventModel', function($scope, $location, eventModel) {
-		$scope.eventName = eventModel.name;
-		$scope.participants = [];
-		
+		$scope.eventName = eventModel.event.name;
+		$scope.participants = eventModel.participants;
+	
 		var organizerParticipant = {};
-		organizerParticipant.name = eventModel.organizerName;
-		organizerParticipant.email = eventModel.organizerEmail;
+		organizerParticipant.name = eventModel.event.organizerName;
+		organizerParticipant.email = eventModel.event.organizerEmail;
 		$scope.participants.push(organizerParticipant);
 		
 		$scope.addParticipant = function() {
@@ -31,17 +30,18 @@ angular.module('lotocado.controllers', []).
 		$scope.edit = function() {
 			$scope.participants.forEach(function(participant) {
 				participant.hashKey = participant.$$hashKey;
+				delete participant.$$hashKey;
 			});
 			
 			console.log(JSON.stringify(eventModel));
-			console.log(JSON.stringify($scope.participants));
 
 			gapi.client.lotocado.randomMatcher.createDrawingLots({
-				"event" : eventModel,
-				"participants" : $scope.participants
+				"event" : eventModel.event,
+				"participants" : eventModel.participants
 			}).execute(function(response) {
 				if (response.error != null) {
-					console.log(response.error.message);
+					var message = JSON.parse(response.error.message);
+					console.log(message.code);
 				} else {
 					console.log(response.result.items);
 					$scope.$apply($location.path( "/confirmation"));
@@ -51,5 +51,5 @@ angular.module('lotocado.controllers', []).
 		};
 	}]).
 	controller('ConfirmationController', ['$scope', '$location', 'eventModel', function($scope, $location, eventModel) {
-		$scope.eventName = eventModel.name;
+		$scope.eventName = eventModel.event.name;
 	}]);
