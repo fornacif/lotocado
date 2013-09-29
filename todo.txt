@@ -1,0 +1,6 @@
+﻿-choisir les exclusions
+-envoyer les mails à la fin
+-changer les mails des participants et organisateur (à partir du lien)
+-renvoyer une invitation
+-choisir une date
+-choisir le message à envoyer
