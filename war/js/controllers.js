@@ -6,6 +6,12 @@ angular.module('lotocado.controllers', []).
 	}]).
 	controller('EventCreationController', ['$scope', '$location', '$window', 'eventModel', function($scope, $location, $window, eventModel) {
 		$scope.event = {};
+		$scope.dateOptions = {
+			changeYear: true,
+			changeMonth: true,
+			yearRange: '2013:-0',
+			regional: "fr"
+		};
 		
 		$scope.create = function() {
 			eventModel.event = $scope.event;
@@ -48,6 +54,13 @@ angular.module('lotocado.controllers', []).
 	controller('ExclusionsEditionController', ['$scope', '$location', 'eventModel', 'eventService', function($scope, $location, eventModel, eventService) {
 		$scope.eventName = eventModel.event.name;
 		$scope.participants = eventModel.participants;
+		
+		$scope.back = function() {
+			eventModel.participants.forEach(function(participant) {
+				participant.exclusionHashKeys = [];
+			});
+			$location.path("/edit-participants");
+		};
 	
 		$scope.saveEvent = function() {
 			console.log(JSON.stringify(eventModel));
