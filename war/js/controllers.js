@@ -1,22 +1,27 @@
 'use strict';
 
 angular.module('lotocado.controllers', []).
-	controller('CreationController', ['$scope', '$location', '$window', 'eventModel', function($scope, $location, $window, eventModel) {				
+	controller('HomeController', ['$scope', '$location', '$window', function($scope, $location, $window) {				
+
+	}]).
+	controller('EventCreationController', ['$scope', '$location', '$window', 'eventModel', function($scope, $location, $window, eventModel) {
+		$scope.event = {};
+		
 		$scope.create = function() {
-			eventModel.event.name = $scope.eventName;
-			eventModel.event.organizerName = $scope.organizerName;
-			eventModel.event.organizerEmail = $scope.organizerEmail;
-			$location.path( "/edition");
+			eventModel.event = $scope.event;
+			
+			var participants = eventModel.participants;
+			var organizerParticipant = {};
+			organizerParticipant.name = eventModel.event.organizerName;
+			organizerParticipant.email = eventModel.event.organizerEmail;
+			participants.push(organizerParticipant);
+			
+			$location.path( "/edit-participants");
 		};
 	}]).
-	controller('EditionController', ['$scope', '$location', 'eventModel', function($scope, $location, eventModel) {
+	controller('ParticipantsEditionController', ['$scope', '$location', 'eventModel', 'eventService', function($scope, $location, eventModel, eventService) {
 		$scope.eventName = eventModel.event.name;
 		$scope.participants = eventModel.participants;
-	
-		var organizerParticipant = {};
-		organizerParticipant.name = eventModel.event.organizerName;
-		organizerParticipant.email = eventModel.event.organizerEmail;
-		$scope.participants.push(organizerParticipant);
 		
 		$scope.addParticipant = function() {
 			$scope.participants.push({});
@@ -27,29 +32,36 @@ angular.module('lotocado.controllers', []).
 			$scope.participants.splice(index, 1);
 		};
 	  
-		$scope.edit = function() {
-			$scope.participants.forEach(function(participant) {
-				participant.hashKey = participant.$$hashKey;
-				delete participant.$$hashKey;
-			});
-			
+		$scope.saveEvent = function() {
 			console.log(JSON.stringify(eventModel));
-
-			gapi.client.lotocado.randomMatcher.createDrawingLots({
-				"event" : eventModel.event,
-				"participants" : eventModel.participants
-			}).execute(function(response) {
+			eventService.createDrawingLots(eventModel, function(response) {
 				if (response.error != null) {
 					var message = JSON.parse(response.error.message);
 					console.log(message.code);
 				} else {
 					console.log(response.result.items);
-					$scope.$apply($location.path( "/confirmation"));
+					$scope.$apply($location.path("/confirm-creation"));
 				}
-				
-			});
+			});	
 		};
 	}]).
-	controller('ConfirmationController', ['$scope', '$location', 'eventModel', function($scope, $location, eventModel) {
+	controller('ExclusionsEditionController', ['$scope', '$location', 'eventModel', 'eventService', function($scope, $location, eventModel, eventService) {
+		$scope.eventName = eventModel.event.name;
+		$scope.participants = eventModel.participants;
+	
+		$scope.saveEvent = function() {
+			console.log(JSON.stringify(eventModel));
+			eventService.createDrawingLots(eventModel, function(response) {
+				if (response.error != null) {
+					var message = JSON.parse(response.error.message);
+					console.log(message.code);
+				} else {
+					console.log(response.result.items);
+					$scope.$apply($location.path("/confirm-creation"));
+				}
+			});	
+		};
+	}]).
+	controller('CreationConfirmationController', ['$scope', '$location', 'eventModel', function($scope, $location, eventModel) {
 		$scope.eventName = eventModel.event.name;
 	}]);

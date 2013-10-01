@@ -79,6 +79,7 @@ public class RandomMatcher {
 		eventEntity.setProperty(Constants.EVENT_NAME, event.getName());
 		eventEntity.setProperty(Constants.EVENT_ORGANIZER_NAME, event.getOrganizerName());
 		eventEntity.setProperty(Constants.EVENT_ORGANIZER_EMAIL, event.getOrganizerEmail());
+		eventEntity.setProperty(Constants.EVENT_DATE, event.getDate());
 		datastoreService.put(eventEntity);
 		return eventEntity.getKey();
 	}

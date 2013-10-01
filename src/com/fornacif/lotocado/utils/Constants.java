@@ -6,6 +6,7 @@ public final class Constants {
     public static final String EVENT_NAME = "name";
     public static final String EVENT_ORGANIZER_NAME = "organizerName";
     public static final String EVENT_ORGANIZER_EMAIL = "organizerEmail";
+    public static final String EVENT_DATE = "date";
     
     public static final String PARTICIPANT_ENTITY = "Participant";
     public static final String PARTICIPANT_ID = "id";

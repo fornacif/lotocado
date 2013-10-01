@@ -9,4 +9,5 @@ encoding//war/index.html=UTF-8
 encoding//war/js/app.js=UTF-8
 encoding//war/js/controllers.js=UTF-8
 encoding//war/js/services.js=UTF-8
-encoding//war/partials/creation.html=UTF-8
+encoding//war/libs/angular-ui/angular-ui-date.js=UTF-8
+encoding//war/partials/create-event.html=UTF-8

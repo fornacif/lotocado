@@ -1,11 +1,14 @@
 'use strict';
 
-angular.module('lotocado', ['lotocado.services', 'lotocado.controllers', 'ui.select2']).
+angular.module('lotocado', ['lotocado.services', 'lotocado.controllers', 'ui.select2', 'ui.date']).
 	config(function($routeProvider) {
 		$routeProvider.
-			when('/', {controller:'CreationController', templateUrl:'partials/creation.html'}).
-			when('/edition', {controller:'EditionController', templateUrl:'partials/edition.html'}).
-			when('/confirmation', {controller:'ConfirmationController', templateUrl:'partials/confirmation.html'}).
+			when('/', {controller:'HomeController', templateUrl:'partials/home.html'}).
+			when('/home', {controller:'HomeController', templateUrl:'partials/home.html'}).
+			when('/create-event', {controller:'EventCreationController', templateUrl:'partials/create-event.html'}).
+			when('/edit-participants', {controller:'ParticipantsEditionController', templateUrl:'partials/edit-participants.html'}).
+			when('/edit-exclusions', {controller:'ExclusionsEditionController', templateUrl:'partials/edit-exclusions.html'}).
+			when('/confirm-creation', {controller:'CreationConfirmationController', templateUrl:'partials/confirm-creation.html'}).
 			otherwise({redirectTo:'/'});
 	});
 
