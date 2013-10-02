@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 
-angular.module('lotocado.controllers', []).
-	controller('HomeController', ['$scope', '$location', '$window', function($scope, $location, $window) {				
+angular.module("lotocado.controllers", []).
+	controller("HomeController", ["$scope", "$location", "$window", function($scope, $location, $window) {				
 
 	}]).
-	controller('EventCreationController', ['$scope', '$location', '$window', 'eventModel', function($scope, $location, $window, eventModel) {
+	controller("EventCreationController", ["$scope", "$location", "$window", "eventModel", function($scope, $location, $window, eventModel) {
 		$scope.event = {};
 		$scope.dateOptions = {
 			changeYear: true,
 			changeMonth: true,
-			yearRange: '2013:-0',
+			yearRange: "2013:-0",
 			regional: "fr"
 		};
 		
@@ -25,7 +25,7 @@ angular.module('lotocado.controllers', []).
 			$location.path( "/edit-participants");
 		};
 	}]).
-	controller('ParticipantsEditionController', ['$scope', '$location', 'eventModel', 'eventService', function($scope, $location, eventModel, eventService) {
+	controller("ParticipantsEditionController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
 		$scope.eventName = eventModel.event.name;
 		$scope.participants = eventModel.participants;
 		
@@ -51,7 +51,7 @@ angular.module('lotocado.controllers', []).
 			});	
 		};
 	}]).
-	controller('ExclusionsEditionController', ['$scope', '$location', 'eventModel', 'eventService', function($scope, $location, eventModel, eventService) {
+	controller("ExclusionsEditionController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
 		$scope.eventName = eventModel.event.name;
 		$scope.participants = eventModel.participants;
 		
@@ -75,6 +75,6 @@ angular.module('lotocado.controllers', []).
 			});	
 		};
 	}]).
-	controller('CreationConfirmationController', ['$scope', '$location', 'eventModel', function($scope, $location, eventModel) {
+	controller("CreationConfirmationController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
 		$scope.eventName = eventModel.event.name;
 	}]);

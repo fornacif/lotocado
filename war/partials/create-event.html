@@ -1,21 +1,23 @@
-<h1>Event creation</h1>
-<form name="creationForm" class="form-creation" role="form" ng-submit="create()">
-	<div class="form-group">
-		<label>Name</label>
-		<input type="text" class="form-control " ng-model="event.name" placeholder="Enter event name" required />
-		<span class="help-block">exemple : Noel 2013</span>
-	</div>
-	<div class="form-group">
-		<label>Organizer name</label>
-		<input type="text" class="form-control" ng-model="event.organizerName" placeholder="Enter organizer name" required />
-	</div>
-	<div class="form-group">
-		<label>Organizer email</label>
-		<input type="email" class="form-control" ng-model="event.organizerEmail" placeholder="Enter organizer email" required />
-	</div>
-	<div class="form-group">
-		<label>Date</label>
-		<input ui-date="dateOptions" class="form-control"  placeholder="Enter date" ng-model="event.date" required />
-	</div>
-	<button type="submit" class="btn btn-lg btn-primary" ng-disabled="creationForm.$invalid">Submit</button>
-</form>
+<div class="container">
+	<h1>Event creation</h1>
+	<form name="creationForm" class="form-creation" role="form" ng-submit="create()">
+		<div class="form-group">
+			<label>Name</label>
+			<input type="text" class="form-control " ng-model="event.name" placeholder="Enter event name" required />
+			<span class="help-block">exemple : Noel 2013</span>
+		</div>
+		<div class="form-group">
+			<label>Organizer name</label>
+			<input type="text" class="form-control" ng-model="event.organizerName" placeholder="Enter organizer name" required />
+		</div>
+		<div class="form-group">
+			<label>Organizer email</label>
+			<input type="email" class="form-control" ng-model="event.organizerEmail" placeholder="Enter organizer email" required />
+		</div>
+		<div class="form-group">
+			<label>Date</label>
+			<input ui-date="dateOptions" class="form-control"  placeholder="Enter date" ng-model="event.date" required />
+		</div>
+		<button type="submit" class="btn btn-lg btn-primary" ng-disabled="creationForm.$invalid">Submit</button>
+	</form>
+</div>
