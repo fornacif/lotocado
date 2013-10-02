@@ -2,5 +2,8 @@
 -changer les mails des participants et organisateur (à partir du lien)
 -renvoyer une invitation
 -afficher page de tirage au sort
--breadcrumb
+-page de validation
 -gestion des erreurs
+-layout des exclusions
+-i18n
+-description

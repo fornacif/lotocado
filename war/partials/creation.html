@@ -6,20 +6,32 @@
 	<form name="creationForm" class="form-creation" role="form" ng-submit="addOrganizer()">
 		<div class="form-group">
 			<label>Name</label>
-			<input type="text" class="form-control " ng-model="event.name" placeholder="Enter event name" required />
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
+				<input type="text" class="form-control " ng-model="event.name" placeholder="Enter event name" required />
+			</div>
 			<span class="help-block">exemple : Noel 2013</span>
 		</div>
 		<div class="form-group">
 			<label>Organizer name</label>
-			<input type="text" class="form-control" ng-model="event.organizerName" placeholder="Enter organizer name" required />
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input type="text" class="form-control" ng-model="event.organizerName" placeholder="Enter organizer name" required />
+			</div>
 		</div>
 		<div class="form-group">
 			<label>Organizer email</label>
-			<input type="email" class="form-control" ng-model="event.organizerEmail" placeholder="Enter organizer email" required />
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+				<input type="email" class="form-control" ng-model="event.organizerEmail" placeholder="Enter organizer email" required />
+			</div>
 		</div>
 		<div class="form-group">
 			<label>Date</label>
-			<input ui-date="dateOptions" class="form-control"  placeholder="Enter date" ng-model="event.date" required />
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+				<input ui-date="dateOptions" class="form-control"  placeholder="Enter date" ng-model="event.date" required />
+			</div>
 		</div>
 		<button type="submit" class="btn btn-lg btn-primary" ng-disabled="creationForm.$invalid">Add participants</button>
 	</form>

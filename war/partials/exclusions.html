@@ -8,12 +8,18 @@
 	<form class="form" role="form">
 		<div ng-repeat="participant in participants">
 			<div class="form-group">
-				<input type="text" class="form-control" ng-model="participant.name" ng-readonly="true" />
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<input type="text" class="form-control" ng-model="participant.name" ng-readonly="true" />
+				</div>
 			</div>
 			<div class="form-group">
-				<select ui-select2 multiple class="form-control"  ng-model="participant.exclusionHashKeys" data-placeholder="exlusions for {{participant.name}}">
-   					<option ng-repeat="p in participants | filter:{$$hashKey:'!'+participant.$$hashKey}" value="{{p.$$hashKey}}">{{p.name}}</option>
-				</select>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-ban-circle"></i></span>
+					<select ui-select2 multiple class="form-control"  ng-model="participant.exclusionHashKeys" data-placeholder="exlusions for {{participant.name}}">
+	   					<option ng-repeat="p in participants | filter:{$$hashKey:'!'+participant.$$hashKey}" value="{{p.$$hashKey}}">{{p.name}}</option>
+					</select>
+				</div>
 			</div>
 		</div>
 		<a href="#/validation" class="btn btn-lg btn-primary">Validate event</a>
