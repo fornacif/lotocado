@@ -3,14 +3,12 @@
 angular.module("lotocado.translate", ["pascalprecht.translate"]).
 	config(["$translateProvider", function ($translateProvider) {
 		$translateProvider.translations('en', {
-			HOME: 'Home',
-			CREATION: 'Creation',
+			CONTACT_US: 'Contact us',
 			WELCOME_TO: 'Welcome to',
 			CREATE_EVENT: 'Create event'
 		});
 		$translateProvider.translations('fr', {
-			HOME: 'Accueil',
-			CREATION: 'Cr&eacute;ation',
+			CONTACT_US: 'Nous contacter',
 			WELCOME_TO: 'Bienvenue dans',
 			CREATE_EVENT: 'Cr&eacute;er un &eacute;v&egrave;nement'
 		});

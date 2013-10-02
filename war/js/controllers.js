@@ -1,11 +1,11 @@
 "use strict";
 
 angular.module("lotocado.controllers", []).
-	controller("HomeController", ["$scope", "$location", "$window", function($scope, $location, $window) {				
-
+	controller("HomeController", ["eventModel", function(eventModel) {				
+		eventModel.reset();
 	}]).
 	controller("EventCreationController", ["$scope", "$location", "$window", "eventModel", function($scope, $location, $window, eventModel) {
-		$scope.event = {};
+		$scope.event = eventModel.event;
 		$scope.dateOptions = {
 			changeYear: true,
 			changeMonth: true,
@@ -13,20 +13,19 @@ angular.module("lotocado.controllers", []).
 			regional: "fr"
 		};
 		
-		$scope.create = function() {
-			eventModel.event = $scope.event;
-			
+		$scope.create = function() {			
 			var participants = eventModel.participants;
-			var organizerParticipant = {};
-			organizerParticipant.name = eventModel.event.organizerName;
-			organizerParticipant.email = eventModel.event.organizerEmail;
-			participants.push(organizerParticipant);
-			
+			if (participants.length == 0) {
+				var organizerParticipant = {};
+				organizerParticipant.name = eventModel.event.organizerName;
+				organizerParticipant.email = eventModel.event.organizerEmail;
+				participants.push(organizerParticipant);
+			}
 			$location.path( "/edit-participants");
 		};
 	}]).
 	controller("ParticipantsEditionController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
-		$scope.eventName = eventModel.event.name;
+		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		
 		$scope.addParticipant = function() {
@@ -52,13 +51,10 @@ angular.module("lotocado.controllers", []).
 		};
 	}]).
 	controller("ExclusionsEditionController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
-		$scope.eventName = eventModel.event.name;
+		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		
 		$scope.back = function() {
-			eventModel.participants.forEach(function(participant) {
-				participant.exclusionHashKeys = [];
-			});
 			$location.path("/edit-participants");
 		};
 	
@@ -76,5 +72,6 @@ angular.module("lotocado.controllers", []).
 		};
 	}]).
 	controller("CreationConfirmationController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
-		$scope.eventName = eventModel.event.name;
+		$scope.event = eventModel.event;
+		eventModel.reset();
 	}]);
