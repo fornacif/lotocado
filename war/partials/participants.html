@@ -1,7 +1,11 @@
 <div class="container">
-	<h1>Edition of participants for {{event.name}}</h1>
+	<ol class="breadcrumb">
+		<li><a href="#/creation">1. Creation</a></li>
+		<li class="active">2. Participants</li>
+	</ol>
+	<h1>Add participants for {{event.name}}</h1>
 	<button type="button" class="btn btn-lg" ng-click="addParticipant()"><i class="glyphicon glyphicon-plus-sign"></i> Add participant</button>
-	<form name="participantsEditionForm" class="form-inline" role="form" ng-submit="saveEvent()">
+	<form name="participantsEditionForm" class="form-inline" role="form">
 		<div class="row-form-edition" ng-repeat="participant in participants" ng-animate="'animate'">
 			<div class="form-group col-lg-3">
 				<input type="text" class="form-control" ng-model="participant.name" placeholder="Enter name" required/>
@@ -13,8 +17,7 @@
 				<button type="button" class="form-control btn btn-info" ng-click="removeParticipant(participant)"><i class="glyphicon glyphicon-minus-sign"></i></button>
 			</div>
 		</div>
-		<a href="#/create-event" class="btn btn-lg btn-info" class="btn btn-lg">Back</a>
-		<a href="#/edit-exclusions" class="btn btn-lg btn-info" ng-disabled="participantsEditionForm.$invalid">Set exclusions</a>
-		<button type="submit" class="btn btn-lg btn-primary" ng-disabled="participantsEditionForm.$invalid">Save event</button>
+		<a href="#/exclusions" class="btn btn-lg btn-info" ng-disabled="participantsEditionForm.$invalid">Add exclusions</a>
+		<a href="#/validation" class="btn btn-lg btn-primary" ng-disabled="participantsEditionForm.$invalid">Validate event</a>
 	</form>
 </div>

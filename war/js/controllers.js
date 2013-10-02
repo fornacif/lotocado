@@ -1,10 +1,13 @@
 "use strict";
 
 angular.module("lotocado.controllers", []).
-	controller("HomeController", ["eventModel", function(eventModel) {				
-		eventModel.reset();
+	controller("HomeController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+		$scope.create = function() {
+			eventModel.reset();
+			$location.path( "/creation");
+		}		
 	}]).
-	controller("EventCreationController", ["$scope", "$location", "$window", "eventModel", function($scope, $location, $window, eventModel) {
+	controller("CreationController", ["$scope", "$location", "$window", "eventModel", function($scope, $location, $window, eventModel) {
 		$scope.event = eventModel.event;
 		$scope.dateOptions = {
 			changeYear: true,
@@ -13,7 +16,7 @@ angular.module("lotocado.controllers", []).
 			regional: "fr"
 		};
 		
-		$scope.create = function() {			
+		$scope.addOrganizer = function() {			
 			var participants = eventModel.participants;
 			if (participants.length == 0) {
 				var organizerParticipant = {};
@@ -21,10 +24,10 @@ angular.module("lotocado.controllers", []).
 				organizerParticipant.email = eventModel.event.organizerEmail;
 				participants.push(organizerParticipant);
 			}
-			$location.path( "/edit-participants");
+			$location.path( "/participants");
 		};
 	}]).
-	controller("ParticipantsEditionController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
+	controller("ParticipantsController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		
@@ -36,29 +39,16 @@ angular.module("lotocado.controllers", []).
 			var index = $scope.participants.indexOf(participant);
 			$scope.participants.splice(index, 1);
 		};
-	  
-		$scope.saveEvent = function() {
-			console.log(JSON.stringify(eventModel));
-			eventService.createDrawingLots(eventModel, function(response) {
-				if (response.error != null) {
-					var message = JSON.parse(response.error.message);
-					console.log(message.code);
-				} else {
-					console.log(response.result.items);
-					$scope.$apply($location.path("/confirm-creation"));
-				}
-			});	
-		};
 	}]).
-	controller("ExclusionsEditionController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
+	controller("ExclusionsController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+		$scope.event = eventModel.event;
+		$scope.participants = eventModel.participants;
+	}]).
+	controller("ValidationController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		
-		$scope.back = function() {
-			$location.path("/edit-participants");
-		};
-	
-		$scope.saveEvent = function() {
+		$scope.confirm = function() {
 			console.log(JSON.stringify(eventModel));
 			eventService.createDrawingLots(eventModel, function(response) {
 				if (response.error != null) {
@@ -66,12 +56,13 @@ angular.module("lotocado.controllers", []).
 					console.log(message.code);
 				} else {
 					console.log(response.result.items);
-					$scope.$apply($location.path("/confirm-creation"));
+					$scope.$apply($location.path("/confirmation"));
+					eventModel.reset();
 				}
 			});	
 		};
 	}]).
-	controller("CreationConfirmationController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+	controller("ConfirmationController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
 		$scope.event = eventModel.event;
-		eventModel.reset();
+		$scope.participants = eventModel.participants;
 	}]);

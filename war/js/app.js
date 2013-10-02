@@ -5,10 +5,11 @@ angular.module("lotocado", ["lotocado.translate", "lotocado.services", "lotocado
 		$routeProvider.
 			when("/", {controller:"HomeController", templateUrl:"partials/home.html"}).
 			when("/home", {controller:"HomeController", templateUrl:"partials/home.html"}).
-			when("/create-event", {controller:"EventCreationController", templateUrl:"partials/create-event.html"}).
-			when("/edit-participants", {controller:"ParticipantsEditionController", templateUrl:"partials/edit-participants.html"}).
-			when("/edit-exclusions", {controller:"ExclusionsEditionController", templateUrl:"partials/edit-exclusions.html"}).
-			when("/confirm-creation", {controller:"CreationConfirmationController", templateUrl:"partials/confirm-creation.html"}).
+			when("/creation", {controller:"CreationController", templateUrl:"partials/creation.html"}).
+			when("/participants", {controller:"ParticipantsController", templateUrl:"partials/participants.html"}).
+			when("/exclusions", {controller:"ExclusionsController", templateUrl:"partials/exclusions.html"}).
+			when("/validation", {controller:"ValidationController", templateUrl:"partials/validation.html"}).
+			when("/confirmation", {controller:"ConfirmationController", templateUrl:"partials/confirmation.html"}).
 			otherwise({redirectTo:"/"});
 	});
 

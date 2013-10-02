@@ -1,6 +1,11 @@
 <div class="container">
-	<h1>Edition of exclusions for {{event.name}}</h1>
-	<form class="form" role="form" ng-submit="saveEvent()">
+	<ol class="breadcrumb">
+		<li><a href="#/creation">1. Creation</a></li>
+		<li><a href="#/participants">2. Participants</a></li>
+		<li class="active">3. Exclusions</li>
+	</ol>
+	<h1>Edit exclusions for {{event.name}}</h1>
+	<form class="form" role="form">
 		<div ng-repeat="participant in participants">
 			<div class="form-group">
 				<input type="text" class="form-control" ng-model="participant.name" ng-readonly="true" />
@@ -11,7 +16,6 @@
 				</select>
 			</div>
 		</div>
-		<button class="btn btn-lg btn-info" class="btn btn-lg" ng-click="back()">Back</button>
-		<button type="submit" class="btn btn-lg btn-primary">Save event</button>
+		<a href="#/validation" class="btn btn-lg btn-primary">Validate event</a>
 	</form>
 </div>

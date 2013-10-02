@@ -2,3 +2,5 @@
 -changer les mails des participants et organisateur (à partir du lien)
 -renvoyer une invitation
 -afficher page de tirage au sort
+-breadcrumb
+-gestion des erreurs
