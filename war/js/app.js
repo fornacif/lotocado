@@ -8,8 +8,8 @@ angular.module("lotocado", ["lotocado.translate", "lotocado.services", "lotocado
 			when("/creation", {controller:"CreationController", templateUrl:"partials/creation.html"}).
 			when("/participants", {controller:"ParticipantsController", templateUrl:"partials/participants.html"}).
 			when("/exclusions", {controller:"ExclusionsController", templateUrl:"partials/exclusions.html"}).
-			when("/validation", {controller:"ValidationController", templateUrl:"partials/validation.html"}).
 			when("/confirmation", {controller:"ConfirmationController", templateUrl:"partials/confirmation.html"}).
+			when("/success", {controller:"SuccessController", templateUrl:"partials/success.html"}).
 			otherwise({redirectTo:"/"});
 	});
 

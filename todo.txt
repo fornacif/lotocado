@@ -4,6 +4,5 @@
 -afficher page de tirage au sort
 -page de validation
 -gestion des erreurs
--layout des exclusions
 -i18n
 -description

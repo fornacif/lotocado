@@ -6,13 +6,7 @@ html,body {
 	height: 100%;
 }
 
-
-.form-creation {
-	max-width: 500px;
-	padding: 15px;
-}
-
-.row-form {
+.row-padding {
 	padding: 5px;
 }
 

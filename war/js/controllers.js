@@ -3,6 +3,7 @@
 angular.module("lotocado.controllers", []).
 	controller("HomeController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
 		$scope.create = function() {
+			console.log("create");
 			eventModel.reset();
 			$location.path( "/creation");
 		}		
@@ -44,7 +45,7 @@ angular.module("lotocado.controllers", []).
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 	}]).
-	controller("ValidationController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
+	controller("ConfirmationController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		
@@ -56,13 +57,13 @@ angular.module("lotocado.controllers", []).
 					console.log(message.code);
 				} else {
 					console.log(response.result.items);
-					$scope.$apply($location.path("/confirmation"));
+					$scope.$apply($location.path("/success"));
 					eventModel.reset();
 				}
 			});	
 		};
 	}]).
-	controller("ConfirmationController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+	controller("SuccessController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 	}]);

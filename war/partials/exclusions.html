@@ -3,11 +3,12 @@
 		<li><a href="#/creation">1. Creation</a></li>
 		<li><a href="#/participants">2. Participants</a></li>
 		<li class="active">3. Exclusions</li>
+		<li>4. Confirmation</li>
 	</ol>
 	<h1>Edit exclusions for {{event.name}}</h1>
 	<form class="form" role="form">
-		<div class="row row-form" ng-repeat="participant in participants">
-			<div class="col-sm-4">
+		<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
+			<div class="col-sm-3">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 					<input type="text" class="form-control" ng-model="participant.name" ng-readonly="true" />
@@ -22,6 +23,7 @@
 				</div>
 			</div>
 		</div>
-		<a href="#/validation" class="btn btn-lg btn-primary">Validate event</a>
+		<a href="#/participants" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-left"></i> Back</a>
+		<a href="#/confirmation" class="btn btn-primary">Confirm event <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
 	</form>
 </div>
