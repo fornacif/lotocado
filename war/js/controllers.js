@@ -66,4 +66,12 @@ angular.module("lotocado.controllers", []).
 	controller("SuccessController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
+	}]).	
+	controller("ParticipantController", ["$scope", "$location", "$routeParams", function($scope, $location, $routeParams) {
+		$scope.participant = {};
+		$scope.participant.id = $routeParams.participantId;
+	}]).
+	controller("EventController", ["$scope", "$location", "$routeParams", function($scope, $location, $routeParams) {
+		$scope.event = {};
+		$scope.event.id = $routeParams.eventId;		
 	}]);
