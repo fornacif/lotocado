@@ -156,16 +156,31 @@ public class RandomMatcher {
 
 	private void sendEmails(Event event, List<Participant> participants) throws MessagingException, UnsupportedEncodingException {
 		sendEmailToOrganizer(event);
+		sendEmailToParticipants(event, participants);
 	}
-	
+
 	private void sendEmailToOrganizer(Event event) throws MessagingException, UnsupportedEncodingException {
 		String recipientEmail = event.getOrganizerEmail();
 		String recipientName = event.getOrganizerName();
 		String subject = "Event " + event.getName() + " created";
-		String body = "Event " + event.getName() + " created";
+		String body = "http://locahost:8888/event/" + event.getId();
 		sendEmail(recipientEmail, recipientName, subject, body);
 	}
-	
+
+	private void sendEmailToParticipants(Event event, List<Participant> participants) throws UnsupportedEncodingException, MessagingException {
+		for (Participant participant : participants) {
+			sendEmailToParticipant(event, participant);
+		}
+	}
+
+	private void sendEmailToParticipant(Event event, Participant participant) throws UnsupportedEncodingException, MessagingException {
+		String recipientEmail = event.getOrganizerEmail();
+		String recipientName = event.getOrganizerName();
+		String subject = "Event " + event.getName() + " created";
+		String body = "http://locahost:8888/participant/" + participant.getId();
+		sendEmail(recipientEmail, recipientName, subject, body);
+	}
+
 	private void sendEmail(String recipientEmail, String recipientName, String subject, String body) throws MessagingException, UnsupportedEncodingException {
 		Properties properties = new Properties();
 		Session session = Session.getDefaultInstance(properties, null);
