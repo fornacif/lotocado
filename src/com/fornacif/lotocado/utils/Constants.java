@@ -19,6 +19,7 @@ public final class Constants {
     
     public static final int NOT_PERSISTED_ERROR_CODE = 521;
     public static final int NO_RESULT_ERROR_CODE = 522;
-    public static final int SEND_MAIL_ERROR_CODE = 523;
-    public static final int UNSUPPORTED_ENCODING_ERROR_CODE = 524;
+    public static final int SEND_MAIL_TO_ORGANIZER_ERROR_CODE = 523;
+    public static final int SEND_MAIL_TO_PARTICIPANT_ERROR_CODE = 524;
+    public static final int DATA_ERROR_CODE = 525;
 }
