@@ -9,20 +9,32 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 
 public class Participant {
-	private String hashKey;
-	private Long id;
-	private String email;
-	private String name;
-	private Long giverId;
-	private Long receiverId;
-	private List<String> exclusionHashKeys = new ArrayList<String>();
-	private List<Long> exclusionIds = new ArrayList<Long>();
 
 	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
-	private Key eventKey;
+	private Key key;
+	private String hashKey;
+
+	private String email;
+	private String name;
+
+	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	private Key toKey;
+	private String toName;
+
+	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	private List<Key> exclusionKeys = new ArrayList<>();
+	private List<String> exclusionHashKeys = new ArrayList<>();
 
 	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
 	private Entity entity;
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
 
 	public String getHashKey() {
 		return hashKey;
@@ -30,14 +42,6 @@ public class Participant {
 
 	public void setHashKey(String hashKey) {
 		this.hashKey = hashKey;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getEmail() {
@@ -56,44 +60,36 @@ public class Participant {
 		this.name = name;
 	}
 
-	public Long getGiverId() {
-		return giverId;
+	public Key getToKey() {
+		return toKey;
 	}
 
-	public void setGiverId(Long giverId) {
-		this.giverId = giverId;
+	public void setToKey(Key toKey) {
+		this.toKey = toKey;
 	}
 
-	public Long getReceiverId() {
-		return receiverId;
+	public String getToName() {
+		return toName;
 	}
 
-	public void setReceiverId(Long receiverId) {
-		this.receiverId = receiverId;
+	public void setToName(String toName) {
+		this.toName = toName;
 	}
 
+	public List<Key> getExclusionKeys() {
+		return exclusionKeys;
+	}
+
+	public void setExclusionKeys(List<Key> exclusionKeys) {
+		this.exclusionKeys = exclusionKeys;
+	}
+	
 	public List<String> getExclusionHashKeys() {
 		return exclusionHashKeys;
 	}
 
 	public void setExclusionHashKeys(List<String> exclusionHashKeys) {
 		this.exclusionHashKeys = exclusionHashKeys;
-	}
-
-	public List<Long> getExclusionIds() {
-		return exclusionIds;
-	}
-
-	public void setExclusionIds(List<Long> exclusionIds) {
-		this.exclusionIds = exclusionIds;
-	}
-
-	public Key getEventKey() {
-		return eventKey;
-	}
-
-	public void setEventKey(Key eventKey) {
-		this.eventKey = eventKey;
 	}
 
 	public Entity getEntity() {
@@ -106,10 +102,10 @@ public class Participant {
 
 	@Override
 	public String toString() {
-		if (getGiverId() == null) {
-			return "Person(" + id + " > NONE)";
+		if (getToKey() == null) {
+			return "Person(" + key + " > NONE)";
 		} else {
-			return "Person(" + id + " > " + getGiverId() + ")";
+			return "Person(" + key + " > " + getToKey() + ")";
 		}
 	}
 }

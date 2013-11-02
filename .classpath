@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jmte-3.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jasypt-1.9.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

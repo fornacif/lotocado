@@ -20,8 +20,10 @@ import javax.mail.internet.MimeMessage;
 import com.floreysoft.jmte.Engine;
 import com.fornacif.lotocado.model.DrawingLotsRequest;
 import com.fornacif.lotocado.model.Event;
+import com.fornacif.lotocado.model.EventParticipantIds;
 import com.fornacif.lotocado.model.Participant;
 import com.fornacif.lotocado.utils.Constants;
+import com.fornacif.lotocado.utils.Encryptor;
 import com.google.api.server.spi.IoUtil;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.response.BadRequestException;
@@ -39,14 +41,14 @@ public class RandomMatcher {
 
 	private final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 
-	public List<Participant> createDrawingLots(DrawingLotsRequest drawingLotsRequest) throws BadRequestException {
+	public void createDrawingLots(DrawingLotsRequest drawingLotsRequest) throws BadRequestException {
 		Event event = drawingLotsRequest.getEvent();
 		List<Participant> participants = drawingLotsRequest.getParticipants();
 
 		Transaction transaction = datastoreService.beginTransaction();
 		try {
-			Key eventKey = saveEvent(event);
-			saveParticipants(eventKey, participants);
+			saveEvent(event);
+			saveParticipants(event.getKey(), participants);
 
 			boolean performRandom = true;
 			int retryCount = 0;
@@ -77,12 +79,11 @@ public class RandomMatcher {
 				}
 
 				transaction.commit();
-
-				return participants;
 			} else {
 				throw new BadRequestException("{\"code\":" + Constants.NO_RESULT_ERROR_CODE + "}");
 			}
 		} catch (Throwable t) {
+			t.printStackTrace();
 			throw new BadRequestException("{\"code\":" + Constants.DATA_ERROR_CODE + "}");
 		} finally {
 			if (transaction.isActive()) {
@@ -91,19 +92,18 @@ public class RandomMatcher {
 		}
 	}
 
-	private Key saveEvent(Event event) {
+	private void saveEvent(Event event) {
 		Entity eventEntity = new Entity(Constants.EVENT_ENTITY);
 		eventEntity.setProperty(Constants.EVENT_NAME, event.getName());
 		eventEntity.setProperty(Constants.EVENT_ORGANIZER_NAME, event.getOrganizerName());
 		eventEntity.setProperty(Constants.EVENT_ORGANIZER_EMAIL, event.getOrganizerEmail());
 		eventEntity.setProperty(Constants.EVENT_DATE, event.getDate());
 		datastoreService.put(eventEntity);
-		event.setId(eventEntity.getKey().getId());
-		return eventEntity.getKey();
+		event.setKey(eventEntity.getKey());
 	}
 
 	private void saveParticipants(Key eventKey, List<Participant> participants) {
-		Map<String, Long> hashKeyToId = new HashMap<>();
+		Map<String, Key> hashKeyToKey = new HashMap<>();
 
 		for (Participant participant : participants) {
 			Entity participantEntity = new Entity(Constants.PARTICIPANT_ENTITY, eventKey);
@@ -112,37 +112,38 @@ public class RandomMatcher {
 			participantEntity.setProperty(Constants.PARTICIPANT_EVENT_KEY, eventKey);
 			datastoreService.put(participantEntity);
 
-			Long id = participantEntity.getKey().getId();
-			hashKeyToId.put(participant.getHashKey(), id);
-			participant.setId(id);
+			Key key = participantEntity.getKey();
+			participant.setKey(key);
 			participant.setEntity(participantEntity);
+			
+			hashKeyToKey.put(participant.getHashKey(), key);
 		}
 
 		for (Participant participant : participants) {
 			List<String> exclusionHashKeys = participant.getExclusionHashKeys();
-			List<Long> exclusionIds = new ArrayList<>();
+			List<Key> exclusionKeys = new ArrayList<>();
 
 			for (String exclusionHashKey : exclusionHashKeys) {
-				exclusionIds.add(hashKeyToId.get(exclusionHashKey));
+				exclusionKeys.add(hashKeyToKey.get(exclusionHashKey));
 			}
-			participant.setExclusionIds(exclusionIds);
+			participant.setExclusionKeys(exclusionKeys);
 		}
 	}
 
 	private void saveResults(List<Participant> participants) throws EntityNotFoundException {
 		for (Participant participant : participants) {
 			Entity participantEntity = participant.getEntity();
-			participantEntity.setProperty(Constants.PARTICIPANT_GIVER_ID, participant.getGiverId());
-			participantEntity.setProperty(Constants.PARTICIPANT_RECEIVER_ID, participant.getReceiverId());
-			participantEntity.setProperty(Constants.PARTICIPANT_EXCLUSION_IDS, participant.getExclusionIds());
+			participantEntity.setProperty(Constants.PARTICIPANT_TO_KEY, participant.getToKey());
+			participantEntity.setProperty(Constants.PARTICIPANT_TO_NAME, participant.getToName());
+			participantEntity.setProperty(Constants.PARTICIPANT_EXCLUSION_KEYS, participant.getExclusionKeys());
 			datastoreService.put(participantEntity);
 		}
 	}
 
 	private void resetDrawingLots(List<Participant> participants) {
 		for (Participant participant : participants) {
-			participant.setGiverId(null);
-			participant.setReceiverId(null);
+			participant.setToKey(null);
+			participant.setToName(null);
 		}
 	}
 
@@ -152,7 +153,7 @@ public class RandomMatcher {
 		for (Participant currentParticipant : participants) {
 			List<Participant> recievers = new ArrayList<Participant>();
 			for (Participant reciever : participants) {
-				if (!currentParticipant.equals(reciever) && !currentParticipant.getExclusionIds().contains(reciever.getId()) && reciever.getGiverId() == null) {
+				if (!currentParticipant.equals(reciever) && !currentParticipant.getExclusionKeys().contains(reciever.getKey()) && reciever.getToKey() == null) {
 					recievers.add(reciever);
 				}
 			}
@@ -160,9 +161,8 @@ public class RandomMatcher {
 			if (recievers.size() != 0) {
 				int receiverPosition = random.nextInt(recievers.size());
 				Participant reciever = recievers.get(receiverPosition);
-
-				currentParticipant.setReceiverId(reciever.getId());
-				reciever.setGiverId(currentParticipant.getId());
+				reciever.setToKey(currentParticipant.getEntity().getKey());
+				reciever.setToName(currentParticipant.getName());
 			} else {
 				resetDrawingLots(participants);
 				return true;
@@ -204,7 +204,7 @@ public class RandomMatcher {
 		String input = IoUtil.readFile(new File("templates/event.html"));
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("event", event);
-		model.put("link", getHostUrl() + "/event/" + event.getId());
+		model.put("link", getHostUrl() + "/#/event/" + Encryptor.encryptEventId(event.getKey().getId()));
 		Engine engine = new Engine();
 		return engine.transform(input, model);
 	}
@@ -214,7 +214,8 @@ public class RandomMatcher {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("event", event);
 		model.put("participant", participant);
-		model.put("link", getHostUrl() + "/participant/" + participant.getId());
+		EventParticipantIds ids = new EventParticipantIds(event.getKey().getId(), participant.getKey().getId());
+		model.put("link", getHostUrl() + "/#/participant/" + Encryptor.encryptEventParticipantIds(ids));
 		Engine engine = new Engine();
 		return engine.transform(input, model);
 	}

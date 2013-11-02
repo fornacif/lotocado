@@ -10,8 +10,8 @@ angular.module("lotocado", ["lotocado.translate", "lotocado.services", "lotocado
 			when("/exclusions", {controller:"ExclusionsController", templateUrl:"partials/exclusions.html"}).
 			when("/confirmation", {controller:"ConfirmationController", templateUrl:"partials/confirmation.html"}).
 			when("/success", {controller:"SuccessController", templateUrl:"partials/success.html"}).
-			when("/participant/:participantId", {controller:"ParticipantController", templateUrl:"partials/participant.html"}).
-			when("/event/:eventId", {controller:"EventController", templateUrl:"partials/event.html"}).
+			when("/participant/:encryptedValue", {controller:"ParticipantController", templateUrl:"partials/participant.html"}).
+			when("/event/:encryptedValue", {controller:"EventController", templateUrl:"partials/event.html"}).
 			otherwise({redirectTo:"/"});
 	});
 
@@ -27,7 +27,9 @@ function init() {
 	var callback = function() {
 //		console.log("Bootstraping AngularJS...")
 //		angular.bootstrap(document, ["lotocado"]);
-		console.log("Google API loaded")
+		console.log("Google API loaded");
+		var scope = angular.element(document).scope();
+		scope.$broadcast("GAPI_LOADED_EVENT");
 	}
 	
 	gapi.client.load("lotocado", "v1", callback, apiRoot);

@@ -5,7 +5,7 @@
 		<li class="active">3. Exclusions</li>
 		<li>4. Confirmation</li>
 	</ol>
-	<h1>Edit exclusions for {{event.name}}</h1>
+	<h2>Edit exclusions for {{event.name}}</h2>
 	<form class="form" role="form">
 		<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
 			<div class="col-sm-3">
@@ -24,6 +24,6 @@
 			</div>
 		</div>
 		<a href="#/participants" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-left"></i> Back</a>
-		<a href="#/confirmation" class="btn btn-primary">Confirm event <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+		<a href="#/confirmation" class="btn btn-primary" ng-disabled="participantsForm.$invalid || isEventInvalid()">Confirm inputs <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
 	</form>
 </div>

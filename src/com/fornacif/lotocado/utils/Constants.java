@@ -12,9 +12,9 @@ public final class Constants {
     public static final String PARTICIPANT_ID = "id";
     public static final String PARTICIPANT_EMAIL = "email";
     public static final String PARTICIPANT_NAME = "name";
-    public static final String PARTICIPANT_GIVER_ID = "giverId";
-    public static final String PARTICIPANT_RECEIVER_ID = "receiverId";
-    public static final String PARTICIPANT_EXCLUSION_IDS = "exclusionIds";
+    public static final String PARTICIPANT_TO_KEY = "toKey";
+    public static final String PARTICIPANT_TO_NAME = "toName";
+    public static final String PARTICIPANT_EXCLUSION_KEYS = "exclusionKeys";
     public static final String PARTICIPANT_EVENT_KEY = "eventKey";
     
     public static final int NOT_PERSISTED_ERROR_CODE = 521;

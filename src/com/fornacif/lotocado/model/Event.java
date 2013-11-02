@@ -2,19 +2,25 @@ package com.fornacif.lotocado.model;
 
 import java.util.Date;
 
+import com.google.api.server.spi.config.AnnotationBoolean;
+import com.google.api.server.spi.config.ApiSerializationProperty;
+import com.google.appengine.api.datastore.Key;
+
 public class Event {
-	private Long id;
+	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	private Key key;
+
 	private String name;
 	private String organizerName;
 	private String organizerEmail;
 	private Date date;
 
-	public Long getId() {
-		return id;
+	public Key getKey() {
+		return key;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setKey(Key key) {
+		this.key = key;
 	}
 
 	public String getName() {
@@ -48,4 +54,5 @@ public class Event {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 }

@@ -5,7 +5,7 @@
 		<li><a href="#/exclusions">3. Exclusions</a></li>
 		<li class="active">4. Confirmation</li>
 	</ol>
-	<h1>Event {{event.name}} confirmation</h1>
+	<h2>Event {{event.name}} confirmation</h2>
 	
 	<div class="row row-padding">
 		<div class="col-sm-6">
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	
-	<p>Participants</p>
+	<h3>Participants</h3>
 	
 	<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
 		<div class="col-sm-3">
@@ -64,6 +64,12 @@
 			</div>
 		</div>
 	</div>
+	
+	<div ng-show="error">
+		Error code {{error.code}}
+	</div>
+	
+	
 	<a href="#/exclusions" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-left"></i> Back</a>
-	<button type="button" class="btn btn-primary" ng-click="confirm()">Confirm event <i class="glyphicon glyphicon-circle-arrow-right"></i></button>
+	<button type="button" class="btn btn-primary" ng-click="confirm()" ng-disabled="isEventInvalid()">Create event <i class="glyphicon glyphicon-circle-arrow-right"></i></button>
 </div>

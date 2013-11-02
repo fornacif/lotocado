@@ -8,8 +8,11 @@ angular.module("lotocado.services", []).
 			this.event = {};
 			this.participants = [];
 		}
+		this.isValid = function (event, participants) {
+			return event.name != null && event.organizerName != null && event.organizerEmail != null && event.date != null && participants.length >= 3;
+		};
 	}).
-	service("eventService", ['eventModel', function() {
+	service("eventService", ["eventModel", function() {
 		this.createDrawingLots = function (eventModel, callback) {
 			eventModel.participants.forEach(function(participant) {
 				participant.hashKey = participant.$$hashKey;
@@ -20,4 +23,11 @@ angular.module("lotocado.services", []).
 				"participants" : eventModel.participants
 			}).execute(callback);
         };
-	}]);
+	}]).
+	service("participantService", function() {
+		this.getParticipant = function (encryptedValue, callback) {			
+			gapi.client.lotocado.participantRetriever.getParticipant(
+				{"encryptedValue" : encryptedValue}
+			).execute(callback);
+        };
+	});
