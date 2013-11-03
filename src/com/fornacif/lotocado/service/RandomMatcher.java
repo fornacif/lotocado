@@ -42,7 +42,7 @@ public class RandomMatcher {
 
 	private final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 	
-	Logger logger = Logger.getLogger(RandomMatcher.class.getName());
+	private final Logger LOGGER = Logger.getLogger(RandomMatcher.class.getName());
 
 	public void createDrawingLots(DrawingLotsRequest drawingLotsRequest) throws BadRequestException {
 		Event event = drawingLotsRequest.getEvent();
@@ -114,6 +114,7 @@ public class RandomMatcher {
 			Entity participantEntity = new Entity(Constants.PARTICIPANT_ENTITY, eventKey);
 			participantEntity.setProperty(Constants.PARTICIPANT_EMAIL, participant.getEmail());
 			participantEntity.setProperty(Constants.PARTICIPANT_NAME, participant.getName());
+			participantEntity.setProperty(Constants.PARTICIPANT_IS_RESULT_CONSULTED, participant.isResultConsulted());
 			participantEntity.setProperty(Constants.PARTICIPANT_EVENT_KEY, eventKey);
 			datastoreService.put(participantEntity);
 
@@ -181,11 +182,8 @@ public class RandomMatcher {
 		String recipientEmail = event.getOrganizerEmail();
 		String recipientName = event.getOrganizerName();
 		String subject = "Event " + event.getName() + " created";
-		logger.severe("before body");
 		String body = getEmailToOrganizerBodyContent(event);
-		logger.severe("afer body");
 		sendEmail(recipientEmail, recipientName, subject, body);
-		logger.severe("before send");
 	}
 
 	private void sendEmailToParticipant(Event event, Participant participant) throws MessagingException, IOException {

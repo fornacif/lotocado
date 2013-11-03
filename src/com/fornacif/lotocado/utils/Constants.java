@@ -12,6 +12,7 @@ public final class Constants {
     public static final String PARTICIPANT_ID = "id";
     public static final String PARTICIPANT_EMAIL = "email";
     public static final String PARTICIPANT_NAME = "name";
+    public static final String PARTICIPANT_IS_RESULT_CONSULTED = "isResultConsulted";
     public static final String PARTICIPANT_TO_KEY = "toKey";
     public static final String PARTICIPANT_TO_NAME = "toName";
     public static final String PARTICIPANT_EXCLUSION_KEYS = "exclusionKeys";

@@ -16,6 +16,7 @@ public class Participant {
 
 	private String email;
 	private String name;
+	private boolean isResultConsulted = false;
 
 	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
 	private Key toKey;
@@ -58,6 +59,14 @@ public class Participant {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isResultConsulted() {
+		return isResultConsulted;
+	}
+
+	public void setResultConsulted(boolean isResultConsulted) {
+		this.isResultConsulted = isResultConsulted;
 	}
 
 	public Key getToKey() {
