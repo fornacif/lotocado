@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -40,6 +41,8 @@ public class RandomMatcher {
 	private static final int MAX_RETRY_COUNT = 10000;
 
 	private final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
+	
+	Logger logger = Logger.getLogger(RandomMatcher.class.getName());
 
 	public void createDrawingLots(DrawingLotsRequest drawingLotsRequest) throws BadRequestException {
 		Event event = drawingLotsRequest.getEvent();
@@ -82,8 +85,10 @@ public class RandomMatcher {
 			} else {
 				throw new BadRequestException("{\"code\":" + Constants.NO_RESULT_ERROR_CODE + "}");
 			}
+		}
+		catch (BadRequestException e) {
+			throw e;
 		} catch (Throwable t) {
-			t.printStackTrace();
 			throw new BadRequestException("{\"code\":" + Constants.DATA_ERROR_CODE + "}");
 		} finally {
 			if (transaction.isActive()) {
@@ -176,8 +181,11 @@ public class RandomMatcher {
 		String recipientEmail = event.getOrganizerEmail();
 		String recipientName = event.getOrganizerName();
 		String subject = "Event " + event.getName() + " created";
+		logger.severe("before body");
 		String body = getEmailToOrganizerBodyContent(event);
+		logger.severe("afer body");
 		sendEmail(recipientEmail, recipientName, subject, body);
+		logger.severe("before send");
 	}
 
 	private void sendEmailToParticipant(Event event, Participant participant) throws MessagingException, IOException {
@@ -193,7 +201,7 @@ public class RandomMatcher {
 		Session session = Session.getDefaultInstance(properties, null);
 
 		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress("admin@lotocado.appspot.com", "Admin"));
+		message.setFrom(new InternetAddress("francois.fornaciari@gmail.com", "Lotocado"));
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail, recipientName));
 		message.setSubject(subject);
 		message.setContent(body, "text/html; charset=utf-8");
@@ -226,7 +234,7 @@ public class RandomMatcher {
 		if ("Production".equals(environment)) {
 			String applicationId = System.getProperty("com.google.appengine.application.id");
 			String version = System.getProperty("com.google.appengine.application.version");
-			hostUrl = "http://" + version + "." + applicationId + ".appspot.com/";
+			hostUrl = "http://" + applicationId + ".appspot.com/";
 		} else {
 			hostUrl = "http://localhost:8888";
 		}

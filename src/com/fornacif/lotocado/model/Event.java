@@ -1,6 +1,9 @@
 package com.fornacif.lotocado.model;
 
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import com.google.api.server.spi.config.AnnotationBoolean;
 import com.google.api.server.spi.config.ApiSerializationProperty;
@@ -53,6 +56,25 @@ public class Event {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public int getDay() {
+		Calendar calendar = Calendar.getInstance(Locale.FRENCH);
+		calendar.setTime(date);
+		return calendar.get(Calendar.DAY_OF_MONTH);
+	}
+
+	public String getMonth() {
+		String[] months = new DateFormatSymbols(Locale.FRENCH).getMonths();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return months[calendar.get(Calendar.MONTH)];
+	}
+	
+	public int getYear() {
+		Calendar calendar = Calendar.getInstance(Locale.FRENCH);
+		calendar.setTime(date);
+		return calendar.get(Calendar.YEAR);
 	}
 
 }

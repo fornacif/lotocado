@@ -16,9 +16,6 @@ angular.module("lotocado.controllers", []).
 	controller("CreationController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
 		$scope.event = eventModel.event;
 		$scope.dateOptions = {
-			changeYear: true,
-			changeMonth: true,
-			yearRange: "2013:-0",
 			regional: "fr"
 		};
 		
@@ -34,6 +31,8 @@ angular.module("lotocado.controllers", []).
 		};
 	}]).
 	controller("ParticipantsController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+		eventModel.event.date.setHours(eventModel.event.date.getHours() + 1);
+		
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		
