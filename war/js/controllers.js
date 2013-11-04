@@ -1,11 +1,14 @@
 "use strict";
 
 angular.module("lotocado.controllers", []).
-	controller("InitController", ["$rootScope", "$scope", function($rootScope, $scope) {
+	controller("InitController", ["$rootScope", "$scope", "$location", function($rootScope, $scope, $location) {
 		$scope.$on("GAPI_LOADED_EVENT", function() {
 			$rootScope.gapi = true;
-			
 		});
+		
+		$scope.isActive = function(path) {
+			return $location.path() == path;
+		}
 	}]).
 	controller("HomeController", ["$rootScope", "$scope", "$location", "eventModel", function($rootScope, $scope, $location, eventModel) {
 		$scope.create = function() {
@@ -85,6 +88,16 @@ angular.module("lotocado.controllers", []).
 		eventModel.reset();
 	}]).	
 	controller("ParticipantController", ["$rootScope", "$scope", "$location", "$routeParams", "participantService", function($rootScope, $scope, $location, $routeParams, participantService) {
+		$scope.showResult = function() {
+			if ($rootScope.gapi) {
+				$scope.getParticipant();
+			} else {
+				$scope.$on("GAPI_LOADED_EVENT", function() {
+					$scope.getParticipant();
+				});
+			}
+		}
+	
 		$scope.getParticipant = function() {
 			participantService.getParticipant($routeParams.encryptedValue, function(response) {
 				if (response && response.error != null) {
@@ -94,18 +107,12 @@ angular.module("lotocado.controllers", []).
 					$scope.$apply($scope.result = response);
 				}
 			});	
-		}
-		
-		if ($rootScope.gapi) {
-			$scope.getParticipant();
-		} else {
-			$scope.$on("GAPI_LOADED_EVENT", function() {
-				$scope.getParticipant();
-			});
-		}
-		
+		}	
 		
 	}]).
 	controller("EventController", ["$scope", "$location", "$routeParams", function($scope, $location, $routeParams) {
+		
+	}]).
+	controller("AboutController", ["$scope", "$location", function($scope, $location) {
 		
 	}]);

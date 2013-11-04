@@ -4,6 +4,7 @@ angular.module("lotocado", ["lotocado.translate", "lotocado.services", "lotocado
 	config(function($routeProvider) {
 		$routeProvider.
 			when("/", {controller:"HomeController", templateUrl:"partials/home.html"}).
+			when("/about", {controller:"AboutController", templateUrl:"partials/about.html"}).
 			when("/home", {controller:"HomeController", templateUrl:"partials/home.html"}).
 			when("/creation", {controller:"CreationController", templateUrl:"partials/creation.html"}).
 			when("/participants", {controller:"ParticipantsController", templateUrl:"partials/participants.html"}).
@@ -36,5 +37,5 @@ function init() {
 }
 
 $(document).ready(function(){
-	$(document).snowfall({deviceorientation : true, round : true, minSize: 3, maxSize:8,  flakeCount : 100});
+	$(document).snowfall({deviceorientation : true, round : true, minSize: 3, maxSize:8,  flakeCount : 75});
 });

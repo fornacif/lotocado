@@ -1,3 +1,17 @@
 <div class="container">
-	<h2>Participant {{result.name}} gives to {{result.toName}}</h2>
+	<div class="jumbotron participant text-center">
+		<div class="row" ng-show="!result">
+			<div class="col-sm-2"><img src="img/gift-icon-closed.png" /></div>
+			<div class="col-sm-8">
+				<p>D&eacute;couvre le r&eacute;sultat du tirage au sort !</p>
+				<button type="button" class="btn btn-default btn-lg" ng-click="showResult()"><img src="img/yellow-mail-open-icon.png" /></button>
+			</div>
+			<div class="col-sm-2"><img src="img/gift-icon-closed.png" /></div>
+		</div>
+		<div class="row" ng-show="result" ng-animate="{show: 'animate-show'}">
+			<div class="col-sm-2"><img src="img/gift-icon-open.png" /></div>
+			<div class="col-sm-8"><h3>{{result.name}}</h3> pour l'&eacute;v&egrave;nement {{result.eventName}} <br /> tu auras la chance d'offrir un cadeau &agrave; <h2>{{result.toName}}</h2></div>
+			<div class="col-sm-2"><img src="img/gift-icon-open.png" /></div>
+		</div>
+	</div>
 </div>

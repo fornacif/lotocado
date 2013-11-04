@@ -1,14 +1,10 @@
-﻿-envoyer les mails à la fin
--changer les mails des participants et organisateur (à partir du lien)
--renvoyer une invitation
--afficher page de tirage au sort
--page de validation
+﻿-changer les mails des participants et organisateur (à partir du lien)
 -gestion des erreurs
+-page des résultats
+-page de confirmation de la création
 -i18n
--description
+-vérifier que le mail a bien été lu
+-page about
+-sablier
 
-http://localhost:8888/#/event/F35E2190E2D812EC9F03BCFE1C5CCAC1991808932F8185F52CDDD069E0F307BB
-http://localhost:8888/#/participant/9257C6DE0277D93D672EFFEC924F6FB1CDE3C93C93CA43A94C99D4642609AC51AA4966B2F2E15E414DF62778F240D5E6
-http://localhost:8888/#/participant/C89F46F2C727586293103A396937FD237F4A03C63ED9546696199625836D8CA1718546FA7082E3A6DCDD36476E715E87
-http://localhost:8888/#/participant/70CDE378665AB1E457CDE81EE2BBA123FEF9EB64C0F9AC886CB5E3DBFFA57B144425F6A6C7948F1E8CB64792DA384BA3
-http://localhost:8888/#/participant/A22EA4E27BCB28FD50903838211095D2B39A26C18F7443999529A5862B673B4326EBF60F5611B9BE9191B839BCDBDB26
+http://localhost:8888/#/participant/2F5E60729702CF9D72B7DA680C661EE4ACED3144556951C26915DC819AD6E3382CACF6E7F5008075FBF1794E8E0ACC96
