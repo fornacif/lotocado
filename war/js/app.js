@@ -35,7 +35,3 @@ function init() {
 	
 	gapi.client.load("lotocado", "v1", callback, apiRoot);
 }
-
-$(document).ready(function(){
-	$(document).snowfall({deviceorientation : true, round : true, minSize: 3, maxSize:8,  flakeCount : 75});
-});

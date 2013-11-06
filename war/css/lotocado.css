@@ -1,53 +1,61 @@
+html,body {
+	height: 100%;
+}
+
 body {
 	font-size: medium;
 	margin-top: 10px;
-	background: rgb(222,239,255); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(222,239,255,1) 0%, rgba(152,190,222,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(222,239,255,1)), color-stop(100%,rgba(152,190,222,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(222,239,255,1) 0%,rgba(152,190,222,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(222,239,255,1) 0%,rgba(152,190,222,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(222,239,255,1) 0%,rgba(152,190,222,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(222,239,255,1) 0%,rgba(152,190,222,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deefff', endColorstr='#98bede',GradientType=0 ); /* IE6-9 */
-}
-
-html,body {
-	height: 100%;
+	background: rgb(214,185,170); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(214,185,170,1) 0%, rgba(226,214,208,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(214,185,170,1)), color-stop(100%,rgba(226,214,208,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(214,185,170,1) 0%,rgba(226,214,208,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(214,185,170,1) 0%,rgba(226,214,208,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(214,185,170,1) 0%,rgba(226,214,208,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(214,185,170,1) 0%,rgba(226,214,208,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6b9aa', endColorstr='#e2d6d0',GradientType=0 ); /* IE6-9 */
 }
 
 .container {
 	background-color: #FFFFFF;
 }
 
-.jumbotron.participant {
-background: rgb(246,230,180); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(246,230,180,1) 0%, rgba(237,144,23,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(246,230,180,1)), color-stop(100%,rgba(237,144,23,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(246,230,180,1) 0%,rgba(237,144,23,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(246,230,180,1) 0%,rgba(237,144,23,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(246,230,180,1) 0%,rgba(237,144,23,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(246,230,180,1) 0%,rgba(237,144,23,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6e6b4', endColorstr='#ed9017',GradientType=0 ); /* IE6-9 */
+.jumbotron {
+	background-image: url(../img/background-opacity.png);
+	background-repeat: no-repeat;
+	background-position:center center;
+	background-size: 100%;
+}
 
-
+.participant {
+	background-image: url(../img/background.png);
+	background-repeat: no-repeat;
+	background-position:center center;
+	height: 300px;
+	width: 1200px;
+	vertical-align: middle;
+	text-align: center;
+	display: table-cell;
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px
+                #de6420, 0 0 30px #de6420, 0 0 40px #de6420, 0 0 50px #de6420, 0 0
+                75px #de6420;
 }
 
 .container.border-top {
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
 .container.border-bottom {
-	-webkit-border-bottom-right-radius: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 .row-padding {
