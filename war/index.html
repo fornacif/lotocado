@@ -29,36 +29,14 @@
 	<div class="container border-top">
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
-				<li ng-class="{active: isActive('/')}"><a href="#">Accueil</a></li>
-				<li ng-class="{active: isActive('/about')}"><a href="#/about">&Agrave; propos</a></li>
+				<li ng-class="{active: isActive('/')}"><a href="#"><span translate="HOME" /></a></li>
+				<li ng-class="{active: isActive('/about')}"><a href="#/about"><span translate="ABOUT" /></a></li>
 			</ul>
 			<h2 class="text-muted">
-				<img src="img/Actions-draw-cuboid-icon.png" /> Lotocado
+				<img src="img/Actions-draw-cuboid-icon.png" /> <span translate="LOTOCADO" />
 			</h2>
 		</div>
 	</div>
-	<!-- 	<div class="navbar navbar-inverse navbar-fixed-top"> -->
-	<!-- 		<div class="container"> -->
-	<!-- 			<div class="navbar-header"> -->
-	<!-- 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> -->
-	<!-- 					<span class="icon-bar"></span> <span class="icon-bar"></span> -->
-	<!-- 					<span class="icon-bar"></span> -->
-	<!-- 				</button> -->
-	<!-- 				<a class="navbar-brand" href="#"><img src="img/Actions-draw-cuboid-icon.png" />Lotocado</a> -->
-	<!-- 			</div> -->
-	<!-- 			<div class="collapse navbar-collapse"> -->
-	<!-- 				<ul class="nav navbar-nav"> -->
-	<!-- 					<li><a href="#" translate="CONTACT_US"></a></li> -->
-	<!-- 				</ul> -->
-	<!-- 				 <div class="navbar-form navbar-right" ng-controller="TranslateController"> -->
-	<!-- 		            <select ng-model="lang" ng-change="changeLanguage()" class="btn">  -->
-	<!-- 					   <option value="en">english</option> -->
-	<!-- 					   <option value="fr">français</option> -->
-	<!-- 					</select> -->
-	<!-- 				</div> -->
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
 	<div ng-view></div>
 	<div class="container border-bottom">
 		<hr>

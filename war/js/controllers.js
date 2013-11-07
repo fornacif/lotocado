@@ -1,13 +1,18 @@
 "use strict";
 
 angular.module("lotocado.controllers", []).
-	controller("InitController", ["$rootScope", "$scope", "$location", function($rootScope, $scope, $location) {
+	controller("InitController", ["$rootScope", "$scope", "$location", "$translate", function($rootScope, $scope, $location, $translate) {
 		$scope.$on("GAPI_LOADED_EVENT", function() {
 			$rootScope.gapi = true;
 		});
 		
 		$scope.isActive = function(path) {
 			return $location.path() == path;
+		}
+		
+		$scope.lang = "fr";
+		$scope.changeLanguage = function () {
+			$translate.uses($scope.lang);
 		}
 	}]).
 	controller("HomeController", ["$rootScope", "$scope", "$location", "eventModel", function($rootScope, $scope, $location, eventModel) {
