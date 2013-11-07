@@ -35,9 +35,6 @@ body {
 	vertical-align: middle;
 	text-align: center;
 	display: table-cell;
-	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px
-                #de6420, 0 0 30px #de6420, 0 0 40px #de6420, 0 0 50px #de6420, 0 0
-                75px #de6420;
 }
 
 .container.border-top {
