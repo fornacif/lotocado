@@ -27,7 +27,7 @@ body {
 }
 
 .participant {
-	background-image: url(../img/background.png);
+	background-image: url(../img/background-opacity.png);
 	background-repeat: no-repeat;
 	background-position:center center;
 	height: 300px;
