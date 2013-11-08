@@ -20,13 +20,18 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			BREADCRUMB_PARTICIPANTS : "Participants",
 			BREADCRUMB_EXCLUSIONS : "Exclusions",
 			BREADCRUMB_CONFIRMATION : "Confirmation",
-			NEXT_STEP : "Etape suivante",
+			BACK : "Retour",
+			NEXT : "Etape suivante",
 			CREATION_EVENT : "Création d'un évènement",
 			CREATION_ENTER_EVENT_NAME : "Saisir le nom de l'évènement",
 			CREATION_EVENT_NAME_HELP : "exemple : Noël 2013",
 			CREATION_ENTER_ORGANIZER_NAME : "Saisir votre prénom",
 			CREATION_ENTER_ORGANIZER_MAIL : "Saisir votre email",
-			CREATION_ENTER_DATE : "Saisir la date de l'évènement"
+			CREATION_ENTER_DATE : "Saisir la date de l'évènement",
+			PARTICIPANTS_ADD_PARTICIPANTS : "Ajout des participants",
+			PARTICIPANTS_ENTER_NAME : "Saisir le prénom",
+			PARTICIPANTS_ENTER_EMAIL : "Saisir l'email",
+			PARTICIPANTS_ADD_PARTICIPANT : "Ajouter un participant"
 		});
 		$translateProvider.preferredLanguage("fr");
 	}]);
