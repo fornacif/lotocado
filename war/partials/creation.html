@@ -1,26 +1,26 @@
 <div class="container">
 	<ol class="breadcrumb">
-		<li class="active">1. <span translate="BREADCRUMB_CREATION" /></li>
-		<li>2. <span translate="BREADCRUMB_PARTICIPANTS" /></li>
-		<li>3. <span translate="BREADCRUMB_EXCLUSIONS" /></li>
-		<li>4. <span translate="BREADCRUMB_CONFIRMATION" /></li>
+		<li class="active">1. {{'BREADCRUMB_CREATION' | translate }}</li>
+		<li>2. {{'BREADCRUMB_PARTICIPANTS' | translate }}</li>
+		<li>3. {{'BREADCRUMB_EXCLUSIONS' | translate }}</li>
+		<li>4. {{'BREADCRUMB_CONFIRMATION' | translate }}</li>
 	</ol>
-	<h2>Event creation</h2>
+	<h2>{{'CREATION_EVENT' | translate }}</h2>
 	<form name="creationForm" role="form" ng-submit="addOrganizer()">
 		<div class="row row-padding">
 			<div class="col-sm-6">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
-					<input type="text" class="form-control " ng-model="event.name" placeholder="Enter event name" required />
+					<input type="text" class="form-control " ng-model="event.name" placeholder="{{'CREATION_ENTER_EVENT_NAME' | translate }}" required />
 				</div>
-				<span class="help-block">exemple : No&euml;l 2013</span>
+				<span class="help-block">{{'CREATION_EVENT_NAME_HELP' | translate }}</span>
 			</div>
 		</div>
 		<div class="row row-padding">
 			<div class="col-sm-6">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-					<input type="text" class="form-control" ng-model="event.organizerName" placeholder="Enter organizer name" required />
+					<input type="text" class="form-control" ng-model="event.organizerName" placeholder="{{'CREATION_ENTER_ORGANIZER_NAME' | translate }}" required />
 				</div>
 			</div>
 		</div>
@@ -28,7 +28,7 @@
 			<div class="col-sm-6">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-					<input type="email" class="form-control" ng-model="event.organizerEmail" placeholder="Enter organizer email" required />
+					<input type="email" class="form-control" ng-model="event.organizerEmail" placeholder="{{'CREATION_ENTER_ORGANIZER_MAIL' | translate }}" required />
 				</div>
 			</div>
 		</div>
@@ -36,11 +36,11 @@
 			<div class="col-sm-6">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-					<input ui-date="dateOptions" class="form-control"  placeholder="Enter date" ng-model="event.date" required />
+					<input ui-date="dateOptions" class="form-control"  placeholder="{{'CREATION_ENTER_DATE' | translate }}" ng-model="event.date" required />
 				</div>
 			</div>
 		</div>
 		<br>
-		<button type="submit" class="btn btn-primary" ng-disabled="creationForm.$invalid">Add participants <i class="glyphicon glyphicon-circle-arrow-right"></i></button>
+		<button type="submit" class="btn btn-primary" ng-disabled="creationForm.$invalid">{{'NEXT_STEP' | translate }} <i class="glyphicon glyphicon-circle-arrow-right"></i></button>
 	</form>
 </div>

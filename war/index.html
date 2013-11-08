@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css" />
 	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="libs/bootstrap/css/magic-bootstrap-min.css">
 	<link rel="stylesheet" href="libs/select2/select2.css">
 	<link rel="stylesheet" href="css/lotocado.css">
-	<link rel="stylesheet" href="libs/bootstrap/css/magic-bootstrap-min.css">
 	<script src="libs/jquery/jquery-1.10.1.min.js"></script>
 	<script src="libs/jquery-ui/jquery-ui.min.js"></script>
 	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
@@ -29,11 +29,11 @@
 	<div class="container border-top">
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
-				<li ng-class="{active: isActive('/')}"><a href="#"><span translate="HOME" /></a></li>
-				<li ng-class="{active: isActive('/about')}"><a href="#/about"><span translate="ABOUT" /></a></li>
+				<li ng-class="{active: isActive('/')}"><a href="#">{{'HOME' | translate }}</a></li>
+				<li ng-class="{active: isActive('/about')}"><a href="#/about">{{'ABOUT' | translate }}</a></li>
 			</ul>
 			<h2 class="text-muted">
-				<img src="img/Actions-draw-cuboid-icon.png" /> <span translate="LOTOCADO" />
+				<img src="img/Actions-draw-cuboid-icon.png" /> {{'LOTOCADO' | translate }}
 			</h2>
 		</div>
 	</div>
