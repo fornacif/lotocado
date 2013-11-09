@@ -9,7 +9,7 @@ angular.module("lotocado", ["lotocado.translate", "lotocado.services", "lotocado
 			when("/creation", {controller:"CreationController", templateUrl:"partials/creation.html"}).
 			when("/participants", {controller:"ParticipantsController", templateUrl:"partials/participants.html"}).
 			when("/exclusions", {controller:"ExclusionsController", templateUrl:"partials/exclusions.html"}).
-			when("/confirmation", {controller:"ConfirmationController", templateUrl:"partials/confirmation.html"}).
+			when("/verification", {controller:"VerificationController", templateUrl:"partials/verification.html"}).
 			when("/success", {controller:"SuccessController", templateUrl:"partials/success.html"}).
 			when("/participant/:encryptedValue", {controller:"ParticipantController", templateUrl:"partials/participant.html"}).
 			when("/event/:encryptedValue", {controller:"EventController", templateUrl:"partials/event.html"}).

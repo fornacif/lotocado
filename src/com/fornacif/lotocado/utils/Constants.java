@@ -18,9 +18,9 @@ public final class Constants {
     public static final String PARTICIPANT_EXCLUSION_KEYS = "exclusionKeys";
     public static final String PARTICIPANT_EVENT_KEY = "eventKey";
     
-    public static final int NOT_PERSISTED_ERROR_CODE = 521;
-    public static final int NO_RESULT_ERROR_CODE = 522;
-    public static final int SEND_MAIL_TO_ORGANIZER_ERROR_CODE = 523;
-    public static final int SEND_MAIL_TO_PARTICIPANT_ERROR_CODE = 524;
-    public static final int DATA_ERROR_CODE = 525;
+    public static final String NOT_PERSISTED_ERROR_CODE = "NOT_PERSISTED_ERROR_CODE";
+    public static final String NO_RESULT_ERROR_CODE = "NO_RESULT_ERROR_CODE";
+    public static final String SEND_MAIL_TO_ORGANIZER_ERROR_CODE = "SEND_MAIL_TO_ORGANIZER_ERROR_CODE";
+    public static final String SEND_MAIL_TO_PARTICIPANT_ERROR_CODE = "SEND_MAIL_TO_PARTICIPANT_ERROR_CODE";
+    public static final String DATA_ERROR_CODE = "DATA_ERROR_CODE";
 }

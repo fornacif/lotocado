@@ -3,10 +3,10 @@
 angular.module("lotocado.services", []).
 	service("eventModel", function() {
 		this.event = {};
-		this.participants = [];
+		this.participants = [{}, {}, {}];
 		this.reset = function() {
 			this.event = {};
-			this.participants = [];
+			this.participants = [{}, {}, {}];
 		}
 		this.isValid = function (event, participants) {
 			return event.name != null && event.organizerName != null && event.organizerEmail != null && event.date != null && participants.length >= 3;

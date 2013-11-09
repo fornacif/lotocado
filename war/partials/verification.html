@@ -1,0 +1,92 @@
+<div class="container">
+	<ol class="breadcrumb">
+		<li><a href="#/creation">1. {{'BREADCRUMB_CREATION' | translate }}</a></li>
+		<li><a href="#/participants">2. {{'BREADCRUMB_PARTICIPANTS' | translate }}</a></li>
+		<li><a href="#/exclusions">3. {{'BREADCRUMB_EXCLUSIONS' | translate }}</a></li>
+		<li class="active">4. {{'BREADCRUMB_VERIFICATION' | translate }}</li>
+	</ol>
+	<div class="panel panel-default">	
+		<div class="panel-heading">
+			<b>{{'VERIFICATION' | translate }} <i>{{event.name}}</i></i></b>
+		</div>
+		<div class="panel-body">
+			<p><i class="glyphicon glyphicon-info-sign"></i> {{'VERIFICATION_INFO' | translate }}</p>
+			<div class="row row-padding">
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
+						<input type="text" class="form-control " ng-model="event.name" ng-readonly="true" />
+					</div>
+				</div>
+			</div>
+			<div class="row row-padding">
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input type="text" class="form-control" ng-model="event.organizerName" ng-readonly="true" />
+					</div>
+				</div>
+			</div>
+			<div class="row row-padding">
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+						<input type="email" class="form-control" ng-model="event.organizerEmail" ng-readonly="true" />
+					</div>
+				</div>
+			</div>
+			<div class="row row-padding">
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						<input ui-date="dateOptions" class="form-control"  placeholder="Enter date" ng-model="event.date" ng-readonly="true" />
+					</div>
+				</div>
+			</div>
+			
+			<p>{{'VERIFICATION_PARTICIPANTS' | translate }}</p>
+			
+			<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
+				<div class="col-sm-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input type="text" class="form-control" ng-model="participant.name" placeholder="Enter name" ng-readonly="true"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+						<input type="email" class="form-control" ng-model="participant.email" placeholder="Enter email" ng-readonly="true" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-ban-circle"></i></span>
+						<select ui-select2 multiple class="form-control" ng-model="participant.exclusionHashKeys" ng-readonly="true">
+		   					<option ng-repeat="p in participants | filter:{$$hashKey:'!'+participant.$$hashKey}" value="{{p.$$hashKey}}">{{p.name}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-10">
+					<a href="#/exclusions" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-left"></i> {{'PREVIOUS' | translate }}</a>
+					<a class="btn btn-primary" ng-click="save()" ng-disabled="isEventInvalid() || submitted">{{'VERIFICATION_SAVE' | translate }} <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+				</div>
+				<div class="col-sm-2">
+					<div class="progress progress-striped active" ng-show="submitted">
+						<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="alert alert-danger fade in" ng-show="error.code">
+		<span translate="VERIFICATION_{{error.code}}" />
+	</div>
+
+</div>

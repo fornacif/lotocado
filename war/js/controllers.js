@@ -29,11 +29,11 @@ angular.module("lotocado.controllers", []).
 		
 		$scope.addOrganizer = function() {			
 			var participants = eventModel.participants;
-			if (participants.length == 0) {
+			if (participants[0] == null || participants[0].name == null) {
 				var organizerParticipant = {};
 				organizerParticipant.name = eventModel.event.organizerName;
 				organizerParticipant.email = eventModel.event.organizerEmail;
-				participants.push(organizerParticipant);
+				participants[0] = organizerParticipant;
 			}
 			$location.path( "/participants");
 		};
@@ -65,16 +65,19 @@ angular.module("lotocado.controllers", []).
 			return !eventModel.isValid($scope.event, $scope.participants);
 		}
 	}]).
-	controller("ConfirmationController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
+	controller("VerificationController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		$scope.isEventInvalid = function () {
 			return !eventModel.isValid($scope.event, $scope.participants);
 		}
 		
-		$scope.confirm = function() {
+		$scope.save = function() {
+			$scope.submitted = true;
+			$scope.error = null;
 			console.log(JSON.stringify(eventModel));
 			eventService.createDrawingLots(eventModel, function(response) {
+				$scope.submitted = false;
 				if (response && response.error != null) {
 					var message = JSON.parse(response.error.message);
 					console.log(message.code);
@@ -106,7 +109,9 @@ angular.module("lotocado.controllers", []).
 		}
 	
 		$scope.getParticipant = function() {
+			$scope.submitted = true;
 			participantService.getParticipant($routeParams.encryptedValue, function(response) {
+				$scope.submitted = false;
 				if (response && response.error != null) {
 					var message = JSON.parse(response.error.message);
 					console.log(message.code);

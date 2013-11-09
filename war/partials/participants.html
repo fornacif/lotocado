@@ -3,32 +3,39 @@
 		<li><a href="#/creation">1. {{'BREADCRUMB_CREATION' | translate }}</a></li>
 		<li class="active">2. {{'BREADCRUMB_PARTICIPANTS' | translate }}</li>
 		<li>3. {{'BREADCRUMB_EXCLUSIONS' | translate }}</li>
-		<li>4. {{'BREADCRUMB_CONFIRMATION' | translate }}</li>
+		<li>4. {{'BREADCRUMB_VERIFICATION' | translate }}</li>
 	</ol>
-	<h2>{{'PARTICIPANTS_ADD_PARTICIPANTS' | translate }} {{event.name}}</h2>
 	
-	<form name="participantsForm" class="form" role="form">
-		<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
-			<div class="col-sm-3">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-					<input type="text" class="form-control" ng-model="participant.name" placeholder="{{'PARTICIPANTS_ENTER_NAME' | translate }}" required/>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-					<input type="email" class="form-control" ng-model="participant.email" placeholder="{{'PARTICIPANTS_ENTER_EMAIL' | translate }}" required />
-				</div>
-			</div>
-			<div class="col-sm-1">
-				<button type="button" class="btn btn-default" ng-click="removeParticipant(participant)"><i class="glyphicon glyphicon-minus-sign"></i></button>
-			</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<b>{{'PARTICIPANTS_ADD_PARTICIPANTS' | translate }} <i>{{event.name}}</i></b>
 		</div>
-		<button type="button" class="btn btn-sm btn-success" ng-click="addParticipant()"><i class="glyphicon glyphicon-plus-sign"></i> {{'PARTICIPANTS_ADD_PARTICIPANT' | translate }}</button>
-		<br><br>
-		<a href="#/creation" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-left"></i> {{'BACK' | translate }}</a>
-		<a href="#/exclusions" class="btn btn-primary" ng-disabled="participantsForm.$invalid || isEventInvalid()">{{'NEXT' | translate }} <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+		<div class="panel-body">
+			<p><i class="glyphicon glyphicon-info-sign"></i> {{'PARTICIPANTS_ADD_PARTICIPANTS_INFO' | translate }}</p>
+			<form name="participantsForm" class="form">
+				<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
+					<div class="col-sm-3">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<input type="text" class="form-control" ng-model="participant.name" placeholder="{{'PARTICIPANTS_NAME' | translate }}" required/>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+							<input type="email" class="form-control" ng-model="participant.email" placeholder="{{'PARTICIPANTS_EMAIL' | translate }}" required />
+						</div>
+					</div>
+					<div class="col-sm-1">
+						<button type="button" class="btn btn-default" ng-click="removeParticipant(participant)"><i class="glyphicon glyphicon-minus-sign"></i></button>
+					</div>
+				</div>
+				<button type="button" class="btn btn-sm btn-success" ng-click="addParticipant()"><i class="glyphicon glyphicon-plus-sign"></i> {{'PARTICIPANTS_ADD_PARTICIPANT' | translate }}</button>
+			</form>
 		</div>
-	</form>
+		<div class="panel-footer">
+			<a href="#/creation" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-left"></i> {{'PREVIOUS' | translate }}</a>
+			<a href="#/exclusions" class="btn btn-primary" ng-disabled="participantsForm.$invalid || isEventInvalid()">{{'NEXT' | translate }} <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+		</div>
+	</div>
 </div>

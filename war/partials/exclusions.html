@@ -1,29 +1,38 @@
 <div class="container">
 	<ol class="breadcrumb">
-		<li><a href="#/creation">1. <span translate="BREADCRUMB_CREATION" /></a></li>
-		<li><a href="#/participants">2. <span translate="BREADCRUMB_PARTICIPANTS" /></a></li>
-		<li class="active">3. <span translate="BREADCRUMB_EXCLUSIONS" /></li>
-		<li>4. <span translate="BREADCRUMB_CONFIRMATION" /></li>
+		<li><a href="#/creation">1. {{'BREADCRUMB_CREATION' | translate }}</a></li>
+		<li><a href="#/participants">2. {{'BREADCRUMB_PARTICIPANTS' | translate }}</a></li>
+		<li class="active">3. {{'BREADCRUMB_EXCLUSIONS' | translate }}</li>
+		<li>4. {{'BREADCRUMB_VERIFICATION' | translate }}</li>
 	</ol>
-	<h2>Edit exclusions for {{event.name}}</h2>
-	<form class="form" role="form">
-		<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
-			<div class="col-sm-3">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-					<input type="text" class="form-control" ng-model="participant.name" ng-readonly="true" />
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-ban-circle"></i></span>
-					<select ui-select2 multiple class="form-control" ng-model="participant.exclusionHashKeys" data-placeholder="exlusions for {{participant.name}}">
-	   					<option ng-repeat="p in participants | filter:{$$hashKey:'!'+participant.$$hashKey}" value="{{p.$$hashKey}}">{{p.name}}</option>
-					</select>
-				</div>
-			</div>
+	<div class="panel panel-default">	
+		<div class="panel-heading">
+			<b>{{'EXCLUSIONS_EDIT' | translate }} <i>{{event.name}}</i></i></b>
 		</div>
-		<a href="#/participants" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-left"></i> Back</a>
-		<a href="#/confirmation" class="btn btn-primary" ng-disabled="participantsForm.$invalid || isEventInvalid()">Confirm inputs <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
-	</form>
+		<div class="panel-body">
+			<p><i class="glyphicon glyphicon-info-sign"></i> {{'EXCLUSIONS_INFO' | translate }}</p>
+			<form class="form">
+				<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
+					<div class="col-sm-3">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<input type="text" class="form-control" ng-model="participant.name" ng-readonly="true" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-ban-circle"></i></span>
+							<select ui-select2 multiple class="form-control" ng-model="participant.exclusionHashKeys" data-placeholder="{{'EXCLUSIONS_FOR' | translate }} {{participant.name}}">
+			   					<option ng-repeat="p in participants | filter:{$$hashKey:'!'+participant.$$hashKey}" value="{{p.$$hashKey}}">{{p.name}}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="panel-footer">
+			<a href="#/participants" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-left"></i> {{'PREVIOUS' | translate }}</a>
+			<a href="#/verification" class="btn btn-primary" ng-disabled="participantsForm.$invalid || isEventInvalid()">{{'NEXT' | translate }} <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+		</div>
+	</div>
 </div>

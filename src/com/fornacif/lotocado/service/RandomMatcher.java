@@ -64,32 +64,32 @@ public class RandomMatcher {
 				try {
 					saveResults(participants);
 				} catch (EntityNotFoundException e) {
-					throw new BadRequestException("{\"code\":" + Constants.NOT_PERSISTED_ERROR_CODE + "}");
+					throw new BadRequestException("{\"code\": \"" + Constants.NOT_PERSISTED_ERROR_CODE + "\"}");
 				}
 
 				try {
 					sendEmailToOrganizer(event);
 				} catch (MessagingException | IOException e) {
-					throw new BadRequestException("{\"code\":" + Constants.SEND_MAIL_TO_ORGANIZER_ERROR_CODE + "}");
+					throw new BadRequestException("{\"code\": \"" + Constants.SEND_MAIL_TO_ORGANIZER_ERROR_CODE + "\"}");
 				}
 
 				for (Participant participant : participants) {
 					try {
 						sendEmailToParticipant(event, participant);
 					} catch (MessagingException | IOException e) {
-						throw new BadRequestException("{\"code\":" + Constants.SEND_MAIL_TO_PARTICIPANT_ERROR_CODE + ",\"participantName\":" + participant.getName() + "}");
+						throw new BadRequestException("{\"code\": \"" + Constants.SEND_MAIL_TO_PARTICIPANT_ERROR_CODE + "\",\"participantName\":" + participant.getName() + "}");
 					}
 				}
 
 				transaction.commit();
 			} else {
-				throw new BadRequestException("{\"code\":" + Constants.NO_RESULT_ERROR_CODE + "}");
+				throw new BadRequestException("{\"code\": \"" + Constants.NO_RESULT_ERROR_CODE + "\"}");
 			}
 		}
 		catch (BadRequestException e) {
 			throw e;
 		} catch (Throwable t) {
-			throw new BadRequestException("{\"code\":" + Constants.DATA_ERROR_CODE + "}");
+			throw new BadRequestException("{\"code\": \"" + Constants.DATA_ERROR_CODE + "\"}");
 		} finally {
 			if (transaction.isActive()) {
 				transaction.rollback();
