@@ -37,7 +37,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			EXCLUSIONS_INFO : "Une personne ne pourra pas tirer au sort une personne qui a été exclue (ou plusieurs personnes) ",
 			EXCLUSIONS_FOR : "Exclusions pour",
 			VERIFICATION : "Verification des informations de l'évènement",
-			VERIFICATION_INFO : "Aucunes des informations saisies ne pourront être modifiées après cette étape",
+			VERIFICATION_INFO : "Aucune des informations saisies ne pourra être modifiée après cette étape",
 			VERIFICATION_PARTICIPANTS : "Liste des participants",
 			VERIFICATION_SAVE : "Enregister l'évènement",
 			VERIFICATION_NOT_PERSISTED_ERROR_CODE : "Une erreur s'est produite",
