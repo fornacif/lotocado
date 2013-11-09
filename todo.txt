@@ -3,7 +3,6 @@
 -page de verification de la création
 -vérifier que le mail a bien été lu
 -page about
--sablier
 -enlever log
 
 http://localhost:8888/#/participant/2F5E60729702CF9D72B7DA680C661EE4ACED3144556951C26915DC819AD6E3382CACF6E7F5008075FBF1794E8E0ACC96
