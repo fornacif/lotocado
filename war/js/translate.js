@@ -56,7 +56,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			SUCCESS_THANK_YOU : "Merci d'avoir utilisé notre service et bonnes fêtes !",
 			ABOUT_TITLE : "A propos de",
 			ABOUT_LOTOCADO : "est une application gratuite.",
-			ABOUT_CONTACT : "Si vous souhaitez nous faire des remarques, signalez un problème ou tout simplement nous donner vos impressions, vous pouvez nous conctacter à l'addresse suivante :",
+			ABOUT_CONTACT : "Si vous souhaitez nous faire des remarques, signalez un problème ou tout simplement nous donner vos impressions, vous pouvez nous conctacter à l'adresse suivante :",
 			ABOUT_DONATION : "Si cette application vous a plu, vous pouvez faire un don et ainsi contribuer à l'amélioration du service.",
 			EVENT : "Evènement",
 			EVENT_PARTICIPANTS : "Liste des participants"
