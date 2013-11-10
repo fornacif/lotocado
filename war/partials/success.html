@@ -1,3 +1,13 @@
 <div class="container">
-	<h2>Event {{event.name}} created</h2>
+	<h4>{{'SUCCESS_EVENT' | translate }}  <i>{{event.name}}</i> {{'SUCCESS_CREATED' | translate }}</h4>
+	<div class="row">
+		<div class="col-sm-10">
+			<p>{{'SUCCESS_PARTICIPANTS' | translate }}</p>
+			<p>{{'SUCCESS_ADMIN' | translate }}<br><a href="{{event.organizerLink}}" target="_blank">{{event.organizerLink}}</a></p>
+			<p>{{'SUCCESS_THANK_YOU' | translate }}</p>
+		</div>
+		<div class="col-sm-2">
+			<img src="img/gift-icon-closed.png" />
+		</div>
+	</div>
 </div>

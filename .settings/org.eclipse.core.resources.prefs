@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/com/fornacif/lotocado/model/DrawingLotsRequest.java=UTF-8
+encoding//src/com/fornacif/lotocado/model/DrawingLotsResponse.java=UTF-8
 encoding//src/com/fornacif/lotocado/model/EncryptedRequest.java=UTF-8
 encoding//src/com/fornacif/lotocado/model/Event.java=UTF-8
 encoding//src/com/fornacif/lotocado/model/Participant.java=UTF-8

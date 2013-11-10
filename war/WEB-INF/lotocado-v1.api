@@ -51,7 +51,7 @@
         "bodyName" : "resource"
       },
       "response" : {
-        "body" : "empty"
+        "body" : "autoTemplate(backendResponse)"
       }
     }
   },
@@ -150,6 +150,15 @@
             "type" : "boolean"
           }
         }
+      },
+      "DrawingLotsResponse" : {
+        "id" : "DrawingLotsResponse",
+        "type" : "object",
+        "properties" : {
+          "organizerLink" : {
+            "type" : "string"
+          }
+        }
       }
     },
     "methods" : {
@@ -164,6 +173,9 @@
       "com.fornacif.lotocado.service.RandomMatcher.createDrawingLots" : {
         "request" : {
           "$ref" : "DrawingLotsRequest"
+        },
+        "response" : {
+          "$ref" : "DrawingLotsResponse"
         }
       }
     }

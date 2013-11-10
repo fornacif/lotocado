@@ -12,9 +12,9 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			HOME_WHAT_IS_FOR_2 : "Un organisateur est responsable de créer l'évènement et de renseigner l'ensemble des participants. Chaque participant reçoit un email contenant le lien vers le résultat de son tirage. Il découvre ainsi qui aura la chance de recevoir un cadeau de sa part.",
 			HOME_WHAT_IS_FOR_3 : "Le tirage étant secret, même l'organisateur ne connaît pas le résultat. Il faudra donc patienter jusqu'à Noël pour savoir qui vous offrira votre cadeau !",
 			HOME_HOW_DOES_IT_WORK : "Comment ça marche",
-			HOME_HOW_DOES_IT_WORK_1 : "Je, c'est à dire l'organisateur, crée un évènement avec tous les participants",
-			HOME_HOW_DOES_IT_WORK_2 : "Je décide si certaines personnes ne peuvent pas recevoir de cadeau de la part d'autres personnes (exclusions)",
-			HOME_HOW_DOES_IT_WORK_3 : "Et finalement je confirme les informations saisies. Ensuite,",
+			HOME_HOW_DOES_IT_WORK_1 : "Un organisateur est chargé de créer un évènement en renseignant l'ensemble des participants",
+			HOME_HOW_DOES_IT_WORK_2 : "Il est possible de décider si certaines personnes ne peuvent pas recevoir de cadeau de la part d'autres personnes (exclusions)",
+			HOME_HOW_DOES_IT_WORK_3 : "Une fois les informations saisies et vérifiées,",
 			HOME_HOW_DOES_IT_WORK_4 : "réalise le tirage au sort et envoie un email à chaque participant",
 			BREADCRUMB_CREATION : "Création",
 			BREADCRUMB_PARTICIPANTS : "Participants",
@@ -48,7 +48,12 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			PARTICIPANT_RESULT_1 : "Découvre le résultat",
 			PARTICIPANT_RESULT_2 : "du tirage au sort",
 			PARTICIPANT_RESULT_3 : "pour l'évènement",
-			PARTICIPANT_RESULT_4 : "tu auras la chance d'offrir un cadeau à"
+			PARTICIPANT_RESULT_4 : "tu auras la chance d'offrir un cadeau à",
+			SUCCESS_EVENT : "L'évènement",
+			SUCCESS_CREATED : "à bien été créé",
+			SUCCESS_PARTICIPANTS : "Chaque participant a reçu une invation par mail pour consulter le résultat du tirage au sort.",
+			SUCCESS_ADMIN : "Un email vous a également été envoyé afin de suivre l'évènement. Il est ainsi possible de connaître si les participants ont consulté le résultat du tirage. Si vous n'avez pas reçu de mail, conserver le lien ci-dessous vers la page d'administration :",
+			SUCCESS_THANK_YOU : "Merci d'avoir utilisé notre service et bonnes fêtes !"
 		});
 		$translateProvider.preferredLanguage("fr");
 	}]);

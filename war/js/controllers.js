@@ -83,16 +83,19 @@ angular.module("lotocado.controllers", []).
 					console.log(message.code);
 					$scope.$apply($scope.error = message);
 				} else {
+					eventModel.event.organizerLink = response.organizerLink;
 					$scope.$apply($location.path("/success"));
 				}
 			});	
 		};
 	}]).
 	controller("SuccessController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
-		if (!eventModel.isValid(eventModel.event, eventModel.participants)) {
-			eventModel.reset();
-			$location.path("/home");
-		}
+//		if (!eventModel.isValid(eventModel.event, eventModel.participants)) {
+//			eventModel.reset();
+//			$location.path("/home");
+//		}
+		eventModel.event.name = "test";
+		
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		eventModel.reset();

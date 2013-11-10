@@ -20,6 +20,7 @@ import javax.mail.internet.MimeMessage;
 
 import com.floreysoft.jmte.Engine;
 import com.fornacif.lotocado.model.DrawingLotsRequest;
+import com.fornacif.lotocado.model.DrawingLotsResponse;
 import com.fornacif.lotocado.model.Event;
 import com.fornacif.lotocado.model.EventParticipantIds;
 import com.fornacif.lotocado.model.Participant;
@@ -44,7 +45,7 @@ public class RandomMatcher {
 	
 	private final Logger LOGGER = Logger.getLogger(RandomMatcher.class.getName());
 
-	public void createDrawingLots(DrawingLotsRequest drawingLotsRequest) throws BadRequestException {
+	public DrawingLotsResponse createDrawingLots(DrawingLotsRequest drawingLotsRequest) throws BadRequestException {
 		Event event = drawingLotsRequest.getEvent();
 		List<Participant> participants = drawingLotsRequest.getParticipants();
 
@@ -82,6 +83,10 @@ public class RandomMatcher {
 				}
 
 				transaction.commit();
+				
+				DrawingLotsResponse response = new DrawingLotsResponse();
+				response.setOrganizerLink(getOrganizerLink(event));
+				return response;
 			} else {
 				throw new BadRequestException("{\"code\": \"" + Constants.NO_RESULT_ERROR_CODE + "\"}");
 			}
@@ -210,7 +215,7 @@ public class RandomMatcher {
 		String input = IoUtil.readFile(new File("templates/event.html"));
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("event", event);
-		model.put("link", getHostUrl() + "/#/event/" + Encryptor.encryptEventId(event.getKey().getId()));
+		model.put("link", getOrganizerLink(event));
 		Engine engine = new Engine();
 		return engine.transform(input, model);
 	}
@@ -220,10 +225,18 @@ public class RandomMatcher {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("event", event);
 		model.put("participant", participant);
-		EventParticipantIds ids = new EventParticipantIds(event.getKey().getId(), participant.getKey().getId());
-		model.put("link", getHostUrl() + "/#/participant/" + Encryptor.encryptEventParticipantIds(ids));
+		model.put("link", getParticipantLink(event, participant));
 		Engine engine = new Engine();
 		return engine.transform(input, model);
+	}
+	
+	private String getOrganizerLink(Event event) {
+		return getHostUrl() + "/#/event/" + Encryptor.encryptEventId(event.getKey().getId());
+	}
+	
+	private String getParticipantLink(Event event, Participant participant) {
+		EventParticipantIds ids = new EventParticipantIds(event.getKey().getId(), participant.getKey().getId());
+		return getHostUrl() + "/#/participant/" + Encryptor.encryptEventParticipantIds(ids);
 	}
 
 	private String getHostUrl() {
