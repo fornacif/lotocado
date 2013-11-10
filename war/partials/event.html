@@ -49,10 +49,6 @@
 			<p>{{'EVENT_PARTICIPANTS' | translate }}</p>
 			
 			<div class="row row-padding" ng-repeat="participant in event.participants" ng-animate="'animate'">
-				<div class="col-sm-1">
-					<i class="glyphicon glyphicon-eye-open" ng-show="participant.resultConsulted"></i>
-					<i class="glyphicon glyphicon-eye-close" ng-hide="participant.resultConsulted"></i>
-				</div>
 				<div class="col-sm-3">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -72,6 +68,10 @@
 		   					<option ng-repeat="excludedName in participant.excludedNames" value="{{excludedName}}">{{excludedName}}</option>
 						</select>
 					</div>
+				</div>
+				<div class="col-sm-1">
+					<i class="glyphicon glyphicon-eye-open" ng-show="participant.resultConsulted"></i>
+					<i class="glyphicon glyphicon-eye-close" ng-hide="participant.resultConsulted"></i>
 				</div>
 			</div>
 		</div>
