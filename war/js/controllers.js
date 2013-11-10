@@ -90,11 +90,10 @@ angular.module("lotocado.controllers", []).
 		};
 	}]).
 	controller("SuccessController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
-//		if (!eventModel.isValid(eventModel.event, eventModel.participants)) {
-//			eventModel.reset();
-//			$location.path("/home");
-//		}
-		eventModel.event.name = "test";
+		if (!eventModel.isValid(eventModel.event, eventModel.participants)) {
+			eventModel.reset();
+			$location.path("/home");
+		}
 		
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
