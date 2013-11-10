@@ -193,8 +193,8 @@ public class RandomMatcher {
 	}
 
 	private void sendEmailToParticipant(Event event, Participant participant) throws MessagingException, IOException {
-		String recipientEmail = event.getOrganizerEmail();
-		String recipientName = event.getOrganizerName();
+		String recipientEmail = participant.getEmail();
+		String recipientName = participant.getName();
 		String subject = "[Lotocado] Invitation à l'évènement '" + event.getName() + "'";
 		String body = getEmailToParticipantBodyContent(event, participant);
 		sendEmail(recipientEmail, recipientName, subject, body);
