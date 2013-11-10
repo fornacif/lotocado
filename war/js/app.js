@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module("lotocado", ["lotocado.translate", "lotocado.services", "lotocado.controllers", "ui.select2", "ui.date"]).
-	config(function($routeProvider) {
+angular.module("lotocado", ["angular-google-analytics", "lotocado.translate", "lotocado.services", "lotocado.controllers", "ui.select2", "ui.date"]).
+	config(function(AnalyticsProvider, $routeProvider) {
 		$routeProvider.
 			when("/", {controller:"HomeController", templateUrl:"partials/home.html"}).
 			when("/about", {controller:"AboutController", templateUrl:"partials/about.html"}).
@@ -14,6 +14,8 @@ angular.module("lotocado", ["lotocado.translate", "lotocado.services", "lotocado
 			when("/participant/:encryptedValue", {controller:"ParticipantController", templateUrl:"partials/participant.html"}).
 			when("/event/:encryptedValue", {controller:"EventController", templateUrl:"partials/event.html"}).
 			otherwise({redirectTo:"/"});
+
+			AnalyticsProvider.setAccount('UA-45603516-1');
 	});
 
 function init() {

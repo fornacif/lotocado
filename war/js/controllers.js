@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("lotocado.controllers", []).
-	controller("InitController", ["$rootScope", "$scope", "$location", "$translate", function($rootScope, $scope, $location, $translate) {
+	controller("InitController", ["$rootScope", "$scope", "$location", "$translate", "Analytics", function($rootScope, $scope, $location, $translate, Analytics) {
 		$scope.$on("GAPI_LOADED_EVENT", function() {
 			$rootScope.gapi = true;
 		});
