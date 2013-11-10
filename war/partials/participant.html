@@ -1,12 +1,12 @@
 <div class="container">
 	<div class="participant">
-		<div ng-show="!result">
+		<div ng-show="!participant">
 			<button type="button" class="btn btn-primary btn-lg" ng-click="showResult()" ng-hide="submitted">{{'PARTICIPANT_RESULT_1' | translate }}<br>{{'PARTICIPANT_RESULT_2' | translate }}</button>
 			<div class="progress progress-striped active" ng-show="submitted" style="width: 200px;margin: 0 auto;">
 				<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%" />
 			</div>
 		</div>
-		<div ng-show="result" ng-animate="{show: 'animate-show'}">
+		<div ng-show="participant" ng-animate="{show: 'animate-show'}">
 			<span style="font-size: 30px;">{{participant.name}}</span>
 			<br /><span style="font-size: 20px;">{{'PARTICIPANT_RESULT_3' | translate }} {{participant.eventName}}
 			<br />{{'PARTICIPANT_RESULT_4' | translate }}</span>
