@@ -19,7 +19,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			BREADCRUMB_CREATION : "Création",
 			BREADCRUMB_PARTICIPANTS : "Participants",
 			BREADCRUMB_EXCLUSIONS : "Exclusions",
-			BREADCRUMB_VERIFICATION : "Verification",
+			BREADCRUMB_VERIFICATION : "Vérification",
 			PREVIOUS : "Retour",
 			NEXT : "Etape suivante",
 			CREATION_EVENT : "Création de l'évènement",

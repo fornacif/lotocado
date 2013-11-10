@@ -53,6 +53,21 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
+    },
+    "lotocado.eventRetriever.getParticipant" : {
+      "path" : "eventresponse",
+      "httpMethod" : "GET",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fornacif.lotocado.service.EventRetriever.getParticipant",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
     }
   },
   "descriptor" : {
@@ -159,6 +174,12 @@
             "type" : "string"
           }
         }
+      },
+      "EventResponse" : {
+        "id" : "EventResponse",
+        "type" : "object",
+        "properties" : {
+        }
       }
     },
     "methods" : {
@@ -176,6 +197,14 @@
         },
         "response" : {
           "$ref" : "DrawingLotsResponse"
+        }
+      },
+      "com.fornacif.lotocado.service.EventRetriever.getParticipant" : {
+        "request" : {
+          "$ref" : "EncryptedRequest"
+        },
+        "response" : {
+          "$ref" : "EventResponse"
         }
       }
     }
