@@ -3,7 +3,7 @@
 angular.module("lotocado.translate", ["pascalprecht.translate"]).
 	config(["$translateProvider", function ($translateProvider) {
 		$translateProvider.translations("fr", {
-			LOTOCADO: "Lotocado",
+			APPNAME: "Lotocado",
 			HOME: "Accueil",
 			ABOUT: "A propos",
 			HOME_CREATE_EVENT: "Créer un évènement",
@@ -45,7 +45,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			VERIFICATION_SEND_MAIL_TO_ORGANIZER_ERROR_CODE : "Une erreur s'est produite, l'envoie du mail à l'organisateur a échoué",
 			VERIFICATION_SEND_MAIL_TO_PARTICIPANT_ERROR_CODE : "Une erreur s'est produite, l'envoie des mails aux participants a échoué",
 			VERIFICATION_DATA_ERROR_CODE : "Une erreur s'est produite, veuillez vérifier les données de l'évènement",
-			PARTICIPANT_RESULT_1 : "Découvre le résultat",
+			PARTICIPANT_RESULT_1 : "Découvrez le résultat",
 			PARTICIPANT_RESULT_2 : "du tirage au sort",
 			PARTICIPANT_RESULT_3 : "pour l'évènement",
 			PARTICIPANT_RESULT_4 : "tu auras la chance d'offrir un cadeau à",
@@ -53,7 +53,10 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			SUCCESS_CREATED : "à bien été créé",
 			SUCCESS_PARTICIPANTS : "Chaque participant a reçu une invation par mail pour consulter le résultat du tirage au sort.",
 			SUCCESS_ADMIN : "Un email vous a également été envoyé afin de suivre l'évènement. Il est ainsi possible de connaître si les participants ont consulté le résultat du tirage. Si vous n'avez pas reçu de mail, conserver le lien ci-dessous vers la page d'administration :",
-			SUCCESS_THANK_YOU : "Merci d'avoir utilisé notre service et bonnes fêtes !"
+			SUCCESS_THANK_YOU : "Merci d'avoir utilisé notre service et bonnes fêtes !",
+			ABOUT_TITLE : "A propos de",
+			ABOUT_LOTOCADO : "est une application gratuite.",
+			ABOUT_CONTACT : "Si vous souhaitez nous faire des remarques, signalez un problème ou tout simplement nous donner vos impressions, l'équipe peut être contactée à l'addresse suivante :"
 		});
 		$translateProvider.preferredLanguage("fr");
 	}]);

@@ -17,6 +17,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 
 import com.floreysoft.jmte.Engine;
 import com.fornacif.lotocado.model.DrawingLotsRequest;
@@ -186,7 +187,7 @@ public class RandomMatcher {
 	private void sendEmailToOrganizer(Event event) throws MessagingException, IOException {
 		String recipientEmail = event.getOrganizerEmail();
 		String recipientName = event.getOrganizerName();
-		String subject = "Event " + event.getName() + " created";
+		String subject = "[Lotocado] Evènement '" + event.getName() + "'";
 		String body = getEmailToOrganizerBodyContent(event);
 		sendEmail(recipientEmail, recipientName, subject, body);
 	}
@@ -194,7 +195,7 @@ public class RandomMatcher {
 	private void sendEmailToParticipant(Event event, Participant participant) throws MessagingException, IOException {
 		String recipientEmail = event.getOrganizerEmail();
 		String recipientName = event.getOrganizerName();
-		String subject = "Event " + event.getName() + " created";
+		String subject = "[Lotocado] Invitation à l'évènement '" + event.getName() + "'";
 		String body = getEmailToParticipantBodyContent(event, participant);
 		sendEmail(recipientEmail, recipientName, subject, body);
 	}
@@ -204,9 +205,9 @@ public class RandomMatcher {
 		Session session = Session.getDefaultInstance(properties, null);
 
 		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress("francois.fornaciari@gmail.com", "Lotocado"));
+		message.setFrom(new InternetAddress("contact.lotocado@gmail.com", "Lotocado"));
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail, recipientName));
-		message.setSubject(subject);
+		message.setSubject(MimeUtility.encodeText(subject, "utf-8", "B"));
 		message.setContent(body, "text/html; charset=utf-8");
 		Transport.send(message);
 	}
