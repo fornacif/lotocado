@@ -1,14 +1,20 @@
 <div class="container">
-	<h4>{{'SUCCESS_EVENT' | translate }}  <i>{{event.name}}</i> {{'SUCCESS_CREATED' | translate }}</h4>
-	<div class="row">
-		<div class="col-sm-10">
-			<p>{{'SUCCESS_PARTICIPANTS' | translate }}</p>
-			<p>{{'SUCCESS_ADMIN' | translate }}</p>
-			<p><a href="{{event.organizerLink}}">{{event.organizerLink}}</a></p>
-			<p>{{'SUCCESS_THANK_YOU' | translate }}</p>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<b>{{'SUCCESS_EVENT' | translate }}  <i>{{event.name}}</i> {{'SUCCESS_CREATED' | translate }}</b>
 		</div>
-		<div class="col-sm-2">
-			<img src="img/gift-icon-closed.png" />
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-10">
+					<p>{{'SUCCESS_PARTICIPANTS' | translate }}</p>
+					<p>{{'SUCCESS_ADMIN' | translate }}</p>
+					<p><a href="{{event.organizerLink}}">{{event.organizerLink}}</a></p>
+					<p>{{'SUCCESS_THANK_YOU' | translate }}</p>
+				</div>
+				<div class="col-sm-2">
+					<img src="img/gift-icon-closed.png" />
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

@@ -52,11 +52,13 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			SUCCESS_EVENT : "L'évènement",
 			SUCCESS_CREATED : "à bien été créé",
 			SUCCESS_PARTICIPANTS : "Chaque participant a reçu une invation par mail pour consulter le résultat du tirage au sort.",
-			SUCCESS_ADMIN : "Un email vous a également été envoyé afin de suivre l'évènement. Il est ainsi possible de connaître si les participants ont consulté le résultat du tirage. Si vous n'avez pas reçu de mail, conserver le lien ci-dessous vers la page d'administration :",
+			SUCCESS_ADMIN : "Un email vous a également été envoyé afin de suivre l'évènement. Il est ainsi possible de savoir si les participants ont consulté le résultat du tirage. Si vous n'avez pas reçu d 'email, conserver le lien ci-dessous vers la page d'administration :",
 			SUCCESS_THANK_YOU : "Merci d'avoir utilisé notre service et bonnes fêtes !",
 			ABOUT_TITLE : "A propos de",
 			ABOUT_LOTOCADO : "est une application gratuite.",
-			ABOUT_CONTACT : "Si vous souhaitez nous faire des remarques, signalez un problème ou tout simplement nous donner vos impressions, l'équipe peut être contactée à l'addresse suivante :"
+			ABOUT_CONTACT : "Si vous souhaitez nous faire des remarques, signalez un problème ou tout simplement nous donner vos impressions, vous pouvez nous conctacter à l'addresse suivante :",
+			EVENT : "Evènement",
+			EVENT_PARTICIPANTS : "Liste des participants"
 		});
 		$translateProvider.preferredLanguage("fr");
 	}]);

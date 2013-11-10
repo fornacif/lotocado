@@ -28,7 +28,6 @@ public class EventRetriever {
 	private final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 
 	public EventResponse getEvent(EncryptedRequest encryptedRequest) throws BadRequestException {
-
 		try {
 			Long eventId = Encryptor.decryptEventId(encryptedRequest.getEncryptedValue());
 			Key eventKey = KeyFactory.createKey(Constants.EVENT_ENTITY, eventId);
@@ -39,7 +38,7 @@ public class EventRetriever {
 			eventResponse.setDate((Date) eventEntity.getProperty(Constants.EVENT_DATE));
 			eventResponse.setOrganizerName((String) eventEntity.getProperty(Constants.EVENT_ORGANIZER_NAME));
 			eventResponse.setOrganizerEmail((String) eventEntity.getProperty(Constants.EVENT_ORGANIZER_EMAIL));
-			
+
 			Query query = new Query(Constants.PARTICIPANT_ENTITY);
 			query.setFilter(FilterOperator.EQUAL.of(Constants.PARTICIPANT_EVENT_KEY, eventKey));
 			PreparedQuery preparedQuery = datastoreService.prepare(query);
@@ -57,9 +56,9 @@ public class EventRetriever {
 		} catch (EntityNotFoundException e) {
 			throw new BadRequestException("{\"code\": \"" + Constants.EVENT_NOT_FOUND_ERROR_CODE + "\"}");
 		}
-
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	private List<String> getExcludedNames(Entity participantEntity) throws EntityNotFoundException {
 		List<String> excudedNames = new ArrayList<>();
 		List<Key> exlusionKeys = (List<Key>) participantEntity.getProperty(Constants.PARTICIPANT_EXCLUSION_KEYS);

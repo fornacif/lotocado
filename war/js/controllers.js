@@ -75,12 +75,10 @@ angular.module("lotocado.controllers", []).
 		$scope.save = function() {
 			$scope.submitted = true;
 			$scope.error = null;
-			console.log(JSON.stringify(eventModel));
 			creationService.createDrawingLots(eventModel, function(response) {
 				$scope.submitted = false;
 				if (response && response.error != null) {
 					var message = JSON.parse(response.error.message);
-					console.log(message.code);
 					$scope.$apply($scope.error = message);
 				} else {
 					eventModel.event.organizerLink = response.organizerLink;
@@ -100,6 +98,18 @@ angular.module("lotocado.controllers", []).
 		eventModel.reset();
 	}]).	
 	controller("ParticipantController", ["$rootScope", "$scope", "$location", "$routeParams", "participantService", function($rootScope, $scope, $location, $routeParams, participantService) {
+		$scope.getParticipant = function() {
+			$scope.submitted = true;
+			participantService.getParticipant($routeParams.encryptedValue, function(response) {
+				$scope.submitted = false;
+				if (response && response.error != null) {
+					var message = JSON.parse(response.error.message);
+				} else {
+					$scope.$apply($scope.participant = response);
+				}
+			});	
+		}
+		
 		$scope.showResult = function() {
 			if ($rootScope.gapi) {
 				$scope.getParticipant();
@@ -109,39 +119,28 @@ angular.module("lotocado.controllers", []).
 				});
 			}
 		}
-	
-		$scope.getParticipant = function() {
-			$scope.submitted = true;
-			participantService.getParticipant($routeParams.encryptedValue, function(response) {
-				$scope.submitted = false;
-				if (response && response.error != null) {
-					var message = JSON.parse(response.error.message);
-					console.log(message.code);
-				} else {
-					$scope.$apply($scope.participant = response);
-				}
-			});	
-		}	
 		
 	}]).
-	controller("EventController", ["$rootScope", "$scope", "$location", "$routeParams", "eventService", function($rootScope, $scope, $location, $routeParams, eventService) {
+	controller("EventController", ["$rootScope", "$scope", "$location", "$routeParams", "eventService", function($rootScope, $scope, $location, $routeParams, eventService) {		
+		$scope.loaded = false;
+		$scope.getEvent = function() {
+			eventService.getEvent($routeParams.encryptedValue, function(response) {
+				$scope.loaded = true;
+				if (response && response.error != null) {
+					var message = JSON.parse(response.error.message);
+				} else {
+					response.date = response.date.substring(0,10);
+					$scope.$apply($scope.event = response);
+				}
+			});	
+		}
+		
 		if ($rootScope.gapi) {
 			$scope.getEvent();
 		} else {
 			$scope.$on("GAPI_LOADED_EVENT", function() {
 				$scope.getEvent();
 			});
-		}
-		
-		$scope.getEvent = function() {
-			eventService.getEvent($routeParams.encryptedValue, function(response) {
-				if (response && response.error != null) {
-					var message = JSON.parse(response.error.message);
-					console.log(message.code);
-				} else {
-					$scope.$apply($scope.event = response);
-				}
-			});	
 		}
 		
 	}]).
