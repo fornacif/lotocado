@@ -6,6 +6,7 @@ import com.fornacif.lotocado.model.ParticipantResponse;
 import com.fornacif.lotocado.utils.Constants;
 import com.fornacif.lotocado.utils.Encryptor;
 import com.google.api.server.spi.config.Api;
+import com.google.api.server.spi.response.BadRequestException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -19,7 +20,7 @@ public class ParticipantRetriever {
 
 	private final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 
-	public ParticipantResponse getParticipant(EncryptedRequest encryptedRequest) throws EntityNotFoundException {
+	public ParticipantResponse getParticipant(EncryptedRequest encryptedRequest) throws BadRequestException {
 		Transaction transaction = datastoreService.beginTransaction();
 		try {
 			EventParticipantIds ids = Encryptor.decryptEventParticipantIds(encryptedRequest.getEncryptedValue());
@@ -42,7 +43,7 @@ public class ParticipantRetriever {
 			return participantResponse;
 		}
 		catch (EntityNotFoundException e) {
-			throw e;
+			throw new BadRequestException("{\"code\": \"" + Constants.PARTICIPANT_NOT_FOUND_ERROR_CODE + "\"}");
 		} finally {
 			if (transaction.isActive()) {
 				transaction.rollback();

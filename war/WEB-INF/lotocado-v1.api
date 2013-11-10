@@ -54,13 +54,13 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "lotocado.eventRetriever.getParticipant" : {
+    "lotocado.eventRetriever.getEvent" : {
       "path" : "eventresponse",
       "httpMethod" : "GET",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.fornacif.lotocado.service.EventRetriever.getParticipant",
+      "rosyMethod" : "com.fornacif.lotocado.service.EventRetriever.getEvent",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -179,6 +179,46 @@
         "id" : "EventResponse",
         "type" : "object",
         "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "organizerName" : {
+            "type" : "string"
+          },
+          "organizerEmail" : {
+            "type" : "string"
+          },
+          "participants" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "ParticipantLight"
+            }
+          }
+        }
+      },
+      "ParticipantLight" : {
+        "id" : "ParticipantLight",
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "excludedNames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "resultConsulted" : {
+            "type" : "boolean"
+          }
         }
       }
     },
@@ -199,7 +239,7 @@
           "$ref" : "DrawingLotsResponse"
         }
       },
-      "com.fornacif.lotocado.service.EventRetriever.getParticipant" : {
+      "com.fornacif.lotocado.service.EventRetriever.getEvent" : {
         "request" : {
           "$ref" : "EncryptedRequest"
         },

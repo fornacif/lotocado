@@ -23,4 +23,6 @@ public final class Constants {
     public static final String SEND_MAIL_TO_ORGANIZER_ERROR_CODE = "SEND_MAIL_TO_ORGANIZER_ERROR_CODE";
     public static final String SEND_MAIL_TO_PARTICIPANT_ERROR_CODE = "SEND_MAIL_TO_PARTICIPANT_ERROR_CODE";
     public static final String DATA_ERROR_CODE = "DATA_ERROR_CODE";
+    public static final String PARTICIPANT_NOT_FOUND_ERROR_CODE = "PARTICIPANT_ERROR_CODE";
+    public static final String EVENT_NOT_FOUND_ERROR_CODE = "EVENT_ERROR_CODE";
 }

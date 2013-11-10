@@ -65,7 +65,7 @@ angular.module("lotocado.controllers", []).
 			return !eventModel.isValid($scope.event, $scope.participants);
 		}
 	}]).
-	controller("VerificationController", ["$scope", "$location", "eventModel", "eventService", function($scope, $location, eventModel, eventService) {
+	controller("VerificationController", ["$scope", "$location", "eventModel", "creationService", function($scope, $location, eventModel, creationService) {
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		$scope.isEventInvalid = function () {
@@ -76,7 +76,7 @@ angular.module("lotocado.controllers", []).
 			$scope.submitted = true;
 			$scope.error = null;
 			console.log(JSON.stringify(eventModel));
-			eventService.createDrawingLots(eventModel, function(response) {
+			creationService.createDrawingLots(eventModel, function(response) {
 				$scope.submitted = false;
 				if (response && response.error != null) {
 					var message = JSON.parse(response.error.message);
@@ -118,13 +118,31 @@ angular.module("lotocado.controllers", []).
 					var message = JSON.parse(response.error.message);
 					console.log(message.code);
 				} else {
-					$scope.$apply($scope.result = response);
+					$scope.$apply($scope.participant = response);
 				}
 			});	
 		}	
 		
 	}]).
-	controller("EventController", ["$scope", "$location", "$routeParams", function($scope, $location, $routeParams) {
+	controller("EventController", ["$rootScope", "$scope", "$location", "$routeParams", "eventService", function($rootScope, $scope, $location, $routeParams, eventService) {
+		if ($rootScope.gapi) {
+			$scope.getEvent();
+		} else {
+			$scope.$on("GAPI_LOADED_EVENT", function() {
+				$scope.getEvent();
+			});
+		}
+		
+		$scope.getEvent = function() {
+			eventService.getEvent($routeParams.encryptedValue, function(response) {
+				if (response && response.error != null) {
+					var message = JSON.parse(response.error.message);
+					console.log(message.code);
+				} else {
+					$scope.$apply($scope.event = response);
+				}
+			});	
+		}
 		
 	}]).
 	controller("AboutController", ["$scope", "$location", function($scope, $location) {
