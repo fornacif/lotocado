@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("lotocado.controllers", []).
-	controller("InitController", ["$rootScope", "$scope", "$location", "$translate", "Analytics", function($rootScope, $scope, $location, $translate, Analytics) {
+	controller("InitController", ["$rootScope", "$scope", "$location", "$translate", function($rootScope, $scope, $location, $translate) {
 		$scope.$on("GAPI_LOADED_EVENT", function() {
 			$rootScope.gapi = true;
 		});
@@ -16,7 +16,7 @@ angular.module("lotocado.controllers", []).
 		}
 	}]).
 	controller("HomeController", ["$rootScope", "$scope", "$location", "eventModel", "Analytics", function($rootScope, $scope, $location, eventModel, Analytics) {
-		Analytics.trackPage($location);
+		Analytics.trackPage("/home");
 		
 		$scope.create = function() {
 			eventModel.reset();
@@ -24,7 +24,7 @@ angular.module("lotocado.controllers", []).
 		};
 	}]).
 	controller("CreationController", ["$scope", "$location", "eventModel", "Analytics", function($scope, $location, eventModel, Analytics) {
-		Analytics.trackPage($location);
+		Analytics.trackPage($location.path());
 		
 		$scope.event = eventModel.event;
 		$scope.dateOptions = {
@@ -43,7 +43,7 @@ angular.module("lotocado.controllers", []).
 		};
 	}]).
 	controller("ParticipantsController", ["$scope", "$location", "eventModel", "Analytics", function($scope, $location, eventModel, Analytics) {
-		Analytics.trackPage($location);
+		Analytics.trackPage($location.path());
 		
 		if (eventModel.event.date) {
 			eventModel.event.date.setHours(eventModel.event.date.getHours() + 1);
@@ -65,7 +65,7 @@ angular.module("lotocado.controllers", []).
 		}
 	}]).
 	controller("ExclusionsController", ["$scope", "$location", "eventModel", "Analytics", function($scope, $location, eventModel, Analytics) {
-		Analytics.trackPage($location);
+		Analytics.trackPage($location.path());
 		
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
@@ -74,7 +74,7 @@ angular.module("lotocado.controllers", []).
 		}
 	}]).
 	controller("VerificationController", ["$scope", "$location", "eventModel", "creationService", "Analytics", function($scope, $location, eventModel, creationService, Analytics) {
-		Analytics.trackPage($location);
+		Analytics.trackPage($location.path());
 		
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
@@ -98,7 +98,7 @@ angular.module("lotocado.controllers", []).
 		};
 	}]).
 	controller("SuccessController", ["$scope", "$location", "eventModel", "Analytics", function($scope, $location, eventModel, Analytics) {
-		Analytics.trackPage($location);
+		Analytics.trackPage($location.path());
 		
 		if (!eventModel.isValid(eventModel.event, eventModel.participants)) {
 			eventModel.reset();
@@ -164,5 +164,5 @@ angular.module("lotocado.controllers", []).
 		
 	}]).
 	controller("AboutController", ["$scope", "$location", "Analytics", function($scope, $location, Analytics) {
-		Analytics.trackPage($location);
+		Analytics.trackPage($location.path());
 	}]);

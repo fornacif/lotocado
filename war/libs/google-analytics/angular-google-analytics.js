@@ -55,7 +55,7 @@ angular.module("angular-google-analytics", [])
             this._logs.push(arguments);
           };
           this._trackPage = function(url) {
-            if (trackRoutes && $window._gaq) {
+            if ($window._gaq) {
               $window._gaq.push(['_trackPageview', trackPrefix + url]);
               this._log('_trackPageview', arguments);
             }
