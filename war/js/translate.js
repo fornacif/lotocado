@@ -61,7 +61,9 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			ABOUT_DONATION : "Si cette application vous a plu, vous pouvez faire un don et ainsi contribuer à l'amélioration du service.",
 			EVENT : "Evènement",
 			EVENT_ERROR : "Une erreur s'est produite. L'évènement n'a pas pu être chargé",
-			EVENT_PARTICIPANTS : "Liste des participants"
+			EVENT_PARTICIPANTS : "Liste des participants",
+			EVENT_RESULT_CONSULTED : "Résultat consulté",
+			EVENT_RESULT_NOT_CONSULTED : "Résultat non consulté"
 		});
 		$translateProvider.preferredLanguage("fr");
 	}]);

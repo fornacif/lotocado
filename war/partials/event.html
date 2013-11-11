@@ -75,8 +75,8 @@
 					</div>
 				</div>
 				<div class="col-sm-1">
-					<i class="glyphicon glyphicon-eye-open" ng-show="participant.resultConsulted"></i>
-					<i class="glyphicon glyphicon-eye-close" ng-hide="participant.resultConsulted"></i>
+					<span class="glyphicon glyphicon-eye-open" ng-show="participant.resultConsulted" tooltip-placement="bottom" tooltip="{{'EVENT_RESULT_CONSULTED' | translate }}"></span>
+					<span class="glyphicon glyphicon-eye-close" ng-hide="participant.resultConsulted" tooltip-placement="bottom" tooltip="{{'EVENT_RESULT_NOT_CONSULTED' | translate }}"></span>
 				</div>
 			</div>
 		</div>
