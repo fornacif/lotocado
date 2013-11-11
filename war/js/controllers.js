@@ -15,13 +15,17 @@ angular.module("lotocado.controllers", []).
 			$translate.uses($scope.lang);
 		}
 	}]).
-	controller("HomeController", ["$rootScope", "$scope", "$location", "eventModel", function($rootScope, $scope, $location, eventModel) {
+	controller("HomeController", ["$rootScope", "$scope", "$location", "eventModel", "Analytics", function($rootScope, $scope, $location, eventModel, Analytics) {
+		Analytics.trackPage($location);
+		
 		$scope.create = function() {
 			eventModel.reset();
 			$location.path( "/creation");
 		};
 	}]).
-	controller("CreationController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+	controller("CreationController", ["$scope", "$location", "eventModel", "Analytics", function($scope, $location, eventModel, Analytics) {
+		Analytics.trackPage($location);
+		
 		$scope.event = eventModel.event;
 		$scope.dateOptions = {
 			regional: "fr"
@@ -38,7 +42,9 @@ angular.module("lotocado.controllers", []).
 			$location.path( "/participants");
 		};
 	}]).
-	controller("ParticipantsController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+	controller("ParticipantsController", ["$scope", "$location", "eventModel", "Analytics", function($scope, $location, eventModel, Analytics) {
+		Analytics.trackPage($location);
+		
 		if (eventModel.event.date) {
 			eventModel.event.date.setHours(eventModel.event.date.getHours() + 1);
 		}
@@ -58,14 +64,18 @@ angular.module("lotocado.controllers", []).
 			return !eventModel.isValid($scope.event, $scope.participants);
 		}
 	}]).
-	controller("ExclusionsController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+	controller("ExclusionsController", ["$scope", "$location", "eventModel", "Analytics", function($scope, $location, eventModel, Analytics) {
+		Analytics.trackPage($location);
+		
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		$scope.isEventInvalid = function () {
 			return !eventModel.isValid($scope.event, $scope.participants);
 		}
 	}]).
-	controller("VerificationController", ["$scope", "$location", "eventModel", "creationService", function($scope, $location, eventModel, creationService) {
+	controller("VerificationController", ["$scope", "$location", "eventModel", "creationService", "Analytics", function($scope, $location, eventModel, creationService, Analytics) {
+		Analytics.trackPage($location);
+		
 		$scope.event = eventModel.event;
 		$scope.participants = eventModel.participants;
 		$scope.isEventInvalid = function () {
@@ -87,7 +97,9 @@ angular.module("lotocado.controllers", []).
 			});	
 		};
 	}]).
-	controller("SuccessController", ["$scope", "$location", "eventModel", function($scope, $location, eventModel) {
+	controller("SuccessController", ["$scope", "$location", "eventModel", "Analytics", function($scope, $location, eventModel, Analytics) {
+		Analytics.trackPage($location);
+		
 		if (!eventModel.isValid(eventModel.event, eventModel.participants)) {
 			eventModel.reset();
 			$location.path("/home");
@@ -97,13 +109,18 @@ angular.module("lotocado.controllers", []).
 		$scope.participants = eventModel.participants;
 		eventModel.reset();
 	}]).	
-	controller("ParticipantController", ["$rootScope", "$scope", "$location", "$routeParams", "participantService", function($rootScope, $scope, $location, $routeParams, participantService) {
+	controller("ParticipantController", ["$rootScope", "$scope", "$location", "$routeParams", "participantService", "Analytics", function($rootScope, $scope, $location, $routeParams, participantService, Analytics) {
+		Analytics.trackPage("/participant");
+		
+		$scope.submitted = false;
+		
 		$scope.getParticipant = function() {
 			$scope.submitted = true;
+			$scope.loading = true;
 			participantService.getParticipant($routeParams.encryptedValue, function(response) {
-				$scope.submitted = false;
+				$scope.$apply($scope.loading = false);
 				if (response && response.error != null) {
-					var message = JSON.parse(response.error.message);
+					$scope.$apply($scope.error = true);
 				} else {
 					$scope.$apply($scope.participant = response);
 				}
@@ -121,13 +138,15 @@ angular.module("lotocado.controllers", []).
 		}
 		
 	}]).
-	controller("EventController", ["$rootScope", "$scope", "$location", "$routeParams", "eventService", function($rootScope, $scope, $location, $routeParams, eventService) {		
-		$scope.loaded = false;
+	controller("EventController", ["$rootScope", "$scope", "$location", "$routeParams", "eventService", "Analytics", function($rootScope, $scope, $location, $routeParams, eventService, Analytics) {	
+		Analytics.trackPage("/event");
+
+		$scope.loading = true;
 		$scope.getEvent = function() {
 			eventService.getEvent($routeParams.encryptedValue, function(response) {
-				$scope.loaded = true;
+				$scope.$apply($scope.loading = false);
 				if (response && response.error != null) {
-					var message = JSON.parse(response.error.message);
+					$scope.$apply($scope.error = true);
 				} else {
 					response.date = response.date.substring(0,10);
 					$scope.$apply($scope.event = response);
@@ -144,6 +163,6 @@ angular.module("lotocado.controllers", []).
 		}
 		
 	}]).
-	controller("AboutController", ["$scope", "$location", function($scope, $location) {
-		
+	controller("AboutController", ["$scope", "$location", "Analytics", function($scope, $location, Analytics) {
+		Analytics.trackPage($location);
 	}]);

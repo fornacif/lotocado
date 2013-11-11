@@ -16,6 +16,7 @@ angular.module("lotocado", ["angular-google-analytics", "lotocado.translate", "l
 			otherwise({redirectTo:"/"});
 
 			AnalyticsProvider.setAccount('UA-45603516-1');
+			AnalyticsProvider.trackPages(false);
 	});
 
 function init() {

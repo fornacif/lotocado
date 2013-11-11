@@ -49,6 +49,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			PARTICIPANT_RESULT_2 : "du tirage au sort",
 			PARTICIPANT_RESULT_3 : "pour l'évènement",
 			PARTICIPANT_RESULT_4 : "tu auras la chance d'offrir un cadeau à",
+			PARTICIPANT_ERROR : "Une erreur s'est produite. Le résultat du tirage au sort n'a pas pu être trouvé",
 			SUCCESS_EVENT : "L'évènement",
 			SUCCESS_CREATED : "à bien été créé",
 			SUCCESS_PARTICIPANTS : "Chaque participant a reçu une invation par mail pour consulter le résultat du tirage au sort.",
@@ -59,6 +60,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			ABOUT_CONTACT : "Si vous souhaitez nous faire des remarques, signalez un problème ou tout simplement nous donner vos impressions, vous pouvez nous conctacter à l'adresse suivante :",
 			ABOUT_DONATION : "Si cette application vous a plu, vous pouvez faire un don et ainsi contribuer à l'amélioration du service.",
 			EVENT : "Evènement",
+			EVENT_ERROR : "Une erreur s'est produite. L'évènement n'a pas pu être chargé",
 			EVENT_PARTICIPANTS : "Liste des participants"
 		});
 		$translateProvider.preferredLanguage("fr");

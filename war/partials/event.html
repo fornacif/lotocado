@@ -5,14 +5,19 @@
 				<div class="col-sm-10">
 					<b>{{'EVENT' | translate }}  <i>{{event.name}}</i></b>
 				</div>
-				<div class="col-sm-2">
-					<div class="progress progress-striped active" ng-hide="loaded">
+				<div class="col-sm-2" ng-show="loading">
+					<div class="progress progress-striped active">
 						<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%" />
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="panel-body">
+		<div class="panel-body" ng-hide="event">
+			<div class="alert alert-danger fade in" ng-show="error">
+				<span translate="EVENT_ERROR" />
+			</div>
+		</div>
+		<div class="panel-body" ng-show="event">
 			<div class="row row-padding">
 				<div class="col-sm-5">
 					<div class="input-group">
