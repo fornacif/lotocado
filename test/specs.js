@@ -1,7 +1,7 @@
 describe('Testing Lotocado', function() {
 	var $scope;
 	var eventModelService;
-	var location;
+	var locationService;
 	
 	beforeEach(module('angular-google-analytics'));
 	beforeEach(module('lotocado.services'));
@@ -10,7 +10,7 @@ describe('Testing Lotocado', function() {
 	beforeEach(inject(function($rootScope, $controller, $location, eventModel, Analytics) {
 		$scope = $rootScope.$new();
 		eventModelService = eventModel;
-		location = $location;
+		locationService = $location;
 
 		$controller('HomeController', {
 			$scope : $scope,
@@ -42,7 +42,7 @@ describe('Testing Lotocado', function() {
 		eventModelService.event.name = "test";
 		$scope.create();
 		
-		expect(location.path()).toBe("/creation");
+		expect(locationService.path()).toBe("/creation");
 		expect(eventModelService.event.name).toBeUndefined();
 	});
 	
@@ -56,7 +56,7 @@ describe('Testing Lotocado', function() {
 		expect(eventModelService.participants.length).toBe(3);
 		expect(eventModelService.participants[0].name).toBe("test");
 		expect(eventModelService.participants[0].email).toBe("test@test.fr");
-		expect(location.path()).toBe("/participants");
+		expect(locationService.path()).toBe("/participants");
 		
 		$scope.addOrganizer();
 		expect(eventModelService.participants.length).toBe(3);

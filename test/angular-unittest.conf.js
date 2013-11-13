@@ -27,12 +27,6 @@ module.exports = function(config) {
     exclude: [
       
     ],
-    
-    plugins : [
-            'karma-chrome-launcher',
-            'karma-jasmine'
-            ],
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
