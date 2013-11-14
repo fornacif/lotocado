@@ -21,6 +21,9 @@ public class Participant {
 	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
 	private Key toKey;
 	private String toName;
+	
+	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	private Key fromKey;
 
 	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
 	private List<Key> exclusionKeys = new ArrayList<>();
@@ -84,6 +87,14 @@ public class Participant {
 	public void setToName(String toName) {
 		this.toName = toName;
 	}
+	
+	public Key getFromKey() {
+		return fromKey;
+	}
+	
+	public void setFromKey(Key fromKey) {
+		this.fromKey = fromKey;
+	}
 
 	public List<Key> getExclusionKeys() {
 		return exclusionKeys;
@@ -112,9 +123,9 @@ public class Participant {
 	@Override
 	public String toString() {
 		if (getToKey() == null) {
-			return "Person(" + key + " > NONE)";
+			return "Person(" + name + " > NONE)";
 		} else {
-			return "Person(" + key + " > " + getToKey() + ")";
+			return "Person(" + name + " > " + getToName() + ")";
 		}
 	}
 }

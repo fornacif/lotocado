@@ -156,6 +156,7 @@ public class RandomMatcher {
 		for (Participant participant : participants) {
 			participant.setToKey(null);
 			participant.setToName(null);
+			participant.setFromKey(null);
 		}
 	}
 
@@ -165,7 +166,7 @@ public class RandomMatcher {
 		for (Participant currentParticipant : participants) {
 			List<Participant> recievers = new ArrayList<Participant>();
 			for (Participant reciever : participants) {
-				if (!currentParticipant.equals(reciever) && !currentParticipant.getExclusionKeys().contains(reciever.getKey()) && reciever.getToKey() == null) {
+				if (!currentParticipant.equals(reciever) && !currentParticipant.getExclusionKeys().contains(reciever.getKey()) && reciever.getFromKey() == null) {
 					recievers.add(reciever);
 				}
 			}
@@ -173,8 +174,9 @@ public class RandomMatcher {
 			if (recievers.size() != 0) {
 				int receiverPosition = random.nextInt(recievers.size());
 				Participant reciever = recievers.get(receiverPosition);
-				reciever.setToKey(currentParticipant.getEntity().getKey());
-				reciever.setToName(currentParticipant.getName());
+				currentParticipant.setToKey(reciever.getEntity().getKey());
+				currentParticipant.setToName(reciever.getName());
+				reciever.setFromKey(currentParticipant.getKey());
 			} else {
 				resetDrawingLots(participants);
 				return true;
@@ -232,12 +234,12 @@ public class RandomMatcher {
 	}
 	
 	private String getOrganizerLink(Event event) {
-		return getHostUrl() + "/#/event/" + Encryptor.encryptEventId(event.getKey().getId());
+		return getHostUrl() + "/#!/event/" + Encryptor.encryptEventId(event.getKey().getId());
 	}
 	
 	private String getParticipantLink(Event event, Participant participant) {
 		EventParticipantIds ids = new EventParticipantIds(event.getKey().getId(), participant.getKey().getId());
-		return getHostUrl() + "/#/participant/" + Encryptor.encryptEventParticipantIds(ids);
+		return getHostUrl() + "/#!/participant/" + Encryptor.encryptEventParticipantIds(ids);
 	}
 
 	private String getHostUrl() {
