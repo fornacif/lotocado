@@ -10,37 +10,38 @@
 			<b>{{'CREATION_EVENT' | translate }}</b>
 		</div>
 		<div class="panel-body">
+			<p><i class="glyphicon glyphicon-info-sign"></i> {{'CREATION_EVENT_INFO' | translate }}</p>
 			<form name="creationForm">
 				<div class="row row-padding">
 					<div class="col-sm-6">
-						<div class="input-group">
+						<div ng-class="creationForm.eventName.$dirty && creationForm.eventName.$invalid ? 'input-group has-error' : 'input-group'">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
-							<input type="text" class="form-control " ng-model="event.name" placeholder="{{'CREATION_EVENT_NAME' | translate }}" required />
+							<input type="text" name="eventName" class="form-control" ng-model="event.name" placeholder="{{'CREATION_EVENT_NAME' | translate }}" required />
 						</div>
 						<span class="help-block">{{'CREATION_EVENT_NAME_HELP' | translate }}</span>
 					</div>
 				</div>
 				<div class="row row-padding">
 					<div class="col-sm-6">
-						<div class="input-group">
+						<div ng-class="creationForm.organizerName.$dirty && creationForm.organizerName.$invalid ? 'input-group has-error' : 'input-group'">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input type="text" class="form-control" ng-model="event.organizerName" placeholder="{{'CREATION_ORGANIZER_NAME' | translate }}" required />
+							<input type="text" name="organizerName" class="form-control" ng-model="event.organizerName" placeholder="{{'CREATION_ORGANIZER_NAME' | translate }}" required />
 						</div>
 					</div>
 				</div>
 				<div class="row row-padding">
 					<div class="col-sm-6">
-						<div class="input-group">
+						<div ng-class="creationForm.organizerEmail.$dirty && creationForm.organizerEmail.$invalid ? 'input-group has-error' : 'input-group'">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							<input type="email" class="form-control" ng-model="event.organizerEmail" placeholder="{{'CREATION_ORGANIZER_MAIL' | translate }}" required />
+							<input type="email" name="organizerEmail" class="form-control" ng-model="event.organizerEmail" placeholder="{{'CREATION_ORGANIZER_MAIL' | translate }}" required />
 						</div>
 					</div>
 				</div>
 				<div class="row row-padding">
 					<div class="col-sm-6">
-						<div class="input-group">
+						<div ng-class="creationForm.eventDate.$dirty && creationForm.eventDate.$invalid ? 'input-group has-error' : 'input-group'">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-							<input ui-date="dateOptions" class="form-control"  placeholder="{{'CREATION_DATE' | translate }}" ng-model="event.date" required />
+							<input ui-date="dateOptions" name="eventDate" class="form-control"  placeholder="{{'CREATION_DATE' | translate }}" ng-model="event.date" required />
 						</div>
 					</div>
 				</div>

@@ -17,7 +17,7 @@
 	<script src="libs/angular-ui/angular-ui-select2.js"></script>
 	<script src="libs/angular-ui/angular-ui-date.js"></script>
 	<script src="libs/datepicker/jquery.ui.datepicker-fr.js"></script>
-	<script src="libs/google-analytics/angular-google-analytics.js"></script>
+	<script src="libs/google-analytics/angular-ga.js"></script>
 	<script src="libs/ui-bootstrap/ui-bootstrap-tpls-0.6.0.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/translate.js"></script>
@@ -173,12 +173,12 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
 					<p class="small">Powered by François Fornaciari - 2013</p>
 				</div>
 				<div class="col-sm-2">
-					<div class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-href="http://lotocado.appspot.com" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" fb-xfbml-state="rendered"><span style="height: 20px; width: 82px; "><iframe id="f3a24fd09" name="f16f3222ac" scrolling="no" style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 82px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " title="Like this content on Facebook." class="fb_ltr" src="http://www.facebook.com/plugins/like.php?action=like&amp;api_key=&amp;channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D28%23cb%3Dfc3683e2c%26domain%3Dlotocado.appspot.com%26origin%3Dhttp%253A%252F%252Flotocado.appspot.com%252Ff1d25f1958%26relation%3Dparent.parent&amp;colorscheme=light&amp;extended_social_context=false&amp;href=http%3A%2F%2Flotocado.appspot.com&amp;layout=button_count&amp;locale=fr_FR&amp;node_type=link&amp;sdk=joey&amp;share=false&amp;show_faces=false&amp;width=90"></iframe></span></div>
+					<div class="fb-like" data-href="http://lotocado.appspot.com" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 				</div>
 			</div>
 		</footer>
 	</div>
-	<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px; "><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " src="http://static.ak.facebook.com/connect/xd_arbiter.php?version=28#channel=f1d25f1958&amp;channel_path=%2Findex-template.html%3Ffb_xd_fragment%23xd_sig%3Df2c5294844%26&amp;origin=http%3A%2F%2Flotocado.appspot.com"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " src="https://s-static.ak.facebook.com/connect/xd_arbiter.php?version=28#channel=f1d25f1958&amp;channel_path=%2Findex-template.html%3Ffb_xd_fragment%23xd_sig%3Df2c5294844%26&amp;origin=http%3A%2F%2Flotocado.appspot.com"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px; "><div></div></div></div>
+	<div id="fb-root"></div>
 		<script>
 			(function(d, s, id) {
 			  var js, fjs = d.getElementsByTagName(s)[0];
@@ -188,3 +188,5 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
 			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
+</body>
+</html>
