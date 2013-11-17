@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="lotocado">
 <head>
-	<title>Lotocado</title>
+	<title ng-bind-template="{{'TITLE' | translate }}"></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css" />
@@ -31,7 +31,7 @@
 	<div class="container border-top">
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
-				<li ng-class="{active: isActive('/')}"><a href="#">Lotocado</a></li>
+				<li ng-class="{active: isActive('/')}"><a href="#">{{'APPNAME' | translate }}</a></li>
 				<li ng-class="{active: isActive('/about')}"><a href="#/about">{{'ABOUT' | translate }}</a></li>
 			</ul>
 			<h2 class="text-muted">

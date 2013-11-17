@@ -4,6 +4,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 	config(["$translateProvider", function ($translateProvider) {
 		$translateProvider.translations("fr", {
 			APPNAME: "Lotocado",
+			TITLE: "Lotocado | Tirage au sort cadeaux",
 			HOME: "Accueil",
 			ABOUT: "À propos",
 			HOME_CREATE_EVENT: "Créer un évènement",

@@ -1,1 +1,1 @@
-phantomjs.exe snapshot.js http://localhost:8888/index-template.html > ../war/index.html
+phantomjs.exe snapshot.js http://lotocado.appspot.com/index-template.html > ../war/index.html
