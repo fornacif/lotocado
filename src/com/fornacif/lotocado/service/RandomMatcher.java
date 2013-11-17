@@ -234,12 +234,12 @@ public class RandomMatcher {
 	}
 	
 	private String getOrganizerLink(Event event) {
-		return getHostUrl() + "/#!/event/" + Encryptor.encryptEventId(event.getKey().getId());
+		return getHostUrl() + "/#/event/" + Encryptor.encryptEventId(event.getKey().getId());
 	}
 	
 	private String getParticipantLink(Event event, Participant participant) {
 		EventParticipantIds ids = new EventParticipantIds(event.getKey().getId(), participant.getKey().getId());
-		return getHostUrl() + "/#!/participant/" + Encryptor.encryptEventParticipantIds(ids);
+		return getHostUrl() + "/#/participant/" + Encryptor.encryptEventParticipantIds(ids);
 	}
 
 	private String getHostUrl() {

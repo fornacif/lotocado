@@ -1,0 +1,1 @@
+phantomjs.exe snapshot.js http://localhost:8888/index-template.html > ../war/index.html

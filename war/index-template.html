@@ -1,0 +1,67 @@
+<!doctype html>
+<html ng-app="lotocado">
+<head>
+	<title>Lotocado</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css" />
+	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="libs/bootstrap/css/magic-bootstrap-min.css">
+	<link rel="stylesheet" href="libs/select2/select2.css">
+	<link rel="stylesheet" href="css/lotocado.css">
+	<script src="libs/jquery/jquery-1.10.1.min.js"></script>
+	<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+	<script src="libs/angular/angular.min.js"></script>
+	<script src="libs/select2/select2.min.js"></script>
+	<script src="libs/angular-translate/angular-translate.min.js"></script>
+	<script src="libs/angular-ui/angular-ui-utils.min.js"></script>
+	<script src="libs/angular-ui/angular-ui-select2.js"></script>
+	<script src="libs/angular-ui/angular-ui-date.js"></script>
+	<script src="libs/datepicker/jquery.ui.datepicker-fr.js"></script>
+	<script src="libs/google-analytics/angular-google-analytics.js"></script>
+	<script src="libs/ui-bootstrap/ui-bootstrap-tpls-0.6.0.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/translate.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="libs/gapi/client.js?onload=init"></script>
+</head>
+<body ng-controller="InitController">
+	<div class="container border-top">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+				<li ng-class="{active: isActive('/')}"><a href="#">Lotocado</a></li>
+				<li ng-class="{active: isActive('/about')}"><a href="#/about">{{'ABOUT' | translate }}</a></li>
+			</ul>
+			<h2 class="text-muted">
+				<img src="img/Actions-draw-cuboid-icon.png" /> Lotocado
+			</h2>
+		</div>
+	</div>
+	<div ng-view></div>
+	<div class="container border-bottom">
+		<hr>
+		<footer>
+			<div class="row">
+				<div class="col-sm-10">
+					<p class="small">Powered by François Fornaciari - 2013</p>
+				</div>
+				<div class="col-sm-2">
+					<div class="fb-like" data-href="http://lotocado.appspot.com" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<div id="fb-root"></div>
+		<script>
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+</body>
+</html>
