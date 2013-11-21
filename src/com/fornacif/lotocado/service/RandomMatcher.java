@@ -189,7 +189,7 @@ public class RandomMatcher {
 	private void sendEmailToOrganizer(Event event) throws MessagingException, IOException {
 		String recipientEmail = event.getOrganizerEmail();
 		String recipientName = event.getOrganizerName();
-		String subject = "[Lotocado] Evènement '" + event.getName() + "'";
+		String subject = "[Lotocado] Administration évènement '" + event.getName() + "'";
 		String body = getEmailToOrganizerBodyContent(event);
 		sendEmail(recipientEmail, recipientName, subject, body);
 	}
