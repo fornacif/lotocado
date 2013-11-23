@@ -35,7 +35,10 @@ body {
 	vertical-align: middle;
 	text-align: center;
 	display: table-cell;
-	
+}
+
+.result {
+	font-family: 'Marck Script', cursive;
 }
 
 .container.border-top {
