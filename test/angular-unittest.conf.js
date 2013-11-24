@@ -16,7 +16,7 @@ module.exports = function(config) {
     files: [
       'war/libs/angular/angular.min.js',
       'war/libs/angular/angular-mocks.js',
-      'war/libs/google-analytics/angular-google-analytics.js',
+      'war/libs/google-analytics/angular-ga.js',
       'war/js/controllers.js',
       'war/js/services.js',
       'test/specs.js'
