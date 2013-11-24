@@ -1,174 +1,707 @@
-<!doctype html><html ng-app="lotocado"><head>
-	<title ng-bind-template="Lotocado | Tirage au sort cadeaux" class="ng-binding">Lotocado | Tirage au sort cadeaux</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Marck+Script">
-	<link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css">
-	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="libs/bootstrap/css/magic-bootstrap-min.css">
-	<link rel="stylesheet" href="libs/select2/select2.css">
-	<link rel="stylesheet" href="css/lotocado.css">
-	<script src="libs/jquery/jquery-1.10.1.min.js"></script>
-	<script src="libs/jquery-ui/jquery-ui.min.js"></script>
-	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
-	<script src="libs/angular/angular.min.js"></script>
-	<script src="libs/angular/angular-route.min.js"></script>
-	<script src="libs/angular/angular-animate.min.js"></script>
-	<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style>
-	<script src="libs/select2/select2.min.js"></script>
-	<script src="libs/angular-translate/angular-translate.min.js"></script>
-	<script src="libs/angular-ui/angular-ui-utils.min.js"></script>
-	<script src="libs/angular-ui/angular-ui-select2.js"></script>
-	<script src="libs/angular-ui/angular-ui-date.js"></script>
-	<script src="libs/datepicker/jquery.ui.datepicker-fr.js"></script>
-	<script src="libs/google-analytics/angular-ga.js"></script>
-	<script src="libs/ui-bootstrap/ui-bootstrap-tpls-0.6.0.min.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/translate.js"></script>
-	<script src="js/services.js"></script>
-	<script src="js/controllers.js"></script>
-	<script src="libs/gapi/client.js?onload=init"></script>
-<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
-.fb_invisible{display:none}
-.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
-.fb_reset > div{overflow:hidden}
-.fb_link img{border:none}
-.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
-.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
-.fb_dialog_content{background:#fff;color:#333}
-.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
-.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
-.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
-.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
-.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
-.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
-.fb_dialog_top_left,
-.fb_dialog_top_right,
-.fb_dialog_bottom_left,
-.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
-.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
-.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
-.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
-.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
-.fb_dialog_vert_left,
-.fb_dialog_vert_right,
-.fb_dialog_horiz_top,
-.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
-.fb_dialog_vert_left,
-.fb_dialog_vert_right{width:10px;height:100%}
-.fb_dialog_vert_left{margin-left:-10px}
-.fb_dialog_vert_right{right:0;margin-right:-10px}
-.fb_dialog_horiz_top,
-.fb_dialog_horiz_bottom{width:100%;height:10px}
-.fb_dialog_horiz_top{margin-top:-10px}
-.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
-.fb_dialog_iframe{line-height:0}
-.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
-.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
-no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
-body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}
-.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif)
-white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
-.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
-#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
-#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
-.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
-.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
-.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+<!doctype html>
+<html ng-app="lotocado">
+<head>
+<style type="text/css">
+@charset "UTF-8";
+
+[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide
+	{
+	display: none !important;
 }
-.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+
+ng\:form {
+	display: block;
 }
-.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+
+.ng-animate-start {
+	clip: rect(0, auto, auto, 0);
+	-ms-zoom: 1.0001;
 }
-.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6),
-color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
-rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
-.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
-.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
-.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
-.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
-#fb_dialog_loader_close{float:left}
-.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
-.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
-.fb_iframe_widget{display:inline-block;position:relative}
-.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}
-.fb_iframe_widget iframe{position:absolute}
-.fb_iframe_widget_lift{z-index:1}
-.fb_hide_iframes iframe{position:relative;left:-10000px}
-.fb_iframe_widget_loader{position:relative;display:inline-block}
-.fb_iframe_widget_fluid{display:inline}
-.fb_iframe_widget_fluid span{width:100%}
-.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
-.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
-.fb_connect_bar_container div,
-.fb_connect_bar_container span,
-.fb_connect_bar_container a,
-.fb_connect_bar_container img,
-.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
-.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
-.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
-.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
-.fb_connect_bar a:hover{color:#fff}
-.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
-.fb_connect_bar div a,
-.fb_connect_bar span,
-.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
-.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
-.fb_edge_widget_with_comment{position:relative;*z-index:1000}
-.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
-.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
-.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
-.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+
+.ng-animate-active {
+	clip: rect(-1px, auto, auto, 0);
+	-ms-zoom: 1;
+}
+</style>
+<title ng-bind-template="Lotocado | Tirage au sort cadeaux"
+	class="ng-binding">Lotocado | Tirage au sort cadeaux</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Marck+Script">
+<link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css">
+<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="libs/bootstrap/css/magic-bootstrap-min.css">
+<link rel="stylesheet" href="libs/select2/select2.css">
+<link rel="stylesheet" href="css/lotocado.css">
+<script src="libs/jquery/jquery-1.10.1.min.js"></script>
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/angular/angular.min.js"></script>
+<script src="libs/angular/angular-route.min.js"></script>
+<script src="libs/angular/angular-animate.min.js"></script>
+<script src="libs/select2/select2.min.js"></script>
+<script src="libs/angular-translate/angular-translate.min.js"></script>
+<script src="libs/angular-ui/angular-ui-utils.min.js"></script>
+<script src="libs/angular-ui/angular-ui-select2.js"></script>
+<script src="libs/angular-ui/angular-ui-date.js"></script>
+<script src="libs/datepicker/jquery.ui.datepicker-fr.js"></script>
+<script src="libs/google-analytics/angular-ga.js"></script>
+<script src="libs/ui-bootstrap/ui-bootstrap-tpls-0.6.0.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/translate.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="libs/gapi/client.js?onload=init"></script>
+<style type="text/css">
+.fb_hidden {
+	position: absolute;
+	top: -10000px;
+	z-index: 10001
+}
+
+.fb_invisible {
+	display: none
+}
+
+.fb_reset {
+	background: none;
+	border: 0;
+	border-spacing: 0;
+	color: #000;
+	cursor: auto;
+	direction: ltr;
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	letter-spacing: normal;
+	line-height: 1;
+	margin: 0;
+	overflow: visible;
+	padding: 0;
+	text-align: left;
+	text-decoration: none;
+	text-indent: 0;
+	text-shadow: none;
+	text-transform: none;
+	visibility: visible;
+	white-space: normal;
+	word-spacing: normal
+}
+
+.fb_reset>div {
+	overflow: hidden
+}
+
+.fb_link img {
+	border: none
+}
+
+.fb_dialog {
+	background: rgba(82, 82, 82, .7);
+	position: absolute;
+	top: -10000px;
+	z-index: 10001
+}
+
+.fb_dialog_advanced {
+	padding: 10px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px
+}
+
+.fb_dialog_content {
+	background: #fff;
+	color: #333
+}
+
+.fb_dialog_close_icon {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png)
+		no-repeat scroll 0 0 transparent;
+	_background-image:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);
+	cursor: pointer;
+	display: block;
+	height: 15px;
+	position: absolute;
+	right: 18px;
+	top: 17px;
+	width: 15px;
+	top: 8px\9;
+	right: 7px\9
+}
+
+.fb_dialog_mobile .fb_dialog_close_icon {
+	top: 5px;
+	left: 5px;
+	right: auto
+}
+
+.fb_dialog_padding {
+	background-color: transparent;
+	position: absolute;
+	width: 1px;
+	z-index: -1
+}
+
+.fb_dialog_close_icon:hover {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png)
+		no-repeat scroll 0 -15px transparent;
+	_background-image:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)
+}
+
+.fb_dialog_close_icon:active {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png)
+		no-repeat scroll 0 -30px transparent;
+	_background-image:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)
+}
+
+.fb_dialog_loader {
+	background-color: #f2f2f2;
+	border: 1px solid #606060;
+	font-size: 24px;
+	padding: 20px
+}
+
+.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right
+	{
+	height: 10px;
+	width: 10px;
+	overflow: hidden;
+	position: absolute
+}
+
+.fb_dialog_top_left {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png)
+		no-repeat 0 0;
+	left: -10px;
+	top: -10px
+}
+
+.fb_dialog_top_right {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png)
+		no-repeat 0 -10px;
+	right: -10px;
+	top: -10px
+}
+
+.fb_dialog_bottom_left {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png)
+		no-repeat 0 -20px;
+	bottom: -10px;
+	left: -10px
+}
+
+.fb_dialog_bottom_right {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png)
+		no-repeat 0 -30px;
+	right: -10px;
+	bottom: -10px
+}
+
+.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom
+	{
+	position: absolute;
+	background: #525252;
+	filter: alpha(opacity =  70);
+	opacity: .7
+}
+
+.fb_dialog_vert_left,.fb_dialog_vert_right {
+	width: 10px;
+	height: 100%
+}
+
+.fb_dialog_vert_left {
+	margin-left: -10px
+}
+
+.fb_dialog_vert_right {
+	right: 0;
+	margin-right: -10px
+}
+
+.fb_dialog_horiz_top,.fb_dialog_horiz_bottom {
+	width: 100%;
+	height: 10px
+}
+
+.fb_dialog_horiz_top {
+	margin-top: -10px
+}
+
+.fb_dialog_horiz_bottom {
+	bottom: 0;
+	margin-bottom: -10px
+}
+
+.fb_dialog_iframe {
+	line-height: 0
+}
+
+.fb_dialog_content .dialog_title {
+	background: #6d84b4;
+	border: 1px solid #3b5998;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0
+}
+
+.fb_dialog_content .dialog_title>span {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+		no-repeat 5px 50%;
+	float: left;
+	padding: 5px 0 7px 26px
+}
+
+body.fb_hidden {
+	-webkit-transform: none;
+	height: 100%;
+	margin: 0;
+	overflow: visible;
+	position: absolute;
+	top: -10000px;
+	left: 0;
+	width: 100%
+}
+
+.fb_dialog.fb_dialog_mobile.loading {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white
+		no-repeat 50% 50%;
+	min-height: 100%;
+	min-width: 100%;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	z-index: 10001
+}
+
+.fb_dialog.fb_dialog_mobile.loading.centered {
+	max-height: 590px;
+	min-height: 590px;
+	max-width: 500px;
+	min-width: 500px
+}
+
+#fb-root #fb_dialog_ipad_overlay {
+	background: rgba(0, 0, 0, .45);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	min-height: 100%;
+	z-index: 10000
+}
+
+#fb-root #fb_dialog_ipad_overlay.hidden {
+	display: none
+}
+
+.fb_dialog.fb_dialog_mobile.loading iframe {
+	visibility: hidden
+}
+
+.fb_dialog_content .dialog_header {
+	-webkit-box-shadow: white 0 1px 1px -1px inset;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA),
+		to(#2C4987));
+	border-bottom: 1px solid;
+	border-color: #1d4088;
+	color: #fff;
+	font: 14px Helvetica, sans-serif;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0;
+	vertical-align: middle;
+	white-space: nowrap
+}
+
+.fb_dialog_content .dialog_header table {
+	-webkit-font-smoothing: subpixel-antialiased;
+	height: 43px;
+	width: 100%
+}
+
+.fb_dialog_content .dialog_header td.header_left {
+	font-size: 12px;
+	padding-left: 5px;
+	vertical-align: middle;
+	width: 60px
+}
+
+.fb_dialog_content .dialog_header td.header_right {
+	font-size: 12px;
+	padding-right: 5px;
+	vertical-align: middle;
+	width: 60px
+}
+
+.fb_dialog_content .touchable_button {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6),
+		color-stop(0.5, #355492), to(#2A4887));
+	border: 1px solid #29447e;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 3px;
+	-webkit-box-shadow: rgba(0, 0, 0, .117188) 0 1px 1px inset,
+		rgba(255, 255, 255, .167969) 0 1px 0;
+	display: inline-block;
+	margin-top: 3px;
+	max-width: 85px;
+	line-height: 18px;
+	padding: 4px 12px;
+	position: relative
+}
+
+.fb_dialog_content .dialog_header .touchable_button input {
+	border: none;
+	background: none;
+	color: #fff;
+	font: 12px Helvetica, sans-serif;
+	font-weight: bold;
+	margin: 2px -12px;
+	padding: 2px 6px 3px 6px;
+	text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0
+}
+
+.fb_dialog_content .dialog_header .header_center {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 18px;
+	text-align: center;
+	vertical-align: middle
+}
+
+.fb_dialog_content .dialog_content {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif)
+		no-repeat 50% 50%;
+	border: 1px solid #555;
+	border-bottom: 0;
+	border-top: 0;
+	height: 150px
+}
+
+.fb_dialog_content .dialog_footer {
+	background: #f2f2f2;
+	border: 1px solid #555;
+	border-top-color: #ccc;
+	height: 40px
+}
+
+#fb_dialog_loader_close {
+	float: left
+}
+
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button {
+	text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0
+}
+
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon {
+	visibility: hidden
+}
+
+.fb_iframe_widget {
+	display: inline-block;
+	position: relative
+}
+
+.fb_iframe_widget span {
+	display: inline-block;
+	position: relative;
+	text-align: justify
+}
+
+.fb_iframe_widget iframe {
+	position: absolute
+}
+
+.fb_iframe_widget_lift {
+	z-index: 1
+}
+
+.fb_hide_iframes iframe {
+	position: relative;
+	left: -10000px
+}
+
+.fb_iframe_widget_loader {
+	position: relative;
+	display: inline-block
+}
+
+.fb_iframe_widget_fluid {
+	display: inline
+}
+
+.fb_iframe_widget_fluid span {
+	width: 100%
+}
+
+.fb_iframe_widget_loader iframe {
+	min-height: 32px;
+	z-index: 2;
+	zoom: 1
+}
+
+.fb_iframe_widget_loader .FB_Loader {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif)
+		no-repeat;
+	height: 32px;
+	width: 32px;
+	margin-left: -16px;
+	position: absolute;
+	left: 50%;
+	z-index: 4
+}
+
+.fb_connect_bar_container div,.fb_connect_bar_container span,.fb_connect_bar_container a,.fb_connect_bar_container img,.fb_connect_bar_container strong
+	{
+	background: none;
+	border-spacing: 0;
+	border: 0;
+	direction: ltr;
+	font-style: normal;
+	font-variant: normal;
+	letter-spacing: normal;
+	line-height: 1;
+	margin: 0;
+	overflow: visible;
+	padding: 0;
+	text-align: left;
+	text-decoration: none;
+	text-indent: 0;
+	text-shadow: none;
+	text-transform: none;
+	visibility: visible;
+	white-space: normal;
+	word-spacing: normal;
+	vertical-align: baseline
+}
+
+.fb_connect_bar_container {
+	position: fixed;
+	left: 0 !important;
+	right: 0 !important;
+	height: 42px !important;
+	padding: 0 25px !important;
+	margin: 0 !important;
+	vertical-align: middle !important;
+	border-bottom: 1px solid #333 !important;
+	background: #3b5998 !important;
+	z-index: 99999999 !important;
+	overflow: hidden !important
+}
+
+.fb_connect_bar_container_ie6 {
+	position: absolute;
+	top: expression(document.compatMode ==  "CSS1Compat" ?   
+		 document.documentElement.scrollTop +  "px" :  body.scrollTop +  "px")
+}
+
+.fb_connect_bar {
+	position: relative;
+	margin: auto;
+	height: 100%;
+	width: 100%;
+	padding: 6px 0 0 0 !important;
+	background: none;
+	color: #fff !important;
+	font-family: "lucida grande", tahoma, verdana, arial,
+		sans-serif !important;
+	font-size: 13px !important;
+	font-style: normal !important;
+	font-variant: normal !important;
+	font-weight: normal !important;
+	letter-spacing: normal !important;
+	line-height: 1 !important;
+	text-decoration: none !important;
+	text-indent: 0 !important;
+	text-shadow: none !important;
+	text-transform: none !important;
+	white-space: normal !important;
+	word-spacing: normal !important
+}
+
+.fb_connect_bar a:hover {
+	color: #fff
+}
+
+.fb_connect_bar .fb_profile img {
+	height: 30px;
+	width: 30px;
+	vertical-align: middle;
+	margin: 0 6px 5px 0
+}
+
+.fb_connect_bar div a,.fb_connect_bar span,.fb_connect_bar span a {
+	color: #bac6da;
+	font-size: 11px;
+	text-decoration: none
+}
+
+.fb_connect_bar .fb_buttons {
+	float: right;
+	margin-top: 7px
+}
+
+.fb_edge_widget_with_comment {
+	position: relative;
+	*z-index: 1000
+}
+
+.fb_edge_widget_with_comment span.fb_edge_comment_widget {
+	position: absolute
+}
+
+.fb_edge_widget_with_comment span.fb_send_button_form_widget {
+	z-index: 1
+}
+
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader
+	{
+	left: 0;
+	top: 1px;
+	margin-top: 6px;
+	margin-left: 0;
+	background-position: 50% 50%;
+	background-color: #fff;
+	height: 150px;
+	width: 394px;
+	border: 1px #666 solid;
+	border-bottom: 2px solid #283e6c;
+	z-index: 1
+}
+
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader
+	{
+	background-color: #000;
+	border-bottom: 2px solid #ccc
+}
+
 .fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
-.FB_Loader{margin-top:0}
-.fbpluginrecommendationsbarleft,
-.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
-.fbpluginrecommendationsbarleft{left:10px}
-.fbpluginrecommendationsbarright{right:10px}</style></head>
+.FB_Loader {
+	margin-top: 0
+}
+
+.fbpluginrecommendationsbarleft,.fbpluginrecommendationsbarright {
+	position: fixed !important;
+	bottom: 0;
+	z-index: 999
+}
+
+.fbpluginrecommendationsbarleft {
+	left: 10px
+}
+
+.fbpluginrecommendationsbarright {
+	right: 10px
+}
+</style>
+</head>
 <body ng-controller="InitController" style="" class="ng-scope">
 	<div class="container border-top">
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
-				<li ng-class="{active: isActive('/')}"><a href="#" class="ng-binding">Lotocado</a></li>
-				<li ng-class="{active: isActive('/about')}"><a href="#/about" class="ng-binding">À propos</a></li>
+				<li ng-class="{active: isActive('/')}"><a href="#"
+					class="ng-binding">Lotocado</a></li>
+				<li ng-class="{active: isActive('/about')}"><a href="#/about"
+					class="ng-binding">À propos</a></li>
 			</ul>
 			<h2 class="text-muted">
 				<img src="img/Actions-draw-cuboid-icon.png"> Lotocado
 			</h2>
 		</div>
 	</div>
-	<div ng-view=""><div class="container ng-scope">
-	<div class="jumbotron">
-		<button class="btn btn-lg btn-primary ng-scope" translate="HOME_CREATE_EVENT" ng-click="create()">Créer un évènement</button>
-  </div>
-</div>
-<div class="container ng-scope">
-	<div class="row" "="">
-		<div class="col-sm-1"><img src="img/cookie-icon.png"></div>
-		<div class="col-sm-11"><h3 class="ng-binding">À quoi sert <b class="ng-binding">Lotocado</b> ?</h3></div>
-	</div>
-	<div class="row" "="">
-		<div class="col-sm-9 col-sm-offset-1">
-			<p class="ng-binding"><b class="ng-binding">Lotocado</b> est une application gratuite qui permet d'organiser le tirage au sort des cadeaux de Noël. Chaque personne reçoit un cadeau unique et personnalisé d'une personne qui sera choisie au hasard.</p>
-			<p class="ng-binding">Un organisateur est responsable de créer l'évènement et de renseigner l'ensemble des participants. Chaque participant reçoit un email contenant le lien vers le résultat de son tirage. Il découvre ainsi qui aura la chance de recevoir un cadeau de sa part.</p>
-			<p class="ng-binding">Le tirage étant secret, même l'organisateur ne connaît pas le résultat. Il faudra donc patienter jusqu'à Noël pour savoir qui vous offrira votre cadeau !</p>
+	<!-- ngView:  -->
+	<div ng-view="" class="ng-scope">
+		<div class="container ng-scope">
+			<div class="jumbotron">
+				<button class="btn btn-lg btn-primary ng-scope">Créer un
+					évènement</button>
+			</div>
 		</div>
-		<div class="col-sm-2"><img src="img/gift-icon-closed.png"></div>
-	</div>
-	<hr>
-	<div class="row">
-		<div class="col-sm-1"><img src="img/cookie-icon.png"></div>
-		<div class="col-sm-11"><h3 class="ng-binding">Comment ça marche ?</h3></div>
-	</div>
-	<div class="row">
-		<div class="col-sm-9  col-sm-offset-1">
-			<p class="ng-binding"><img src="img/Numbers-1-icon.png"> Un organisateur est chargé de créer un évènement en renseignant l'ensemble des participants</p>
-			<p class="ng-binding"><img src="img/Numbers-2-icon.png"> Il est possible de décider si certaines personnes ne peuvent pas recevoir de cadeau de la part d'autres personnes (exclusions)</p>
-			<p class="ng-binding"><img src="img/Numbers-3-icon.png"> Une fois les informations saisies et vérifiées, <b class="ng-binding">Lotocado</b> réalise le tirage au sort et envoie un email à chaque participant</p>
+		<div class="container ng-scope">
+			<div class="row""="">
+				<div class="col-sm-1">
+					<img src="img/cookie-icon.png">
+				</div>
+				<div class="col-sm-11">
+					<h3 class="ng-binding">
+						À quoi sert <b class="ng-binding">Lotocado</b> ?
+					</h3>
+				</div>
+			</div>
+			<div class="row""="">
+				<div class="col-sm-9 col-sm-offset-1">
+					<p class="ng-binding">
+						<b class="ng-binding">Lotocado</b> est une application gratuite
+						qui permet d'organiser le tirage au sort des cadeaux de Noël.
+						Chaque personne reçoit un cadeau unique et personnalisé d'une
+						personne qui sera choisie au hasard.
+					</p>
+					<p class="ng-binding">Un organisateur est responsable de créer
+						l'évènement et de renseigner l'ensemble des participants. Chaque
+						participant reçoit un email contenant le lien vers le résultat de
+						son tirage. Il découvre ainsi qui aura la chance de recevoir un
+						cadeau de sa part.</p>
+					<p class="ng-binding">Le tirage étant secret, même
+						l'organisateur ne connaît pas le résultat. Il faudra donc
+						patienter jusqu'à Noël pour savoir qui vous offrira votre cadeau !</p>
+				</div>
+				<div class="col-sm-2">
+					<img src="img/gift-icon-closed.png">
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-1">
+					<img src="img/cookie-icon.png">
+				</div>
+				<div class="col-sm-11">
+					<h3 class="ng-binding">Comment ça marche ?</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9  col-sm-offset-1">
+					<p class="ng-binding">
+						<img src="img/Numbers-1-icon.png"> Un organisateur est
+						chargé de créer un évènement en renseignant l'ensemble des
+						participants
+					</p>
+					<p class="ng-binding">
+						<img src="img/Numbers-2-icon.png"> Il est possible de
+						décider si certaines personnes ne peuvent pas recevoir de cadeau
+						de la part d'autres personnes (exclusions)
+					</p>
+					<p class="ng-binding">
+						<img src="img/Numbers-3-icon.png"> Une fois les informations
+						saisies et vérifiées, <b class="ng-binding">Lotocado</b> réalise
+						le tirage au sort et envoie un email à chaque participant
+					</p>
+				</div>
+				<div class="col-sm-1">
+					<img src="img/gift-icon-open.png">
+				</div>
+			</div>
 		</div>
-		<div class="col-sm-1"><img src="img/gift-icon-open.png"></div>
 	</div>
-</div></div>
 	<div class="container border-bottom">
 		<hr>
 		<footer>
@@ -177,13 +710,44 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
 					<p class="small">Powered by François Fornaciari - 2013</p>
 				</div>
 				<div class="col-sm-2">
-					<div class="fb-like" data-href="http://lotocado.appspot.com" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+					<div class="fb-like fb_edge_widget_with_comment fb_iframe_widget"
+						data-href="http://lotocado.appspot.com" data-layout="button_count"
+						data-action="like" data-show-faces="false" data-share="false"
+						fb-xfbml-state="rendered">
+						<span style="height: 20px; width: 82px;"><iframe
+								id="f39793dba4" name="ff4bd71c" scrolling="no"
+								style="border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; height: 20px; width: 82px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;"
+								title="Like this content on Facebook." class="fb_ltr"
+								src="http://www.facebook.com/plugins/like.php?action=like&amp;api_key=&amp;channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D28%23cb%3Df250cecd1%26domain%3Dlocalhost%26origin%3Dhttp%253A%252F%252Flocalhost%253A8888%252Ff1ab334c48%26relation%3Dparent.parent&amp;colorscheme=light&amp;extended_social_context=false&amp;href=http%3A%2F%2Flotocado.appspot.com&amp;layout=button_count&amp;locale=fr_FR&amp;node_type=link&amp;sdk=joey&amp;share=false&amp;show_faces=false&amp;width=90"></iframe></span>
+					</div>
 				</div>
 			</div>
 		</footer>
 	</div>
-	<div id="fb-root"></div>
-		<script>
+	<div id="fb-root" class=" fb_reset">
+		<div
+			style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+			<div>
+				<iframe name="fb_xdm_frame_http" frameborder="0"
+					allowtransparency="true" scrolling="no" id="fb_xdm_frame_http"
+					aria-hidden="true"
+					title="Facebook Cross Domain Communication Frame" tab-index="-1"
+					style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;"
+					src="http://static.ak.facebook.com/connect/xd_arbiter.php?version=28#channel=f1ab334c48&amp;channel_path=%2Findex-template.html%3Ffb_xd_fragment%23xd_sig%3Dfcd463f9%26&amp;origin=http%3A%2F%2Flocalhost%3A8888"></iframe>
+				<iframe name="fb_xdm_frame_https" frameborder="0"
+					allowtransparency="true" scrolling="no" id="fb_xdm_frame_https"
+					aria-hidden="true"
+					title="Facebook Cross Domain Communication Frame" tab-index="-1"
+					style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;"
+					src="https://s-static.ak.facebook.com/connect/xd_arbiter.php?version=28#channel=f1ab334c48&amp;channel_path=%2Findex-template.html%3Ffb_xd_fragment%23xd_sig%3Dfcd463f9%26&amp;origin=http%3A%2F%2Flocalhost%3A8888"></iframe>
+			</div>
+		</div>
+		<div
+			style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+			<div></div>
+		</div>
+	</div>
+	<script>
 			(function(d, s, id) {
 			  var js, fjs = d.getElementsByTagName(s)[0];
 			  if (d.getElementById(id)) return;
@@ -192,5 +756,7 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
 			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
+
+
 </body>
 </html>
