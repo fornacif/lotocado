@@ -56,7 +56,7 @@
 			<div class="alert alert-danger fade in" ng-show="resendEmailError">
 				<span translate="PARTICIPANT_EMAIL_NOT_RESEND_ERROR_CODE" />
 			</div>
-			<div class="row row-padding" ng-repeat="participant in event.participants" ng-animate="'animate'">
+			<div class="row row-padding" ng-repeat="participant in event.participants">
 				<div class="col-sm-3">
 					<div ng-class="participant.resultConsulted ? 'input-group has-success' : 'input-group has-warning'">
 						<span class="input-group-addon" ng-show="participant.resultConsulted" tooltip="{{'EVENT_RESULT_CONSULTED' | translate }}"><i class="glyphicon glyphicon-eye-open"></i></span>

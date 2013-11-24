@@ -1,5 +1,4 @@
-﻿-angular 1.2
--supprimer event
+﻿-supprimer event
 -personaliser le message
 -liste de voeux
 

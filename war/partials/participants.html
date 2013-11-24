@@ -13,7 +13,7 @@
 		<div class="panel-body">
 			<p><i class="glyphicon glyphicon-info-sign"></i> {{'PARTICIPANTS_ADD_PARTICIPANTS_INFO' | translate }}</p>
 			<form name="participantsForm" class="form">
-				<div class="row row-padding" ng-repeat="participant in participants" ng-animate="'animate'">
+				<div class="row row-padding animate" ng-repeat="participant in participants">
 					<ng-form name="nameForm" class="col-sm-3" >
 						<div ng-class="nameForm.participantName.$dirty && nameForm.participantName.$invalid ? 'input-group has-error' : 'input-group'">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
