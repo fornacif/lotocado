@@ -15,11 +15,11 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Transaction;
 
-@Api(name = "lotocado", version = "v1")
-public class ParticipantRetriever {
+@Api(name = "lotocado", version = "v2")
+public class ParticipantManager {
 
 	private final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
-
+	
 	public ParticipantResponse getParticipant(EncryptedRequest encryptedRequest) throws BadRequestException {
 		Transaction transaction = datastoreService.beginTransaction();
 		try {
@@ -48,8 +48,8 @@ public class ParticipantRetriever {
 			if (transaction.isActive()) {
 				transaction.rollback();
 			}
-		}
-		
+		}	
 	}
+
 
 }

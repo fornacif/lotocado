@@ -17,11 +17,11 @@ public final class Encryptor {
 		encryptor.setStringOutputType(ENCRYPTION_OUTPUT_TYPE);
 	}
 
-	public static final String encryptEventId(Long eventId) {
+	public static final String encryptId(Long eventId) {
 		return encryptor.encrypt(String.valueOf(eventId)).toString();
 	}
 
-	public static final Long decryptEventId(String encryptedValue) {
+	public static final Long decryptId(String encryptedValue) {
 		String value = encryptor.decrypt(encryptedValue);
 		return Long.parseLong(value);
 	}

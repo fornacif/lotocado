@@ -26,15 +26,20 @@ angular.module("lotocado.services", []).
 	}]).
 	service("participantService", function() {
 		this.getParticipant = function (encryptedValue, callback) {			
-			gapi.client.lotocado.participantRetriever.getParticipant(
+			gapi.client.lotocado.participantManager.getParticipant(
 				{"encryptedValue" : encryptedValue}
 			).execute(callback);
         };
 	}).
 	service("eventService", function() {
 		this.getEvent = function (encryptedValue, callback) {			
-			gapi.client.lotocado.eventRetriever.getEvent(
+			gapi.client.lotocado.eventManager.getEvent(
 				{"encryptedValue" : encryptedValue}
+			).execute(callback);
+        };
+        this.resendEmail = function (participant, callback) {			
+			gapi.client.lotocado.eventManager.resendEmail(
+				{"participant" : participant}
 			).execute(callback);
         };
 	});

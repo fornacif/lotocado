@@ -154,6 +154,18 @@ angular.module("lotocado.controllers", []).
 			});	
 		}
 		
+		$scope.resendEmail = function(participant) {
+			$scope.loading = true;
+			$scope.resendEmailError = false;
+			
+			eventService.resendEmail(participant, function(response) {
+				$scope.$apply($scope.loading = false);
+				if (response && response.error != null) {
+					$scope.$apply($scope.resendEmailError = true);
+				}
+			});	
+		}
+		
 		if ($rootScope.gapi) {
 			$scope.getEvent();
 		} else {

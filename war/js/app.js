@@ -36,5 +36,5 @@ function init() {
 		scope.$broadcast("GAPI_LOADED_EVENT");
 	}
 	
-	gapi.client.load("lotocado", "v1", callback, apiRoot);
+	gapi.client.load("lotocado", "v2", callback, apiRoot);
 }

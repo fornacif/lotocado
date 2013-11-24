@@ -14,7 +14,7 @@
 		</div>
 		<div class="panel-body" ng-hide="event">
 			<div class="alert alert-danger fade in" ng-show="error">
-				<span translate="EVENT_ERROR" />
+				<span translate="EVENT_NOT_FOUND_ERROR_CODE" />
 			</div>
 		</div>
 		<div class="panel-body" ng-show="event">
@@ -53,20 +53,28 @@
 			
 			<p>{{'EVENT_PARTICIPANTS' | translate }}</p>
 			
+			<div class="alert alert-danger fade in" ng-show="resendEmailError">
+				<span translate="PARTICIPANT_EMAIL_NOT_RESEND_ERROR_CODE" />
+			</div>
 			<div class="row row-padding" ng-repeat="participant in event.participants" ng-animate="'animate'">
 				<div class="col-sm-3">
 					<div ng-class="participant.resultConsulted ? 'input-group has-success' : 'input-group has-warning'">
-						<span class="input-group-addon" ng-show="participant.resultConsulted" tooltip-placement="top" tooltip="{{'EVENT_RESULT_CONSULTED' | translate }}"><i class="glyphicon glyphicon-eye-open"></i></span>
-						<span class="input-group-addon" ng-hide="participant.resultConsulted" tooltip-placement="top" tooltip="{{'EVENT_RESULT_NOT_CONSULTED' | translate }}"><i class="glyphicon glyphicon-eye-close"></i></span>
-						<input type="text" class="form-control" ng-model="participant.name" placeholder="Enter name" ng-readonly="true"/>
+						<span class="input-group-addon" ng-show="participant.resultConsulted" tooltip="{{'EVENT_RESULT_CONSULTED' | translate }}"><i class="glyphicon glyphicon-eye-open"></i></span>
+						<span class="input-group-addon" ng-hide="participant.resultConsulted" tooltip="{{'EVENT_RESULT_NOT_CONSULTED' | translate }}"><i class="glyphicon glyphicon-eye-close"></i></span>
+						<input type="text" class="form-control" ng-model="participant.name" ng-readonly="true"/>
 					</div>
 				</div>
-				<div class="col-sm-4">
-					<div class="input-group">
+				<ng-form name="emailForm" class="col-sm-4">
+					<div ng-class="emailForm.participantEmail.$dirty && emailForm.participantEmail.$invalid ? 'input-group has-error' : 'input-group'">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-						<input type="email" class="form-control" ng-model="participant.email" placeholder="Enter email" ng-readonly="true" />
+						<input type="email" name="participantEmail" class="form-control" ng-model="participant.email" placeholder="{{'PARTICIPANTS_EMAIL' | translate }}" required />
+						<span class="input-group-btn">
+							<button ng-click="resendEmail(participant)" class="btn btn-default" ng-disabled="loading || emailForm.participantEmail.$invalid" tooltip="{{'EVENT_RESEND_EMAIL' | translate }}" tooltip-placement="right">
+								<i class="glyphicon glyphicon-send"></i>
+							</button>			
+						</span>
 					</div>
-				</div>
+				</ng-form>
 				<div class="col-sm-3">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-ban-circle"></i></span>

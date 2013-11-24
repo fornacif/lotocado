@@ -3,7 +3,7 @@
   "abstract" : false,
   "root" : "https://lotocado.appspot.com/_ah/api",
   "name" : "lotocado",
-  "version" : "v1",
+  "version" : "v2",
   "defaultVersion" : false,
   "adapter" : {
     "bns" : "https://lotocado.appspot.com/_ah/spi",
@@ -24,13 +24,13 @@
     "maxAge" : 0
   },
   "methods" : {
-    "lotocado.participantRetriever.getParticipant" : {
-      "path" : "participantresponse",
+    "lotocado.eventManager.getEvent" : {
+      "path" : "eventresponse",
       "httpMethod" : "GET",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.fornacif.lotocado.service.ParticipantRetriever.getParticipant",
+      "rosyMethod" : "com.fornacif.lotocado.service.EventManager.getEvent",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -39,13 +39,28 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "lotocado.eventRetriever.getEvent" : {
-      "path" : "eventresponse",
+    "lotocado.eventManager.resendEmail" : {
+      "path" : "resendEmail",
+      "httpMethod" : "POST",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.fornacif.lotocado.service.EventManager.resendEmail",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "lotocado.participantManager.getParticipant" : {
+      "path" : "participantresponse",
       "httpMethod" : "GET",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.fornacif.lotocado.service.EventRetriever.getEvent",
+      "rosyMethod" : "com.fornacif.lotocado.service.ParticipantManager.getParticipant",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -81,21 +96,6 @@
           }
         }
       },
-      "ParticipantResponse" : {
-        "id" : "ParticipantResponse",
-        "type" : "object",
-        "properties" : {
-          "name" : {
-            "type" : "string"
-          },
-          "toName" : {
-            "type" : "string"
-          },
-          "eventName" : {
-            "type" : "string"
-          }
-        }
-      },
       "EventResponse" : {
         "id" : "EventResponse",
         "type" : "object",
@@ -125,6 +125,12 @@
         "id" : "ParticipantLight",
         "type" : "object",
         "properties" : {
+          "encryptedEventId" : {
+            "type" : "string"
+          },
+          "encryptedParticipantId" : {
+            "type" : "string"
+          },
           "email" : {
             "type" : "string"
           },
@@ -139,6 +145,30 @@
           },
           "resultConsulted" : {
             "type" : "boolean"
+          }
+        }
+      },
+      "ParticipantRequest" : {
+        "id" : "ParticipantRequest",
+        "type" : "object",
+        "properties" : {
+          "participant" : {
+            "$ref" : "ParticipantLight"
+          }
+        }
+      },
+      "ParticipantResponse" : {
+        "id" : "ParticipantResponse",
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "toName" : {
+            "type" : "string"
+          },
+          "eventName" : {
+            "type" : "string"
           }
         }
       },
@@ -223,20 +253,25 @@
       }
     },
     "methods" : {
-      "com.fornacif.lotocado.service.ParticipantRetriever.getParticipant" : {
-        "request" : {
-          "$ref" : "EncryptedRequest"
-        },
-        "response" : {
-          "$ref" : "ParticipantResponse"
-        }
-      },
-      "com.fornacif.lotocado.service.EventRetriever.getEvent" : {
+      "com.fornacif.lotocado.service.EventManager.getEvent" : {
         "request" : {
           "$ref" : "EncryptedRequest"
         },
         "response" : {
           "$ref" : "EventResponse"
+        }
+      },
+      "com.fornacif.lotocado.service.EventManager.resendEmail" : {
+        "request" : {
+          "$ref" : "ParticipantRequest"
+        }
+      },
+      "com.fornacif.lotocado.service.ParticipantManager.getParticipant" : {
+        "request" : {
+          "$ref" : "EncryptedRequest"
+        },
+        "response" : {
+          "$ref" : "ParticipantResponse"
         }
       },
       "com.fornacif.lotocado.service.RandomMatcher.createDrawingLots" : {

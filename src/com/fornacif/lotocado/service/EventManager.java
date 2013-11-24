@@ -1,12 +1,19 @@
 package com.fornacif.lotocado.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+
+import com.fornacif.lotocado.helper.EmailHelper;
+import com.fornacif.lotocado.model.ParticipantRequest;
 import com.fornacif.lotocado.model.EncryptedRequest;
+import com.fornacif.lotocado.model.Event;
 import com.fornacif.lotocado.model.EventResponse;
+import com.fornacif.lotocado.model.Participant;
 import com.fornacif.lotocado.model.ParticipantLight;
 import com.fornacif.lotocado.utils.Constants;
 import com.fornacif.lotocado.utils.Encryptor;
@@ -20,16 +27,17 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 
-@Api(name = "lotocado", version = "v1")
-public class EventRetriever {
+@Api(name = "lotocado", version = "v2")
+public class EventManager {
 
 	private final DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 
 	public EventResponse getEvent(EncryptedRequest encryptedRequest) throws BadRequestException {
 		try {
-			Long eventId = Encryptor.decryptEventId(encryptedRequest.getEncryptedValue());
+			Long eventId = Encryptor.decryptId(encryptedRequest.getEncryptedValue());
 			Key eventKey = KeyFactory.createKey(Constants.EVENT_ENTITY, eventId);
 			Entity eventEntity = datastoreService.get(eventKey);
 
@@ -45,6 +53,8 @@ public class EventRetriever {
 			Iterable<Entity> participantIterable = preparedQuery.asIterable();
 			for (Entity participantEntity : participantIterable) {
 				ParticipantLight participantLight = new ParticipantLight();
+				participantLight.setEncryptedEventId(Encryptor.encryptId(eventId));
+				participantLight.setEncryptedParticipantId(Encryptor.encryptId(participantEntity.getKey().getId()));
 				participantLight.setName((String) participantEntity.getProperty(Constants.PARTICIPANT_NAME));
 				participantLight.setEmail((String) participantEntity.getProperty(Constants.PARTICIPANT_EMAIL));
 				participantLight.setResultConsulted((boolean) participantEntity.getProperty(Constants.PARTICIPANT_IS_RESULT_CONSULTED));
@@ -55,6 +65,47 @@ public class EventRetriever {
 			return eventResponse;
 		} catch (EntityNotFoundException e) {
 			throw new BadRequestException("{\"code\": \"" + Constants.EVENT_NOT_FOUND_ERROR_CODE + "\"}");
+		}
+	}
+
+	public void resendEmail(ParticipantRequest participantRequest) throws BadRequestException {
+		Transaction transaction = datastoreService.beginTransaction();
+		try {
+			Long eventId = Encryptor.decryptId(participantRequest.getParticipant().getEncryptedEventId());
+			Key eventKey = KeyFactory.createKey(Constants.EVENT_ENTITY, eventId);
+			Entity eventEntity = datastoreService.get(eventKey);
+
+			Long participantId = Encryptor.decryptId(participantRequest.getParticipant().getEncryptedParticipantId());
+			Key participantKey = KeyFactory.createKey(eventKey, Constants.PARTICIPANT_ENTITY, participantId);
+			Entity participantEntity = datastoreService.get(participantKey);
+
+			participantEntity.setProperty(Constants.PARTICIPANT_EMAIL, participantRequest.getParticipant().getEmail());
+			datastoreService.put(participantEntity);
+
+			Event event = new Event();
+			event.setKey(eventKey);
+			event.setDate((Date) eventEntity.getProperty(Constants.EVENT_DATE));
+			event.setName((String) eventEntity.getProperty(Constants.EVENT_NAME));
+			event.setOrganizerName((String) eventEntity.getProperty(Constants.EVENT_ORGANIZER_NAME));
+			event.setOrganizerEmail((String) eventEntity.getProperty(Constants.EVENT_ORGANIZER_EMAIL));
+
+			Participant participant = new Participant();
+			participant.setKey(participantKey);
+			participant.setEntity(participantEntity);
+			participant.setName((String) participantEntity.getProperty(Constants.PARTICIPANT_NAME));
+			participant.setEmail((String) participantEntity.getProperty(Constants.PARTICIPANT_EMAIL));
+
+			EmailHelper.sendEmailToParticipant(event, participant);
+			
+			transaction.commit();
+		} catch (EntityNotFoundException e) {
+			throw new BadRequestException("{\"code\": \"" + Constants.PARTICIPANT_NOT_FOUND_ERROR_CODE + "\"}");
+		} catch (MessagingException | IOException e) {
+			throw new BadRequestException("{\"code\": \"" + Constants.PARTICIPANT_EMAIL_NOT_RESEND_ERROR_CODE + "\"}");
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
 		}
 	}
 

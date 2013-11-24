@@ -51,7 +51,8 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			PARTICIPANT_RESULT_2 : "du tirage au sort",
 			PARTICIPANT_RESULT_3 : "pour l'évènement",
 			PARTICIPANT_RESULT_4 : "tu auras la chance d'offrir un cadeau à",
-			PARTICIPANT_ERROR : "Une erreur s'est produite. Le résultat du tirage au sort n'a pas pu être trouvé",
+			PARTICIPANT_NOT_FOUND_ERROR_CODE : "Une erreur s'est produite. Le résultat du tirage au sort n'a pas pu être trouvé",
+			PARTICIPANT_EMAIL_NOT_RESEND_ERROR_CODE : "Une erreur s'est produite. L'email n'a pas pu être renvoyé",
 			SUCCESS_EVENT : "L'évènement",
 			SUCCESS_CREATED : "a bien été créé",
 			SUCCESS_PARTICIPANTS : "Chaque participant a reçu une invation par mail pour consulter le résultat du tirage au sort.",
@@ -62,10 +63,11 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			ABOUT_CONTACT : "Si vous souhaitez nous faire des remarques, signalez un problème ou tout simplement nous donner vos impressions, vous pouvez nous conctacter à l'adresse suivante :",
 			ABOUT_DONATION : "Si cette application vous a plu, vous pouvez faire un don et ainsi contribuer à l'amélioration du service.",
 			EVENT : "Évènement",
-			EVENT_ERROR : "Une erreur s'est produite. L'évènement n'a pas pu être chargé",
+			EVENT_NOT_FOUND_ERROR_CODE : "Une erreur s'est produite. L'évènement n'a pas pu être chargé",
 			EVENT_PARTICIPANTS : "Liste des participants",
 			EVENT_RESULT_CONSULTED : "Résultat consulté",
-			EVENT_RESULT_NOT_CONSULTED : "Résultat non consulté"
+			EVENT_RESULT_NOT_CONSULTED : "Résultat non consulté",
+			EVENT_RESEND_EMAIL : "Renvoyer email"
 		});
 		$translateProvider.preferredLanguage("fr");
 	}]);

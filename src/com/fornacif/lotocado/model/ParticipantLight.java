@@ -5,10 +5,28 @@ import java.util.List;
 
 public class ParticipantLight {
 
+	private String encryptedEventId;
+	private String encryptedParticipantId;
 	private String email;
 	private String name;
 	private boolean isResultConsulted = false;
 	private List<String> excludedNames = new ArrayList<>();
+
+	public String getEncryptedEventId() {
+		return encryptedEventId;
+	}
+
+	public void setEncryptedEventId(String encryptedEventId) {
+		this.encryptedEventId = encryptedEventId;
+	}
+
+	public String getEncryptedParticipantId() {
+		return encryptedParticipantId;
+	}
+
+	public void setEncryptedParticipantId(String encryptedParticipantId) {
+		this.encryptedParticipantId = encryptedParticipantId;
+	}
 
 	public String getEmail() {
 		return email;
