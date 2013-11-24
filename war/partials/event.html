@@ -55,8 +55,9 @@
 			
 			<div class="row row-padding" ng-repeat="participant in event.participants" ng-animate="'animate'">
 				<div class="col-sm-3">
-					<div class="input-group">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<div ng-class="participant.resultConsulted ? 'input-group has-success' : 'input-group has-warning'">
+						<span class="input-group-addon" ng-show="participant.resultConsulted" tooltip-placement="top" tooltip="{{'EVENT_RESULT_CONSULTED' | translate }}"><i class="glyphicon glyphicon-eye-open"></i></span>
+						<span class="input-group-addon" ng-hide="participant.resultConsulted" tooltip-placement="top" tooltip="{{'EVENT_RESULT_NOT_CONSULTED' | translate }}"><i class="glyphicon glyphicon-eye-close"></i></span>
 						<input type="text" class="form-control" ng-model="participant.name" placeholder="Enter name" ng-readonly="true"/>
 					</div>
 				</div>
@@ -74,10 +75,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-sm-1">
-					<span class="glyphicon glyphicon-eye-open" ng-show="participant.resultConsulted" tooltip-placement="top" tooltip="{{'EVENT_RESULT_CONSULTED' | translate }}"></span>
-					<span class="glyphicon glyphicon-eye-close" ng-hide="participant.resultConsulted" tooltip-placement="top" tooltip="{{'EVENT_RESULT_NOT_CONSULTED' | translate }}"></span>
-				</div>
+				
 			</div>
 		</div>
 	</div>
