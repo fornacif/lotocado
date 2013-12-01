@@ -1,7 +1,9 @@
 package com.fornacif.lotocado.service;
 
+import com.fornacif.lotocado.helper.ExclusionHelper;
 import com.fornacif.lotocado.model.EncryptedRequest;
 import com.fornacif.lotocado.model.EventParticipantIds;
+import com.fornacif.lotocado.model.ParticipantLight;
 import com.fornacif.lotocado.model.ParticipantResponse;
 import com.fornacif.lotocado.utils.Constants;
 import com.fornacif.lotocado.utils.Encryptor;
@@ -13,6 +15,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Transaction;
 
 @Api(name = "lotocado", version = "v2")
@@ -34,6 +38,16 @@ public class ParticipantManager {
 			participantResponse.setEventName((String) eventEntity.getProperty(Constants.EVENT_NAME));
 			participantResponse.setName((String) participantEntity.getProperty(Constants.PARTICIPANT_NAME));
 			participantResponse.setToName((String) participantEntity.getProperty(Constants.PARTICIPANT_TO_NAME));
+			
+			Query query = new Query(Constants.PARTICIPANT_ENTITY).setAncestor(eventKey);
+			PreparedQuery preparedQuery = datastoreService.prepare(query);
+			Iterable<Entity> participantIterable = preparedQuery.asIterable();
+			for (Entity otherParticipantEntity : participantIterable) {
+				ParticipantLight participantLight = new ParticipantLight();
+				participantLight.setName((String) otherParticipantEntity.getProperty(Constants.PARTICIPANT_NAME));
+				participantLight.setExcludedNames(ExclusionHelper.getExcludedNames(datastoreService, otherParticipantEntity));
+				participantResponse.getParticipants().add(participantLight);
+			}
 			
 			participantEntity.setProperty(Constants.PARTICIPANT_IS_RESULT_CONSULTED, true);
 			datastoreService.put(participantEntity);

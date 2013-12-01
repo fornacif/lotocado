@@ -109,7 +109,7 @@ angular.module("lotocado.controllers", []).
 		$scope.participants = eventModel.participants;
 		eventModel.reset();
 	}]).	
-	controller("ParticipantController", ["$rootScope", "$scope", "$location", "$routeParams", "participantService", "Analytics", function($rootScope, $scope, $location, $routeParams, participantService, Analytics) {
+	controller("ParticipantController", ["$rootScope", "$scope", "$location", "$routeParams", "participantService", "$translate", "Analytics", function($rootScope, $scope, $location, $routeParams, participantService, $translate, Analytics) {
 		Analytics.trackPage("/participant");
 		
 		$scope.submitted = false;
@@ -136,6 +136,10 @@ angular.module("lotocado.controllers", []).
 				});
 			}
 		}
+		
+		$scope.otherParticipantTooltip = function(otherParticipant) {
+			return '<span style="font-size: 20px;">' + $translate("PARTICIPANT_OTHER_PARTICIPANTS_EXCUSIONS") + ' : ' + otherParticipant.excludedNames.toString() + '</span>';
+		};
 		
 	}]).
 	controller("EventController", ["$rootScope", "$scope", "$location", "$routeParams", "eventService", "Analytics", function($rootScope, $scope, $location, $routeParams, eventService, Analytics) {	

@@ -169,6 +169,12 @@
           },
           "eventName" : {
             "type" : "string"
+          },
+          "participants" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "ParticipantLight"
+            }
           }
         }
       },

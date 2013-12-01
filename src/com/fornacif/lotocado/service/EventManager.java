@@ -9,12 +9,13 @@ import java.util.Map;
 import javax.mail.MessagingException;
 
 import com.fornacif.lotocado.helper.EmailHelper;
-import com.fornacif.lotocado.model.ParticipantRequest;
+import com.fornacif.lotocado.helper.ExclusionHelper;
 import com.fornacif.lotocado.model.EncryptedRequest;
 import com.fornacif.lotocado.model.Event;
 import com.fornacif.lotocado.model.EventResponse;
 import com.fornacif.lotocado.model.Participant;
 import com.fornacif.lotocado.model.ParticipantLight;
+import com.fornacif.lotocado.model.ParticipantRequest;
 import com.fornacif.lotocado.utils.Constants;
 import com.fornacif.lotocado.utils.Encryptor;
 import com.google.api.server.spi.config.Api;
@@ -28,7 +29,6 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Transaction;
-import com.google.appengine.api.datastore.Query.FilterOperator;
 
 @Api(name = "lotocado", version = "v2")
 public class EventManager {
@@ -46,9 +46,8 @@ public class EventManager {
 			eventResponse.setDate((Date) eventEntity.getProperty(Constants.EVENT_DATE));
 			eventResponse.setOrganizerName((String) eventEntity.getProperty(Constants.EVENT_ORGANIZER_NAME));
 			eventResponse.setOrganizerEmail((String) eventEntity.getProperty(Constants.EVENT_ORGANIZER_EMAIL));
-
-			Query query = new Query(Constants.PARTICIPANT_ENTITY);
-			query.setFilter(FilterOperator.EQUAL.of(Constants.PARTICIPANT_EVENT_KEY, eventKey));
+			
+			Query query = new Query(Constants.PARTICIPANT_ENTITY).setAncestor(eventKey);
 			PreparedQuery preparedQuery = datastoreService.prepare(query);
 			Iterable<Entity> participantIterable = preparedQuery.asIterable();
 			for (Entity participantEntity : participantIterable) {
@@ -58,7 +57,7 @@ public class EventManager {
 				participantLight.setName((String) participantEntity.getProperty(Constants.PARTICIPANT_NAME));
 				participantLight.setEmail((String) participantEntity.getProperty(Constants.PARTICIPANT_EMAIL));
 				participantLight.setResultConsulted((boolean) participantEntity.getProperty(Constants.PARTICIPANT_IS_RESULT_CONSULTED));
-				participantLight.setExcludedNames(getExcludedNames(participantEntity));
+				participantLight.setExcludedNames(ExclusionHelper.getExcludedNames(datastoreService, participantEntity));
 				eventResponse.getParticipants().add(participantLight);
 			}
 
@@ -109,18 +108,6 @@ public class EventManager {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private List<String> getExcludedNames(Entity participantEntity) throws EntityNotFoundException {
-		List<String> excudedNames = new ArrayList<>();
-		List<Key> exlusionKeys = (List<Key>) participantEntity.getProperty(Constants.PARTICIPANT_EXCLUSION_KEYS);
-		if (exlusionKeys != null) {
-			Map<Key, Entity> excludedParticipants = datastoreService.get(exlusionKeys);
-			for (Key excludedParticipantKey : excludedParticipants.keySet()) {
-				Entity excludedParticipantEntity = datastoreService.get(excludedParticipantKey);
-				excudedNames.add((String) excludedParticipantEntity.getProperty(Constants.PARTICIPANT_NAME));
-			}
-		}
-		return excudedNames;
-	}
+	
 
 }
