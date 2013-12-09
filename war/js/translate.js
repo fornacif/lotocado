@@ -9,7 +9,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			ABOUT: "À propos",
 			HOME_CREATE_EVENT: "Créer un évènement",
 			HOME_WHAT_IS_FOR : "À quoi sert",
-			HOME_WHAT_IS_FOR_1 : "Fatigué de courrir dans les magasins avant les fêtes, ",
+			HOME_WHAT_IS_FOR_1 : "Fatigué de courir dans les magasins avant les fêtes, ",
 			HOME_WHAT_IS_FOR_2 : "est fait pour vous ! Le principe est simple, chaque personne offre un seul cadeau à Noël. Grâce à un tirage au sort entre vous, laissez le hasard décider à qui vous allez offrir un cadeau cette année.",
 			HOME_WHAT_IS_FOR_3 : "Pour réaliser le tirage au sort, il suffit de créer un évènement et d'ajouter l'ensemble des participants.",
 			HOME_WHAT_IS_FOR_4 : "enverra un email à chaque personne pour qu'elle découvre à qui elle devra faire un cadeau.",
