@@ -1,7 +1,7 @@
 <!doctype html>
-<html ng-app="lotocado">
+<html data-ng-app="lotocado">
 <head>
-	<title ng-bind-template="{{'TITLE' | translate }}"></title>
+	<title data-ng-bind-template="{{'TITLE' | translate }}"></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Marck+Script">
@@ -30,19 +30,19 @@
 	<script src="js/controllers.js"></script>
 	<script src="libs/gapi/client.js?onload=init"></script>
 </head>
-<body ng-controller="InitController">
+<body data-ng-controller="InitController">
 	<div class="container border-top">
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
-				<li ng-class="{active: isActive('/')}"><a href="#">{{'APPNAME' | translate }}</a></li>
-				<li ng-class="{active: isActive('/about')}"><a href="#/about">{{'ABOUT' | translate }}</a></li>
+				<li data-ng-class="{active: isActive('/')}"><a href="#">{{'APPNAME' | translate }}</a></li>
+				<li data-ng-class="{active: isActive('/about')}"><a href="#/about">{{'ABOUT' | translate }}</a></li>
 			</ul>
 			<h2 class="text-muted">
 				<img src="img/Actions-draw-cuboid-icon.png" /> Lotocado
 			</h2>
 		</div>
 	</div>
-	<div ng-view></div>
+	<div data-ng-view></div>
 	<div class="container border-bottom">
 		<hr>
 		<footer>

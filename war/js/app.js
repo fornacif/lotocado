@@ -25,7 +25,7 @@ function init() {
 	if (window.location.host.indexOf("localhost") == 0) {
 		apiRoot = "http://" + window.location.host + "/_ah/api";
 	} else {
-		apiRoot = "https://" + window.location.host + "/_ah/api";
+		apiRoot = "https://lotocado.appspot.com/_ah/api";
 	}
 	
 	var callback = function() {
