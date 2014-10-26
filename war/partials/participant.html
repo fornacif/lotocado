@@ -18,8 +18,7 @@
 			<div class="otherParticipants" style="font-size: 25px;" ng-show="participant">
 				{{'PARTICIPANT_OTHER_PARTICIPANTS' | translate }} : 
 				<span ng-repeat="otherParticipant in participant.participants">
-					<span>{{otherParticipant.name}}</span><span ng-hide="$last">,</span>
-<!-- 					<span tooltip-html-unsafe="{{otherParticipantTooltip(otherParticipant)}}">{{otherParticipant.name}}</span><span ng-hide="$last">,</span> -->
+					<span tooltip-html-unsafe="{{otherParticipantTooltip(otherParticipant)}}">{{otherParticipant.name}}</span><span ng-hide="$last">,</span>
 				</span>
 			</div>
 		</div>

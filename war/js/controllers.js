@@ -15,7 +15,7 @@ angular.module("lotocado.controllers", []).
 			$translate.uses($scope.lang);
 		}
 	}]).
-	controller("HomeController", ["$rootScope", "$scope", "$location", "eventModel", "Analytics", function($rootScope, $scope, $location, eventModel, Analytics) {
+	controller("HomeController", ["$rootScope", "$scope", "$location", "eventModel", "Analytics", "$filter", function($rootScope, $scope, $location, eventModel, Analytics, $filter) {	
 		Analytics.trackPage("/home");
 		
 		$scope.create = function() {
@@ -109,7 +109,7 @@ angular.module("lotocado.controllers", []).
 		$scope.participants = eventModel.participants;
 		eventModel.reset();
 	}]).	
-	controller("ParticipantController", ["$rootScope", "$scope", "$location", "$routeParams", "participantService", "$translate", "Analytics", function($rootScope, $scope, $location, $routeParams, participantService, $translate, Analytics) {
+	controller("ParticipantController", ["$rootScope", "$scope", "$location", "$routeParams", "participantService", "$filter", "Analytics", function($rootScope, $scope, $location, $routeParams, participantService, $filter, Analytics) {
 		Analytics.trackPage("/participant");
 		
 		$scope.submitted = false;
@@ -138,7 +138,12 @@ angular.module("lotocado.controllers", []).
 		}
 		
 		$scope.otherParticipantTooltip = function(otherParticipant) {
-			return '<span style="font-size: 20px;">' + $translate("PARTICIPANT_OTHER_PARTICIPANTS_EXCUSIONS") + ' : ' + otherParticipant.excludedNames.toString() + '</span>';
+			if (otherParticipant.excludedNames) {
+				return '<span style="font-size: 20px;">' + $filter('translate')('PARTICIPANT_OTHER_PARTICIPANTS_EXCUSIONS') + ' : ' + otherParticipant.excludedNames + '</span>';
+			} else {
+				return undefined;
+			}
+			
 		};
 	}]).
 	controller("EventController", ["$rootScope", "$scope", "$location", "$routeParams", "eventService", "Analytics", function($rootScope, $scope, $location, $routeParams, eventService, Analytics) {	
