@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.server.spi.config.AnnotationBoolean;
-import com.google.api.server.spi.config.ApiSerializationProperty;
+import com.google.api.server.spi.config.ApiResourceProperty;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 
 public class Participant {
 
-	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
 	private Key key;
 	private String hashKey;
 
@@ -18,18 +18,18 @@ public class Participant {
 	private String name;
 	private boolean isResultConsulted = false;
 
-	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
 	private Key toKey;
 	private String toName;
 	
-	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
 	private Key fromKey;
 
-	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
 	private List<Key> exclusionKeys = new ArrayList<>();
 	private List<String> exclusionHashKeys = new ArrayList<>();
 
-	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
 	private Entity entity;
 
 	public Key getKey() {

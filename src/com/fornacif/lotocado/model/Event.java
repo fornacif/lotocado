@@ -6,11 +6,11 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.google.api.server.spi.config.AnnotationBoolean;
-import com.google.api.server.spi.config.ApiSerializationProperty;
+import com.google.api.server.spi.config.ApiResourceProperty;
 import com.google.appengine.api.datastore.Key;
 
 public class Event {
-	@ApiSerializationProperty(ignored = AnnotationBoolean.TRUE)
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
 	private Key key;
 
 	private String name;

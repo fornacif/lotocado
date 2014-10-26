@@ -140,7 +140,6 @@ angular.module("lotocado.controllers", []).
 		$scope.otherParticipantTooltip = function(otherParticipant) {
 			return '<span style="font-size: 20px;">' + $translate("PARTICIPANT_OTHER_PARTICIPANTS_EXCUSIONS") + ' : ' + otherParticipant.excludedNames.toString() + '</span>';
 		};
-		
 	}]).
 	controller("EventController", ["$rootScope", "$scope", "$location", "$routeParams", "eventService", "Analytics", function($rootScope, $scope, $location, $routeParams, eventService, Analytics) {	
 		Analytics.trackPage("/event");

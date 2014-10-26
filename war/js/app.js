@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("lotocado", ["ngRoute", "ngAnimate", "angular-google-analytics", "lotocado.translate", "lotocado.services", "lotocado.controllers", "ui.select2", "ui.date", "ui.bootstrap"]).
+angular.module("lotocado", ["ngRoute", "ngAnimate", "angular-google-analytics", "lotocado.translate", "lotocado.services", "lotocado.controllers", "ui.directives", "ui.bootstrap"]).
 	config(function(AnalyticsProvider, $routeProvider) {
 		$routeProvider.
 			when("/", {controller:"HomeController", templateUrl:"partials/home.html"}).

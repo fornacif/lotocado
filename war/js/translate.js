@@ -56,7 +56,7 @@ angular.module("lotocado.translate", ["pascalprecht.translate"]).
 			PARTICIPANT_NOT_FOUND_ERROR_CODE : "Une erreur s'est produite. Le résultat du tirage au sort n'a pas pu être trouvé",
 			PARTICIPANT_EMAIL_NOT_RESEND_ERROR_CODE : "Une erreur s'est produite. L'email n'a pas pu être renvoyé",
 			PARTICIPANT_OTHER_PARTICIPANTS : "Participants",
-			PARTICIPANT_OTHER_PARTICIPANTS_EXCUSIONS : "Exclusions", 
+			PARTICIPANT_OTHER_PARTICIPANTS_EXCUSIONS : "Exclusions",
 			SUCCESS_EVENT : "L'évènement",
 			SUCCESS_CREATED : "a bien été créé",
 			SUCCESS_PARTICIPANTS : "Chaque participant a reçu une invation par mail pour consulter le résultat du tirage au sort.",
