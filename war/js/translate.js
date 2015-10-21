@@ -3,8 +3,8 @@
 angular.module("lotocado.translate", ["pascalprecht.translate"]).
 	config(["$translateProvider", function ($translateProvider) {
 		$translateProvider.translations("fr", {
-			APPNAME: "Lotocado",
-			TITLE: "Lotocado | Offrir un cadeau de Noël",
+			APPNAME: "Lotocado 2",
+			TITLE: "Lotocado 2| Offrir un cadeau de Noël",
 			HOME: "Accueil",
 			ABOUT: "À propos",
 			HOME_CREATE_EVENT: "Créer un évènement",
